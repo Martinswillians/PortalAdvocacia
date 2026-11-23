@@ -1,0 +1,21 @@
+{
+  "name": "AAB | Associação dos Advogados do Brasil",
+  "short_name": "AAB",
+  "description": "Portal da AAB: site pessoal para advogados associados e comunicados da associação.",
+  "id": "./",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0b1726",
+  "theme_color": "#0b1726",
+  "lang": "pt-BR",
+  "prefer_related_applications": false,
+  "categories": ["business", "legal"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

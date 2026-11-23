@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAB | Associação dos Advogados do Brasil</title>
+<meta name="description" content="Portal da Associação dos Advogados do Brasil: site pessoal para cada advogado associado, comunicados e atualizações da associação.">
+<meta name="theme-color" content="#0b1726">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AAB">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b1726;--navy2:#13243a;--gold:#c9a84c;--gold2:#e8c97a;--cream:#f6f2ea;--muted:#8d98a8;--on-gold:#0b1726;--border:rgba(201,168,76,.22);--ok:#3aa57d;--warn:#d99a2b;--info:#3a8dde;--bad:#d1495b;--purple:#9b6bd1}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;font-weight:300;background:var(--navy);color:var(--cream);min-height:100vh;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:400}
+a{color:var(--gold)}button{font-family:inherit;cursor:pointer}
+.eyebrow{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.wrap{max-width:1120px;margin:auto;padding:0 1.4rem}
+/* header */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(11,23,38,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.hdr-in{max-width:1120px;margin:auto;padding:.8rem 1.4rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:inherit}
+.brand img{width:38px;height:38px;border-radius:9px}
+.brand b{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--gold);letter-spacing:.08em;line-height:1;font-weight:600}
+.brand small{display:block;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:2px;max-width:170px;line-height:1.3}
+.hdr nav{display:flex;gap:.3rem;margin-left:auto;flex-wrap:wrap;align-items:center}
+.hdr nav a,.hdr nav button{background:none;border:none;color:var(--cream);text-decoration:none;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:.55rem .8rem;border-bottom:2px solid transparent;opacity:.85}
+.hdr nav a:hover,.hdr nav button:hover{color:var(--gold);opacity:1}
+.hdr nav a.on{color:var(--gold);border-bottom-color:var(--gold);opacity:1}
+.hdr nav a.cta{border:1px solid var(--gold);color:var(--gold)}
+.sub-nav{max-width:1120px;margin:auto;padding:0 1.4rem;display:flex;gap:.2rem;overflow-x:auto}
+.sub-nav a{padding:.7rem 1rem;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;display:flex;gap:.4rem;align-items:center}
+.sub-nav a:hover{color:var(--cream)}.sub-nav a.on{color:var(--gold);border-bottom-color:var(--gold)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--bad);display:inline-block}
+main{min-height:70vh}
+.pad{padding:2.2rem 0 4.5rem}
+footer.ft{border-top:1px solid var(--border);padding:1.6rem 1.4rem 2.4rem;text-align:center;font-size:.68rem;color:var(--muted);letter-spacing:.06em;line-height:1.9}
+footer.ft button{background:none;border:none;color:var(--muted);text-decoration:underline;font-size:inherit}
+/* botões / campos */
+.btn{display:inline-block;background:var(--gold);color:var(--on-gold);border:1px solid var(--gold);padding:.8rem 1.5rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;text-decoration:none;text-align:center}
+.btn:hover{background:var(--gold2)}.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--cream);border-color:var(--border)}.btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn.danger{background:transparent;color:var(--bad);border-color:var(--bad)}.btn.danger:hover{background:var(--bad);color:#fff}
+.btn.sm{padding:.5rem .9rem;font-size:.6rem}
+.field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}
+.field label{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.field input,.field select,.field textarea,.toolbar input,.toolbar select{background:transparent;border:1px solid var(--border);color:var(--cream);padding:.7rem .8rem;font:inherit;font-size:.86rem;font-weight:400;outline:none;width:100%;border-radius:0}
+.field input:focus,.field select:focus,.field textarea:focus,.toolbar input:focus{border-color:var(--gold)}
+.field select option,.toolbar select option{background:var(--navy2);color:var(--cream)}
+.field textarea{min-height:110px;resize:vertical;line-height:1.6}
+.field small,.hint{font-size:.66rem;color:var(--muted);line-height:1.55}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 1rem}
+.check{display:flex;gap:.6rem;align-items:flex-start;font-size:.74rem;line-height:1.55;color:var(--muted);margin-bottom:1rem;cursor:pointer}
+.check input{margin-top:.25rem;accent-color:var(--gold);width:auto}
+.msg-err{color:var(--bad);font-size:.75rem;min-height:1.1rem;margin-bottom:.6rem}.msg-ok{color:var(--ok);font-size:.75rem;margin-bottom:.6rem}
+.card{border:1px solid var(--border);background:var(--navy2);padding:1.5rem}
+.page-h{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.page-h h1{font-size:2.2rem;line-height:1.1}.page-h h1 em{color:var(--gold)}.page-h p{font-size:.78rem;color:var(--muted);margin-top:.35rem;max-width:620px;line-height:1.6}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem;margin-bottom:1.6rem}
+.stat{border:1px solid var(--border);background:var(--navy2);padding:1rem 1.1rem;text-decoration:none;color:inherit;display:block}
+a.stat:hover{border-color:var(--gold)}
+.stat b{display:block;font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:400;color:var(--gold);line-height:1}
+.stat span{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.chip{display:inline-block;padding:.16rem .6rem;border-radius:20px;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500;border:1px solid currentColor;white-space:nowrap}
+.s-ok{color:var(--ok)}.s-warn{color:var(--warn)}.s-info{color:var(--info)}.s-bad{color:var(--bad)}.s-mute{color:var(--muted)}.s-purple{color:var(--purple)}
+.empty{text-align:center;padding:2.6rem 1rem;color:var(--muted);font-size:.82rem;line-height:1.7;border:1px dashed var(--border)}
+.empty b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--cream);margin-bottom:.3rem}
+.sec-t{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:1.8rem 0 .8rem;display:flex;align-items:center;gap:.6rem}
+.sec-t::after{content:'';flex:1;height:1px;background:var(--border)}
+.toolbar{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}.toolbar input{flex:1;min-width:180px}.toolbar select{width:auto}
+.list{display:flex;flex-direction:column;gap:.6rem}
+.item{border:1px solid var(--border);background:var(--navy2);padding:1rem 1.2rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.item .main{flex:1;min-width:200px}.item h3{font-size:1.2rem;line-height:1.2;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.item p{font-size:.72rem;color:var(--muted);margin-top:.2rem;line-height:1.55;word-break:break-word}
+.item .acts{display:flex;gap:.4rem;flex-wrap:wrap}
+.on-dot{width:9px;height:9px;border-radius:50%;background:var(--ok);display:inline-block;box-shadow:0 0 0 3px rgba(58,165,125,.2)}
+.off-dot{width:9px;height:9px;border-radius:50%;background:#4a5668;display:inline-block}
+/* avisos */
+.board{display:flex;flex-direction:column;gap:.8rem}
+.aviso{border:1px solid var(--border);border-left:4px solid var(--info);background:var(--navy2);padding:1rem 1.2rem}
+.aviso.alerta{border-left-color:var(--bad)}.aviso.publicacao{border-left-color:var(--gold)}.aviso.atualizacao{border-left-color:var(--ok)}
+.aviso .t{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-bottom:.35rem;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.aviso h4{font-size:1.3rem;margin-bottom:.3rem;line-height:1.25}
+.aviso p{font-size:.82rem;line-height:1.7;color:var(--cream);font-weight:300}
+.aviso .lk{display:inline-block;margin-top:.5rem;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase}
+.pin{color:var(--gold)}
+/* home */
+.hero{position:relative;padding:5.5rem 0 4rem;background:radial-gradient(ellipse 70% 60% at 75% 30%,rgba(201,168,76,.1),transparent 60%),linear-gradient(135deg,var(--navy),var(--navy2) 55%,var(--navy))}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4.4rem);line-height:1.02;max-width:760px}.hero h1 em{color:var(--gold)}
+.hero p.lead{margin-top:1.4rem;max-width:560px;font-size:.92rem;line-height:1.9;color:var(--muted)}
+.hero .ctas{margin-top:2.2rem;display:flex;gap:.9rem;flex-wrap:wrap}
+.hero .seal{position:absolute;right:6%;top:50%;transform:translateY(-50%);width:clamp(120px,16vw,220px);opacity:.14;color:var(--gold)}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:.5rem}
+.feat div{background:var(--navy);padding:2rem 1.6rem}.feat span{font-size:1.6rem}.feat h3{font-size:1.4rem;margin:.6rem 0 .5rem}.feat p{font-size:.8rem;line-height:1.8;color:var(--muted)}
+.dir{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
+.dcard{border:1px solid var(--border);background:var(--navy2);padding:1.3rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.7rem;transition:border-color .2s,transform .2s}
+.dcard:hover{border-color:var(--gold);transform:translateY(-3px)}
+.dcard .top{display:flex;gap:.9rem;align-items:center}
+.ph{width:58px;height:58px;border-radius:50%;object-fit:cover;background:var(--navy);border:1px solid var(--border);flex:none;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold)}
+.dcard h3{font-size:1.25rem;line-height:1.2}.dcard small{font-size:.66rem;color:var(--muted);letter-spacing:.04em}
+.tags{display:flex;gap:.3rem;flex-wrap:wrap}.tags span{font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--border);padding:.15rem .5rem;color:var(--muted)}
+/* auth */
+.auth-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;align-items:start}
+.auth-grid .card{position:sticky;top:5.5rem}
+.tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:1.3rem}
+.tabs button{flex:1;background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);padding:.8rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase}
+.tabs button.on{color:var(--gold);border-bottom-color:var(--gold)}
+.gbtn{width:100%;display:flex;gap:.6rem;align-items:center;justify-content:center;background:#fff;color:#222;border:none;padding:.75rem;font-size:.78rem;font-weight:500;margin-bottom:1rem}
+.or{display:flex;align-items:center;gap:.8rem;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.or::before,.or::after{content:'';flex:1;height:1px;background:var(--border)}
+/* painel */
+.status-b{border:1px solid var(--warn);background:rgba(217,154,43,.08);padding:1.2rem 1.4rem;margin-bottom:1.4rem;font-size:.84rem;line-height:1.7}
+.status-b.bad{border-color:var(--bad);background:rgba(209,73,91,.08)}.status-b.ok{border-color:var(--ok);background:rgba(58,165,125,.08)}
+.status-b b{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;display:block;margin-bottom:.2rem}
+.areas-ed{display:flex;flex-direction:column;gap:.6rem;margin-bottom:.8rem}
+.areas-ed .r{display:grid;grid-template-columns:1fr 2fr auto;gap:.5rem;align-items:start}
+.areas-ed input,.areas-ed textarea{background:transparent;border:1px solid var(--border);color:var(--cream);padding:.55rem .7rem;font:inherit;font-size:.82rem;width:100%;outline:none}
+.areas-ed textarea{min-height:44px;resize:vertical}
+.themes{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.5rem}
+.themes label{border:1px solid var(--border);padding:.5rem;cursor:pointer;display:flex;flex-direction:column;gap:.4rem;font-size:.66rem;letter-spacing:.06em}
+.themes input{display:none}.themes label:has(input:checked){border-color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold)}
+.themes i{display:flex;height:22px;border:1px solid rgba(128,128,128,.4)}.themes i u{flex:1}
+.photo-row{display:flex;gap:1rem;align-items:center;margin-bottom:1rem}.photo-row .ph{width:84px;height:84px}
+.bars{display:flex;align-items:flex-end;gap:.5rem;height:120px;margin-top:.6rem}
+.bars div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:.3rem;height:100%;font-size:.6rem;color:var(--muted)}
+.bars i{display:block;width:100%;background:var(--gold);min-height:2px}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.pnl{border:1px solid var(--border);background:var(--navy2);padding:1.1rem 1.2rem}
+.pnl h3{font-family:'Montserrat',sans-serif;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:.8rem}
+.mini{display:flex;flex-direction:column}.mini>*{display:flex;justify-content:space-between;gap:.8rem;font-size:.78rem;padding:.55rem 0;border-bottom:1px solid var(--border);color:var(--cream);text-decoration:none;align-items:center}
+.mini small{color:var(--muted);font-size:.66rem;text-align:right}.mini .none{color:var(--muted);border:none}
+/* modal / toast */
+.modal-back{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;display:flex;align-items:flex-start;justify-content:center;padding:4vh 1rem;overflow:auto}
+.modal{background:var(--navy);border:1px solid var(--gold);width:100%;max-width:580px;padding:1.8rem;position:relative;margin:auto}
+.modal h2{font-size:1.8rem;margin-bottom:1rem}.modal .x{position:absolute;top:.6rem;right:.9rem;background:none;border:none;color:var(--muted);font-size:1.2rem}
+.modal .acts{display:flex;gap:.6rem;justify-content:flex-end;flex-wrap:wrap;margin-top:.8rem}
+.toast{position:fixed;left:50%;bottom:1.5rem;transform:translateX(-50%) translateY(30px);background:var(--gold);color:var(--on-gold);padding:.8rem 1.4rem;font-size:.78rem;font-weight:500;z-index:200;opacity:0;transition:.3s;max-width:90vw;pointer-events:none}
+.toast.on{opacity:1;transform:translateX(-50%)}.toast.err{background:var(--bad);color:#fff}
+.loading{text-align:center;padding:6rem 1rem;color:var(--muted);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
+/* site pessoal */
+.site{--sb:#0d1821;--sb2:#162030;--sa:#c9a84c;--st:#f8f5ef;--sm:#8a8070;background:var(--sb);color:var(--st);min-height:100vh;font-family:'Montserrat',sans-serif}
+.site a{color:var(--sa)}
+.site .bar{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.55rem 1.4rem;background:rgba(0,0,0,.35);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase}
+.site .bar a{color:var(--st);text-decoration:none;opacity:.8}.site .bar a:hover{opacity:1;color:var(--sa)}
+.site .sh{max-width:980px;margin:auto;padding:5rem 1.4rem 3.5rem;display:grid;grid-template-columns:auto 1fr;gap:2.6rem;align-items:center}
+.site .sh .pic{width:200px;height:200px;border-radius:50%;object-fit:cover;border:3px solid var(--sa);box-shadow:0 0 0 7px var(--sb),0 0 0 8px var(--sa);background:var(--sb2);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:4rem;color:var(--sa)}
+.site h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5vw,4rem);line-height:1;font-weight:400}
+.site .role{margin-top:.8rem;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sa)}
+.site .sec{max-width:980px;margin:auto;padding:3rem 1.4rem;border-top:1px solid color-mix(in srgb,var(--sa) 25%,transparent)}
+.site .sec h2{font-size:2.2rem;margin-bottom:1.2rem}.site .sec h2 em{color:var(--sa)}
+.site .bio{font-size:.92rem;line-height:2;color:var(--st);opacity:.88;white-space:pre-wrap;max-width:720px}
+.site .ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:color-mix(in srgb,var(--sa) 25%,transparent);border:1px solid color-mix(in srgb,var(--sa) 25%,transparent)}
+.site .ag div{background:var(--sb2);padding:1.6rem}.site .ag h3{font-size:1.3rem;margin-bottom:.5rem}.site .ag p{font-size:.78rem;line-height:1.75;color:var(--sm)}
+.site .ct{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem}
+.site .ci{display:flex;flex-direction:column;gap:1rem;font-size:.86rem}.site .ci a{text-decoration:none}.site .ci small{display:block;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sm);margin-bottom:.15rem}
+.site .fi{display:flex;flex-direction:column;gap:1rem}
+.site .fi input,.site .fi textarea{background:transparent;border:none;border-bottom:1px solid color-mix(in srgb,var(--sa) 35%,transparent);color:var(--st);padding:.7rem 0;font:inherit;font-size:.88rem;outline:none;width:100%}
+.site .fi input:focus,.site .fi textarea:focus{border-bottom-color:var(--sa)}.site .fi textarea{height:90px;resize:none}
+.site .fi button{background:var(--sa);color:var(--sb);border:none;padding:.9rem 2rem;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;align-self:flex-start}
+.site .fo{padding:2rem 1.4rem;text-align:center;font-size:.64rem;letter-spacing:.1em;color:var(--sm);border-top:1px solid color-mix(in srgb,var(--sa) 25%,transparent)}
+.site .prev{background:var(--sa);color:var(--sb);text-align:center;padding:.5rem;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+@media(max-width:800px){
+ .row2,.row3,.dgrid,.auth-grid,.site .ct{grid-template-columns:1fr}.feat{grid-template-columns:1fr}
+ .auth-grid .card{position:static}.hero{padding:3.5rem 0 3rem}.hero .seal{display:none}.page-h h1{font-size:1.8rem}
+ .site .sh{grid-template-columns:1fr;text-align:center;justify-items:center;padding-top:3rem}.areas-ed .r{grid-template-columns:1fr}
+ .hdr nav{margin-left:0;width:100%}
+}
+</style>
+</head>
+<body>
+<div id="root"><div class="loading">Carregando…</div></div>
+<div id="modalRoot"></div>
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, updateProfile }
+  from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getFirestore, doc, getDoc, getDocs, setDoc, addDoc, updateDoc, deleteDoc, collection, query, where, orderBy, limit, onSnapshot, serverTimestamp, increment, writeBatch, Timestamp }
+  from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCv3l1FjxShwEmaVGIdjK6v7FM4UIIkhvU",
+  authDomain: "portaladvocacia.firebaseapp.com",
+  projectId: "portaladvocacia",
+  storageBucket: "portaladvocacia.firebasestorage.app",
+  messagingSenderId: "140785106769",
+  appId: "1:140785106769:web:b59e39bae510765719dd70",
+  measurementId: "G-5YFBEGCECB"
+};
+const app = initializeApp(firebaseConfig), auth = getAuth(app), db = getFirestore(app);
+
+const ADMIN_EMAIL = 'willbrasilia@gmail.com';
+const UFS = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
+const TIPOS = { aviso: ['ℹ️', 'Aviso'], alerta: ['🚨', 'Alerta'], publicacao: ['📰', 'Publicação'], atualizacao: ['🔄', 'Atualização'] };
+const STATUS = { pendente: ['Aguardando aprovação', 's-warn'], ativo: ['Ativo', 's-ok'], suspenso: ['Suspenso', 's-bad'], recusado: ['Recusado', 's-mute'] };
+const TEMAS = {
+  classico: ['Clássico', '#0d1821', '#162030', '#c9a84c', '#f8f5ef', '#8a8070'],
+  marfim: ['Marfim', '#f8f5ef', '#eee8dc', '#8a6a2f', '#2b2a28', '#6f685b'],
+  corporativo: ['Corporativo', '#0b2545', '#13315c', '#4da3e0', '#eef4fa', '#9fb3c8'],
+  esmeralda: ['Esmeralda', '#0a1f1a', '#11302a', '#4fc79b', '#eaf5f0', '#8fb3a6'],
+  vinho: ['Vinho', '#2a0a18', '#3a1226', '#e0a58f', '#fbeee9', '#c19aa5'],
+  grafite: ['Grafite', '#14161c', '#1f222b', '#e5e5e5', '#f4f4f4', '#9a9fab']
+};
+const DEF = { aprovacaoAuto: false, heroTitulo: 'Seu site profissional, oferecido pela AAB', heroTexto: 'A Associação dos Advogados do Brasil oferece a cada advogado associado um site pessoal pronto para uso, com painel de gestão e comunicados oficiais da associação.', suporteEmail: ADMIN_EMAIL, termos: 'Declaro que as informações fornecidas são verdadeiras, que sou advogado(a) regularmente inscrito(a) na OAB e que concordo com o tratamento dos meus dados pela AAB para gestão do meu cadastro e do meu site pessoal.' };
+
+/* ---------- utilitários ---------- */
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const nl = s => esc(s).replace(/\n/g, '<br>');
+const ms = t => t ? (t.toMillis ? t.toMillis() : (t.seconds ? t.seconds * 1000 : Number(t) || 0)) : 0;
+const fmtD = t => { const m = ms(t); return m ? new Date(m).toLocaleDateString('pt-BR') : ''; };
+const fmtDT = t => { const m = ms(t); return m ? new Date(m).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : ''; };
+const ago = t => { const m = ms(t); if (!m) return 'nunca'; const d = (Date.now() - m) / 1000; if (d < 90) return 'agora'; if (d < 3600) return `há ${Math.round(d / 60)} min`; if (d < 86400) return `há ${Math.round(d / 3600)} h`; return `há ${Math.round(d / 86400)} d`; };
+const dayKey = (m = Date.now()) => { const d = new Date(m); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+const safeUrl = u => /^https?:\/\//i.test(u || '') ? u : '';
+const slugify = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40);
+const initials = n => String(n || '?').trim().split(/\s+/).filter(Boolean).slice(0, 2).map(x => x[0]).join('').toUpperCase();
+const online = a => Date.now() - ms(a.visto) < 10 * 60e3;
+const siteUrl = slug => location.origin + location.pathname + '#/a/' + slug;
+let toastT;
+function toast(msg, err) { const t = $('#toast'); t.textContent = msg; t.className = 'toast on' + (err ? ' err' : ''); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), err ? 5000 : 3200); }
+function openModal(html, mount) {
+  const root = $('#modalRoot');
+  root.innerHTML = `<div class="modal-back"><div class="modal"><button class="x" data-close aria-label="Fechar">✕</button>${html}</div></div>`;
+  const close = () => { root.innerHTML = ''; };
+  root.querySelector('.modal-back').addEventListener('mousedown', e => { if (e.target.classList.contains('modal-back')) close(); });
+  root.querySelector('[data-close]').onclick = close;
+  mount && mount(root.querySelector('.modal'), close);
+  return close;
+}
+const confirmBox = (texto, rotulo = 'Confirmar') => new Promise(res => openModal(`<h2>Confirmar</h2><p style="font-size:.86rem;line-height:1.7;margin-bottom:1rem">${texto}</p><div class="acts"><button class="btn ghost sm" data-no>Cancelar</button><button class="btn danger sm" data-yes>${rotulo}</button></div>`,
+  (m, c) => { m.querySelector('[data-no]').onclick = () => { c(); res(false); }; m.querySelector('[data-yes]').onclick = () => { c(); res(true); }; }));
+const askText = (titulo, aviso, rotulo) => new Promise(res => openModal(`<h2>${titulo}</h2><p style="font-size:.84rem;line-height:1.7;margin-bottom:1rem">${aviso}</p><div class="field"><textarea id="atx" maxlength="500"></textarea></div><div class="acts"><button class="btn ghost sm" data-no>Cancelar</button><button class="btn sm" data-yes>${rotulo}</button></div>`,
+  (m, c) => { m.querySelector('[data-no]').onclick = () => { c(); res(null); }; m.querySelector('[data-yes]').onclick = () => { const v = m.querySelector('#atx').value.trim(); c(); res(v); }; }));
+const errMsg = e => ({
+  'auth/invalid-credential': 'E-mail ou senha incorretos.', 'auth/wrong-password': 'E-mail ou senha incorretos.', 'auth/user-not-found': 'E-mail ou senha incorretos.',
+  'auth/invalid-email': 'E-mail inválido.', 'auth/email-already-in-use': 'Este e-mail já tem cadastro. Use “Entrar” ou “Esqueci a senha”.',
+  'auth/weak-password': 'A senha precisa ter pelo menos 6 caracteres.', 'auth/too-many-requests': 'Muitas tentativas. Aguarde um pouco.',
+  'auth/popup-closed-by-user': '', 'auth/cancelled-popup-request': '', 'auth/network-request-failed': 'Sem conexão com a internet.',
+  'auth/operation-not-allowed': 'Este tipo de login não está ativado no Firebase.',
+  'auth/unauthorized-domain': 'Domínio não autorizado: adicione martinswillians.github.io em Authentication → Configurações → Domínios autorizados.',
+  'permission-denied': 'Sem permissão. Confira se as regras do Firestore foram publicadas e se o cadastro está ativo.'
+}[e?.code] ?? (e?.message && !e.code ? e.message : 'Algo deu errado. Tente novamente.'));
+const docs = snap => snap.docs.map(d => ({ id: d.id, ...d.data({ serverTimestamps: 'estimate' }) }));
+
+/* ---------- estado ---------- */
+const S = { user: null, admin: false, assoc: null, site: null, config: { ...DEF }, com: [], dirSites: [], associados: [], logins: [], sites: [], msgs: [], unsubs: [], pubUnsub: null, view: null, pending: null, popupPending: false, hb: 0, comLoaded: false };
+const listen = (q, fn) => { const u = onSnapshot(q, fn, e => console.warn('listen', e.code)); S.unsubs.push(u); return u; };
+function stopAll() { S.unsubs.forEach(u => u()); S.unsubs = []; clearInterval(S.hb); S.comLoaded = false; }
+
+/* ---------- comunicados ---------- */
+function visiveis() {
+  const hoje = dayKey();
+  return S.com.filter(c => c.ativo !== false && (!c.expiraEm || c.expiraEm >= hoje))
+    .sort((a, b) => (b.fixado ? 1 : 0) - (a.fixado ? 1 : 0) || ms(b.criadoAt) - ms(a.criadoAt));
+}
+function avisoHtml(c, adm) {
+  const t = TIPOS[c.tipo] || TIPOS.aviso;
+  return `<div class="aviso ${esc(c.tipo)}"><div class="t"><span>${t[0]} ${t[1]}</span>${c.fixado ? '<span class="pin">📌 fixado</span>' : ''}<span>${fmtD(c.criadoAt)}</span>${adm ? `${c.ativo === false ? '<span class="chip s-mute">inativo</span>' : ''}${c.popup ? '<span class="chip s-info">pop-up</span>' : ''}${c.publico ? '<span class="chip s-ok">público</span>' : '<span class="chip s-mute">só associados</span>'}` : ''}</div>
+  <h4>${esc(c.titulo)}</h4><p>${nl(c.texto)}</p>${safeUrl(c.link) ? `<a class="lk" href="${esc(c.link)}" target="_blank" rel="noopener">${esc(c.linkTexto || 'Saiba mais')} →</a>` : ''}</div>`;
+}
+const boardHtml = (list, vazio) => list.length ? `<div class="board">${list.map(c => avisoHtml(c)).join('')}</div>` : `<div class="empty"><b>Sem comunicados no momento</b>${vazio || 'Os avisos e atualizações da AAB aparecem aqui.'}</div>`;
+const seenKey = c => `aab_seen_${S.user?.uid}_${c.id}_${ms(c.atualizadoAt || c.criadoAt)}`;
+function showPopups() {
+  if (!S.user || S.admin) return;
+  const list = visiveis().filter(c => c.popup && !localStorage.getItem(seenKey(c)));
+  if (!list.length) return;
+  openModal(`<div class="eyebrow">Comunicados da AAB</div><h2>Novidades para você</h2><div class="board" style="max-height:55vh;overflow:auto;margin-bottom:.4rem">${list.map(c => avisoHtml(c)).join('')}</div><div class="acts"><button class="btn sm" data-ok>Entendi</button></div>`,
+    (m, c) => { m.querySelector('[data-ok]').onclick = () => { list.forEach(x => { try { localStorage.setItem(seenKey(x), '1'); } catch { /* ok */ } }); c(); }; });
+}
+
+/* ---------- login / cadastro ---------- */
+const doLogin = (email, senha) => signInWithEmailAndPassword(auth, email, senha);
+async function ensureAssoc(user) {
+  const ref = doc(db, 'associados', user.uid), d = await getDoc(ref);
+  if (d.exists()) return;
+  const p = S.pending || {};
+  await setDoc(ref, { uid: user.uid, nome: (p.nome || user.displayName || (user.email || '').split('@')[0]).slice(0, 150), email: (user.email || '').toLowerCase(), telefone: p.telefone || '', oab: p.oab || '', seccional: p.seccional || '',
+    status: S.config.aprovacaoAuto ? 'ativo' : 'pendente', acessos: 0, criadoAt: serverTimestamp() });
+  S.pending = null;
+}
+async function logAccess(user) {
+  const flag = 'aab_log_' + user.uid;
+  if (sessionStorage.getItem(flag)) return false;
+  sessionStorage.setItem(flag, '1');
+  try {
+    await addDoc(collection(db, 'logins'), { uid: user.uid, nome: (S.assoc?.nome || user.displayName || user.email || '').slice(0, 150), email: (user.email || '').toLowerCase(), tipo: S.admin ? 'admin' : 'login', em: serverTimestamp() });
+    if (!S.admin) await updateDoc(doc(db, 'associados', user.uid), { ultimoAcesso: serverTimestamp(), visto: serverTimestamp(), acessos: increment(1) });
+  } catch (e) { console.warn('acesso', e.code); }
+  return true;
+}
+
+/* ---------- casca ---------- */
+function renderShell() {
+  $('#root').innerHTML = `<header class="hdr"><div class="hdr-in" id="hdr"></div><div id="subnav"></div></header><main id="main"></main>
+  <footer class="ft">AAB · Associação dos Advogados do Brasil<br>Dúvidas: <a href="mailto:${esc(S.config.suporteEmail)}">${esc(S.config.suporteEmail)}</a> <button id="instBtn" hidden>· Instalar app</button></footer>`;
+  renderHeader();
+  if (deferredInstall) $('#instBtn').hidden = false;
+  $('#instBtn').onclick = async () => { if (deferredInstall) { deferredInstall.prompt(); deferredInstall = null; $('#instBtn').hidden = true; } };
+}
+function renderHeader() {
+  const h = $('#hdr'); if (!h) return;
+  const r = location.hash.replace(/^#\/?/, '').split('/')[0];
+  const l = (href, t, k, cls = '') => `<a class="${cls} ${r === k ? 'on' : ''}" href="${href}">${t}</a>`;
+  h.innerHTML = `<a class="brand" href="#/"><img src="icons/icon-192.png" alt=""><div><b>AAB</b><small>Associação dos Advogados do Brasil</small></div></a>
+  <nav>${l('#/', 'Início', '')}${l('#/advogados', 'Advogados', 'advogados')}${S.user
+    ? `${S.admin ? l('#/admin', 'Administração', 'admin') : l('#/painel', 'Meu painel', 'painel')}<button id="contaBtn">Conta</button><button id="outBtn">Sair</button>`
+    : `${l('#/entrar', 'Entrar', 'entrar')}${l('#/cadastro', 'Associar-se', 'cadastro', 'cta')}`}</nav>`;
+  $('#outBtn') && ($('#outBtn').onclick = () => { signOut(auth); location.hash = '#/'; });
+  $('#contaBtn') && ($('#contaBtn').onclick = formConta);
+  const sn = $('#subnav'); if (!sn) return;
+  const p = location.hash.replace(/^#\/?/, '').split('/');
+  const un = S.msgs.filter(m => !m.lida).length;
+  if (S.user && !S.admin && p[0] === 'painel') sn.innerHTML = `<div class="sub-nav">${[['#/painel', 'Início', ''], ['#/painel/site', 'Meu site', 'site'], ['#/painel/mensagens', 'Mensagens', 'mensagens'], ['#/painel/perfil', 'Meu perfil', 'perfil']].map(([hr, t, k]) => `<a class="${(p[1] || '') === k ? 'on' : ''}" href="${hr}">${t}${k === 'mensagens' && un ? '<span class="dot"></span>' : ''}</a>`).join('')}</div>`;
+  else if (S.admin && p[0] === 'admin') sn.innerHTML = `<div class="sub-nav">${[['#/admin', 'Resumo', ''], ['#/admin/associados', 'Associados', 'associados'], ['#/admin/comunicados', 'Comunicados', 'comunicados'], ['#/admin/acessos', 'Acessos', 'acessos'], ['#/admin/config', 'Configurações', 'config']].map(([hr, t, k]) => `<a class="${(p[1] || '') === k ? 'on' : ''}" href="${hr}">${t}${k === 'associados' && S.associados.some(a => a.status === 'pendente') ? '<span class="dot"></span>' : ''}</a>`).join('')}</div>`;
+  else sn.innerHTML = '';
+}
+function formConta() {
+  openModal(`<h2>Minha conta</h2><p style="font-size:.84rem;margin-bottom:1rem;color:var(--muted)">${esc(S.user.email)}</p>
+  <div class="acts" style="justify-content:flex-start"><button class="btn sm" id="rs">Enviar link para trocar a senha</button><button class="btn ghost sm" data-no>Fechar</button></div><p class="hint" style="margin-top:.8rem">Você receberá um e-mail com o link para criar uma nova senha.</p>`,
+  (m, c) => { m.querySelector('[data-no]').onclick = c; m.querySelector('#rs').onclick = async () => { try { await sendPasswordResetEmail(auth, S.user.email); toast('Link enviado para ' + S.user.email); c(); } catch (e) { toast(errMsg(e), true); } }; });
+}
+
+/* ---------- telas públicas ---------- */
+function viewHome(main) {
+  const c = S.config;
+  main.innerHTML = `<section class="hero"><svg class="seal" viewBox="0 0 200 230" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="14" r="5"/><path d="M100 19V196M30 46H170M30 46L10 124M30 46L50 124M170 46L150 124M170 46L190 124M6 124H54Q30 160 6 124ZM146 124H194Q170 160 146 124ZM70 212H130M80 196H120L126 212H74Z"/></svg>
+    <div class="wrap"><div class="eyebrow">Associação dos Advogados do Brasil</div><h1>${esc(c.heroTitulo)}</h1><p class="lead">${esc(c.heroTexto)}</p>
+    <div class="ctas">${S.user ? `<a class="btn" href="${S.admin ? '#/admin' : '#/painel'}">Ir para o meu painel</a>` : '<a class="btn" href="#/cadastro">Quero me associar</a><a class="btn ghost" href="#/entrar">Já sou associado</a>'}<a class="btn ghost" href="#/advogados">Ver advogados associados</a></div></div></section>
+  <div class="wrap pad"><div class="eyebrow">Quadro de avisos</div><h2 style="font-size:2.2rem;margin-bottom:1.2rem">Comunicados da <em style="color:var(--gold)">AAB</em></h2><div id="bd"></div>
+  <div class="sec-t" style="margin-top:3rem">O que você recebe</div>
+  <div class="feat"><div><span>🌐</span><h3>Site pessoal</h3><p>Uma página profissional com seu perfil, áreas de atuação, contato e formulário de mensagens, no ar em minutos.</p></div><div><span>📣</span><h3>Comunicados oficiais</h3><p>Avisos, alertas, publicações e atualizações da associação direto no seu acesso.</p></div><div><span>🛡️</span><h3>Gestão pela associação</h3><p>Cadastro validado pela AAB e controle de acesso para manter a rede de associados confiável.</p></div></div>
+  <div class="sec-t" style="margin-top:3rem">Advogados associados</div><div class="dir" id="dr"></div></div>`;
+  const draw = () => { $('#bd', main).innerHTML = boardHtml(visiveis().filter(x => x.publico || S.user)); $('#dr', main).innerHTML = S.dirSites.slice(0, 6).map(dirCard).join('') || '<div class="empty" style="grid-column:1/-1">Em breve, os sites dos associados aparecerão aqui.</div>'; };
+  draw(); return { refresh: draw };
+}
+const dirCard = s => `<a class="dcard" href="#/a/${esc(s.id)}"><div class="top">${s.foto ? `<img class="ph" src="${esc(s.foto)}" alt="">` : `<div class="ph">${esc(initials(s.nome))}</div>`}<div><h3>${esc(s.nome)}</h3><small>${esc(s.titulo || '')}</small></div></div><div class="tags">${(s.areas || []).slice(0, 3).map(a => `<span>${esc(a.nome)}</span>`).join('')}</div></a>`;
+function viewDirectory(main) {
+  let q = '';
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Diretório</div><h1>Advogados <em>associados</em></h1><p>Conheça os sites dos advogados associados à AAB.</p></div></div><div class="toolbar"><input id="q" placeholder="Buscar por nome ou área de atuação…"></div><div class="dir" id="dr"></div></div>`;
+  const draw = () => { const t = q.toLowerCase(); const l = S.dirSites.filter(s => !t || [s.nome, s.titulo, ...(s.areas || []).map(a => a.nome)].join(' ').toLowerCase().includes(t)); $('#dr', main).innerHTML = l.map(dirCard).join('') || '<div class="empty" style="grid-column:1/-1"><b>Nenhum site encontrado</b></div>'; };
+  $('#q', main).oninput = e => { q = e.target.value; draw(); }; draw(); return { refresh: draw };
+}
+function viewAuth(main, mode) {
+  main.innerHTML = `<div class="wrap pad"><div class="auth-grid"><div><div class="eyebrow">Quadro de avisos</div><h2 style="font-size:2.1rem;margin-bottom:1.2rem">Comunicados da AAB</h2><div id="bd"></div></div>
+  <div class="card"><div class="tabs"><button data-m="login" class="${mode === 'login' ? 'on' : ''}">Entrar</button><button data-m="reg" class="${mode === 'reg' ? 'on' : ''}">Associar-se</button></div>
+  <button class="gbtn" id="gBtn"><svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17.5z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.5-.8-3-.8-4.7s.3-3.2.8-4.7l-7.9-6.1C.9 16.4 0 20.1 0 24s.9 7.6 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.9 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>Continuar com Google</button>
+  <div class="or">ou com e-mail</div>
+  <form id="af" novalidate>${mode === 'reg' ? `<div class="field"><label>Nome completo</label><input name="nome" maxlength="150" autocomplete="name"></div>
+    <div class="row2"><div class="field"><label>Nº da OAB</label><input name="oab" maxlength="20" placeholder="Ex.: 12345"></div><div class="field"><label>Seccional</label><select name="uf"><option value="">UF</option>${UFS.map(u => `<option>${u}</option>`).join('')}</select></div></div>
+    <div class="field"><label>Telefone / WhatsApp</label><input name="tel" type="tel" maxlength="40" placeholder="(00) 00000-0000"></div>` : ''}
+    <div class="field"><label>E-mail</label><input name="email" type="email" autocomplete="email" maxlength="150"></div>
+    <div class="field"><label>Senha</label><input name="senha" type="password" autocomplete="${mode === 'reg' ? 'new-password' : 'current-password'}"></div>
+    ${mode === 'reg' ? `<label class="check"><input type="checkbox" name="termos"><span>${esc(S.config.termos)}</span></label>` : ''}
+    <p class="msg-err" id="ae"></p><button class="btn" style="width:100%" id="ab">${mode === 'reg' ? 'Criar minha conta' : 'Entrar'}</button>
+    ${mode === 'login' ? '<p style="text-align:center;margin-top:1rem"><button type="button" id="fg" style="background:none;border:none;color:var(--muted);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase">Esqueci minha senha</button></p>' : ''}</form>
+  ${mode === 'reg' ? `<p class="hint" style="margin-top:1rem">${S.config.aprovacaoAuto ? 'Seu acesso é liberado assim que a conta é criada.' : 'Após o cadastro, a AAB valida seus dados e libera o seu site pessoal.'}</p>` : ''}</div></div></div>`;
+  const dr = () => { $('#bd', main).innerHTML = boardHtml(visiveis().filter(x => x.publico || S.user)); }; dr();
+  $$('.tabs [data-m]', main).forEach(b => b.onclick = () => { location.hash = b.dataset.m === 'reg' ? '#/cadastro' : '#/entrar'; });
+  const err = (m, ok) => { const e = $('#ae', main); e.textContent = m || ''; e.className = ok ? 'msg-ok' : 'msg-err'; };
+  $('#gBtn', main).onclick = async () => { try { S.pending = null; await signInWithPopup(auth, new GoogleAuthProvider()); } catch (e) { err(errMsg(e)); } };
+  $('#fg', main)?.addEventListener('click', async () => { const em = $('#af', main).email.value.trim(); if (!em) return err('Digite seu e-mail acima e clique novamente.'); try { await sendPasswordResetEmail(auth, em); err('Enviamos um link para redefinir a senha no seu e-mail.', true); } catch (e) { err(errMsg(e)); } });
+  $('#af', main).onsubmit = async e => {
+    e.preventDefault(); const f = e.target; err('');
+    const email = f.email.value.trim(), senha = f.senha.value; if (!email || !senha) return err('Preencha e-mail e senha.');
+    const btn = $('#ab', main); btn.disabled = true;
+    try {
+      if (mode === 'reg') {
+        const nome = f.nome.value.trim(), oab = f.oab.value.trim(), tel = f.tel.value.trim();
+        if (nome.length < 3) throw { msg: 'Informe seu nome completo.' }; if (!oab) throw { msg: 'Informe o número da OAB.' }; if (!f.uf.value) throw { msg: 'Escolha a seccional (UF).' };
+        if (tel.replace(/\D/g, '').length < 10) throw { msg: 'Informe um telefone com DDD.' }; if (!f.termos.checked) throw { msg: 'É preciso aceitar os termos para criar a conta.' };
+        S.pending = { nome, oab, seccional: f.uf.value, telefone: tel };
+        const cr = await createUserWithEmailAndPassword(auth, email, senha); try { await updateProfile(cr.user, { displayName: nome }); } catch { /* ok */ }
+      } else await doLogin(email, senha);
+    } catch (x) { S.pending = null; err(x.msg || errMsg(x)); btn.disabled = false; }
+  };
+  return { refresh: dr };
+}
+
+/* ---------- site pessoal (público) ---------- */
+function viewSite(slug) {
+  $('#root').innerHTML = '<div class="loading">Carregando…</div>';
+  (async () => {
+    let s = null;
+    try { const d = await getDoc(doc(db, 'sites', slug)); if (d.exists()) s = { id: d.id, ...d.data() }; } catch { /* não encontrado ou sem permissão */ }
+    if (!s) { $('#root').innerHTML = `<div class="wrap pad" style="text-align:center"><div class="empty"><b>Site não encontrado</b>Este endereço não existe ou ainda não foi publicado.<br><br><a class="btn" href="#/">Voltar ao portal da AAB</a></div></div>`; return; }
+    const t = TEMAS[s.tema] || TEMAS.classico, ct = s.contato || {}, wa = String(ct.whatsapp || '').replace(/\D/g, '');
+    document.title = `${s.nome} | AAB`;
+    const prev = !s.publicado ? '<div class="prev">Pré-visualização: este site ainda não está publicado</div>' : '';
+    $('#root').innerHTML = `<div class="site" style="--sb:${t[1]};--sb2:${t[2]};--sa:${t[3]};--st:${t[4]};--sm:${t[5]}">${prev}<div class="bar"><span>${esc(s.nome)}</span><a href="#/">Site oferecido pela AAB ↗</a></div>
+    <section class="sh">${s.foto ? `<img class="pic" src="${esc(s.foto)}" alt="${esc(s.nome)}">` : `<div class="pic">${esc(initials(s.nome))}</div>`}<div><h1>${esc(s.nome)}</h1><div class="role">${esc(s.titulo || '')}</div></div></section>
+    ${s.bio ? `<section class="sec"><h2>Sobre <em>mim</em></h2><p class="bio">${esc(s.bio)}</p></section>` : ''}
+    ${(s.areas || []).length ? `<section class="sec"><h2>Áreas de <em>atuação</em></h2><div class="ag">${s.areas.map(a => `<div><h3>${esc(a.nome)}</h3><p>${esc(a.desc || '')}</p></div>`).join('')}</div></section>` : ''}
+    <section class="sec"><h2>Fale <em>comigo</em></h2><div class="${s.formContato !== false ? 'ct' : ''}"><div class="ci">
+      ${ct.email ? `<div><small>E-mail</small><a href="mailto:${esc(ct.email)}">${esc(ct.email)}</a></div>` : ''}${ct.telefone ? `<div><small>Telefone</small><a href="tel:${esc(ct.telefone)}">${esc(ct.telefone)}</a></div>` : ''}
+      ${wa.length >= 10 ? `<div><small>WhatsApp</small><a target="_blank" rel="noopener" href="https://wa.me/${wa.startsWith('55') ? wa : '55' + wa}">Conversar agora</a></div>` : ''}
+      ${ct.instagram ? `<div><small>Instagram</small><a target="_blank" rel="noopener" href="https://instagram.com/${esc(String(ct.instagram).replace(/^@/, ''))}">${esc(ct.instagram)}</a></div>` : ''}
+      ${safeUrl(ct.linkedin) ? `<div><small>LinkedIn</small><a target="_blank" rel="noopener" href="${esc(ct.linkedin)}">Ver perfil</a></div>` : ''}${ct.endereco ? `<div><small>Endereço</small>${esc(ct.endereco)}</div>` : ''}</div>
+      ${s.formContato !== false && s.publicado ? `<form class="fi" id="sf"><input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true"><input name="nome" placeholder="Seu nome" required maxlength="150"><input name="email" type="email" placeholder="Seu e-mail" required maxlength="150"><input name="tel" placeholder="Telefone (opcional)" maxlength="40"><textarea name="msg" placeholder="Como posso ajudar?" required maxlength="3000"></textarea><button>Enviar mensagem</button><p id="sm" style="font-size:.78rem"></p></form>` : ''}</div></section>
+    <div class="fo">© ${new Date().getFullYear()} ${esc(s.nome)} · Associado(a) à <a href="#/">AAB – Associação dos Advogados do Brasil</a></div></div>`;
+    const f = $('#sf'); if (f) f.onsubmit = async e => {
+      e.preventDefault(); if (f.website.value) return; const b = $('button', f), m = $('#sm'); b.disabled = true;
+      try { await addDoc(collection(db, 'sites', slug, 'mensagens'), { nome: f.nome.value.trim(), email: f.email.value.trim(), telefone: f.tel.value.trim(), mensagem: f.msg.value.trim(), criadoAt: serverTimestamp(), lida: false }); m.textContent = 'Mensagem enviada! Retornarei em breve.'; f.reset(); }
+      catch { m.textContent = 'Não foi possível enviar agora. Tente novamente.'; } b.disabled = false;
+    };
+  })();
+  return { destroy() { document.title = 'AAB | Associação dos Advogados do Brasil'; } };
+}
+
+/* ---------- painel do associado ---------- */
+function statusBanner() {
+  const a = S.assoc; if (!a) return '';
+  if (a.status === 'pendente') return `<div class="status-b"><b>⏳ Cadastro em análise</b>A AAB está validando os seus dados. Assim que for aprovado, você poderá criar e publicar o seu site pessoal. Você será avisado aqui no portal.</div>`;
+  if (a.status === 'suspenso') return `<div class="status-b bad"><b>Acesso suspenso</b>${a.motivo ? esc(a.motivo) + '<br>' : ''}Entre em contato com a AAB: <a href="mailto:${esc(S.config.suporteEmail)}">${esc(S.config.suporteEmail)}</a>. Seu site está fora do ar.</div>`;
+  if (a.status === 'recusado') return `<div class="status-b bad"><b>Cadastro não aprovado</b>${a.motivo ? esc(a.motivo) + '<br>' : ''}Entre em contato com a AAB: <a href="mailto:${esc(S.config.suporteEmail)}">${esc(S.config.suporteEmail)}</a>.</div>`;
+  return '';
+}
+function viewPainel(main) {
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Painel do associado</div><h1>Olá, <em id="nm"></em></h1></div></div><div id="st"></div><div id="cs"></div><div class="sec-t">Quadro de avisos</div><div id="bd"></div></div>`;
+  const draw = () => {
+    const a = S.assoc; if (!a) { $('#st', main).innerHTML = '<div class="loading">Carregando…</div>'; return; }
+    $('#nm', main).textContent = (a.nome || '').split(/\s+/)[0]; $('#st', main).innerHTML = statusBanner() + (!a.oab ? '<div class="status-b"><b>Complete o seu cadastro</b>Informe o número da OAB e a seccional em <a href="#/painel/perfil">Meu perfil</a> para a validação.</div>' : '');
+    $('#cs', main).innerHTML = `<div class="cards"><div class="stat"><b>${(STATUS[a.status] || ['—'])[0]}</b><span>Situação do cadastro</span></div>
+      <a class="stat" href="#/painel/site"><b>${S.site ? (S.site.publicado ? 'No ar' : 'Rascunho') : 'Não criado'}</b><span>Meu site</span></a>
+      <a class="stat" href="#/painel/mensagens"><b>${S.msgs.filter(m => !m.lida).length}</b><span>Mensagens novas</span></a></div>
+      ${S.site?.publicado ? `<p class="hint" style="margin-bottom:1rem">Seu site: <a href="#/a/${esc(S.site.slug)}">${esc(siteUrl(S.site.slug))}</a></p>` : ''}`;
+    $('#bd', main).innerHTML = boardHtml(visiveis());
+  };
+  draw(); return { refresh: draw };
+}
+function viewPerfil(main) {
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Conta</div><h1>Meu <em>perfil</em></h1></div></div><form class="card" id="pf" style="max-width:640px"></form></div>`;
+  let loaded = false;
+  const draw = () => {
+    const a = S.assoc; if (!a || loaded) return; loaded = true;
+    const f = $('#pf', main);
+    f.innerHTML = `<div class="row2"><div class="field"><label>Nome completo</label><input name="nome" required maxlength="150" value="${esc(a.nome)}"></div><div class="field"><label>Telefone</label><input name="tel" maxlength="40" value="${esc(a.telefone)}"></div></div>
+    <div class="row2"><div class="field"><label>Nº da OAB</label><input name="oab" maxlength="20" value="${esc(a.oab)}"></div><div class="field"><label>Seccional</label><select name="uf"><option value="">UF</option>${UFS.map(u => `<option ${a.seccional === u ? 'selected' : ''}>${u}</option>`).join('')}</select></div></div>
+    <div class="field"><label>E-mail de acesso</label><input value="${esc(a.email)}" readonly style="opacity:.6"></div><p class="msg-err" id="pe"></p><button class="btn">Salvar alterações</button>`;
+    f.onsubmit = async e => { e.preventDefault(); try { await updateDoc(doc(db, 'associados', S.user.uid), { nome: f.nome.value.trim(), telefone: f.tel.value.trim(), oab: f.oab.value.trim(), seccional: f.uf.value }); toast('Perfil atualizado.'); } catch (x) { $('#pe', main).textContent = errMsg(x); } };
+  };
+  draw(); return { refresh: draw };
+}
+function viewMsgs(main) {
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Meu site</div><h1>Mensagens <em>recebidas</em></h1><p>Mensagens enviadas pelo formulário do seu site pessoal.</p></div></div><div class="list" id="ls"></div></div>`;
+  const draw = () => {
+    const l = [...S.msgs].sort((a, b) => ms(b.criadoAt) - ms(a.criadoAt));
+    $('#ls', main).innerHTML = l.length ? l.map(m => `<div class="item" style="${m.lida ? '' : 'border-left:3px solid var(--gold)'}"><div class="main"><h3>${esc(m.nome)} ${m.lida ? '' : '<span class="chip s-warn">nova</span>'}</h3><p>${esc(m.email)}${m.telefone ? ' · ' + esc(m.telefone) : ''} · ${fmtDT(m.criadoAt)}</p><p style="color:var(--cream);margin-top:.5rem;white-space:pre-wrap;font-size:.84rem">${esc(m.mensagem)}</p></div>
+      <div class="acts"><a class="btn ghost sm" href="mailto:${esc(m.email)}?subject=${encodeURIComponent('Re: contato pelo meu site')}">Responder</a><button class="btn ghost sm" data-r="${m.id}">${m.lida ? 'Marcar como não lida' : 'Marcar como lida'}</button><button class="btn danger sm" data-d="${m.id}">Excluir</button></div></div>`).join('')
+      : '<div class="empty"><b>Nenhuma mensagem ainda</b>Quando alguém escrever pelo seu site, a mensagem aparece aqui.</div>';
+  };
+  main.onclick = async e => {
+    const r = e.target.closest('[data-r]'), d = e.target.closest('[data-d]'), slug = S.assoc?.siteSlug; if (!slug) return;
+    try { if (r) { const m = S.msgs.find(x => x.id === r.dataset.r); await updateDoc(doc(db, 'sites', slug, 'mensagens', m.id), { lida: !m.lida }); } else if (d && await confirmBox('Excluir esta mensagem?', 'Excluir')) await deleteDoc(doc(db, 'sites', slug, 'mensagens', d.dataset.d)); } catch (x) { toast(errMsg(x), true); }
+  };
+  draw(); return { refresh: draw };
+}
+function reduzFoto(file) {
+  return new Promise((res, rej) => { const img = new Image(), u = URL.createObjectURL(file);
+    img.onload = () => { const n = 360, c = document.createElement('canvas'); c.width = c.height = n; const l = Math.min(img.width, img.height); c.getContext('2d').drawImage(img, (img.width - l) / 2, (img.height - l) / 2, l, l, 0, 0, n, n); URL.revokeObjectURL(u); res(c.toDataURL('image/jpeg', .82)); };
+    img.onerror = () => rej(new Error('Não foi possível ler esta imagem.')); img.src = u; });
+}
+function viewSiteEditor(main) {
+  let key = '', foto = '', areas = [];
+  const build = () => {
+    const a = S.assoc;
+    if (!a) { main.innerHTML = '<div class="loading">Carregando…</div>'; return; }
+    if (a.status !== 'ativo') { main.innerHTML = `<div class="wrap pad">${statusBanner() || ''}<div class="empty"><b>Site indisponível</b>O seu site pessoal é liberado depois da aprovação do cadastro pela AAB.</div></div>`; return; }
+    const s = S.site || { publicado: false, nome: a.nome, titulo: `Advogado(a)${a.oab ? ' · OAB/' + (a.seccional || '') + ' ' + a.oab : ''}`, bio: '', areas: [], contato: { email: a.email, whatsapp: a.telefone }, tema: 'classico', formContato: true };
+    foto = s.foto || ''; areas = (s.areas || []).map(x => ({ ...x })); const ct = s.contato || {}; const bloq = !!s.bloqueado;
+    main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Meu site pessoal</div><h1>Editar <em>site</em></h1><p>${S.site ? `Endereço: <a href="#/a/${esc(S.site.slug)}" target="_blank">${esc(siteUrl(S.site.slug))}</a>` : 'Preencha os dados e salve para criar o seu site.'}</p></div>${S.site ? `<a class="btn ghost" href="#/a/${esc(S.site.slug)}" target="_blank">👁 Ver site</a>` : ''}</div>
+    ${bloq ? '<div class="status-b bad"><b>Site bloqueado pela AAB</b>Entre em contato com a associação para liberar.</div>' : ''}
+    <form id="sf" class="card" style="max-width:780px">
+      <div class="field"><label>Endereço do site</label><input name="slug" maxlength="40" value="${esc(S.site?.slug || slugify(a.nome))}" ${S.site ? 'readonly style="opacity:.6"' : ''} placeholder="nome-sobrenome"><small>${S.site ? 'O endereço não pode ser alterado depois de criado.' : 'Somente letras minúsculas, números e hífen (3 a 40 caracteres). Depois de criado, não muda.'}</small></div>
+      <div class="photo-row"><div id="fp"></div><div><label class="btn ghost sm" style="cursor:pointer">Escolher foto<input type="file" id="fi" accept="image/*" hidden></label> <button type="button" class="btn ghost sm" id="fr">Remover</button><p class="hint" style="margin-top:.4rem">A foto é recortada em quadrado e reduzida automaticamente.</p></div></div>
+      <div class="row2"><div class="field"><label>Nome no site</label><input name="nome" required maxlength="150" value="${esc(s.nome)}"></div><div class="field"><label>Título / registro</label><input name="titulo" maxlength="150" value="${esc(s.titulo)}" placeholder="Advogada · OAB/DF 00000"></div></div>
+      <div class="field"><label>Sobre você</label><textarea name="bio" maxlength="3000" style="min-height:150px">${esc(s.bio)}</textarea></div>
+      <div class="sec-t">Áreas de atuação</div><div class="areas-ed" id="ar"></div><button type="button" class="btn ghost sm" id="aa">+ Adicionar área</button>
+      <div class="sec-t">Contato</div><div class="row2"><div class="field"><label>E-mail</label><input name="c_email" maxlength="150" value="${esc(ct.email)}"></div><div class="field"><label>Telefone</label><input name="c_tel" maxlength="40" value="${esc(ct.telefone)}"></div></div>
+      <div class="row2"><div class="field"><label>WhatsApp (com DDD)</label><input name="c_wa" maxlength="30" value="${esc(ct.whatsapp)}"></div><div class="field"><label>Instagram</label><input name="c_ig" maxlength="60" value="${esc(ct.instagram)}" placeholder="@usuario"></div></div>
+      <div class="row2"><div class="field"><label>LinkedIn (link)</label><input name="c_in" maxlength="200" value="${esc(ct.linkedin)}" placeholder="https://linkedin.com/in/…"></div><div class="field"><label>Endereço do escritório</label><input name="c_end" maxlength="250" value="${esc(ct.endereco)}"></div></div>
+      <label class="check"><input type="checkbox" name="form" ${s.formContato !== false ? 'checked' : ''}><span>Exibir formulário de mensagens no site</span></label>
+      <div class="sec-t">Aparência</div><div class="themes">${Object.entries(TEMAS).map(([k, t]) => `<label><input type="radio" name="tema" value="${k}" ${(s.tema || 'classico') === k ? 'checked' : ''}><i><u style="background:${t[1]}"></u><u style="background:${t[2]}"></u><u style="background:${t[3]}"></u><u style="background:${t[4]}"></u></i>${t[0]}</label>`).join('')}</div>
+      <div class="sec-t">Publicação</div><label class="check"><input type="checkbox" name="pub" ${s.publicado ? 'checked' : ''} ${bloq ? 'disabled' : ''}><span><b style="color:var(--cream)">Publicar o site</b> — visível para qualquer pessoa e listado no diretório de advogados associados.</span></label>
+      <p class="msg-err" id="se"></p><button class="btn" id="sb">${S.site ? 'Salvar alterações' : 'Criar meu site'}</button></form></div>`;
+    const f = $('#sf', main), drFoto = () => { $('#fp', main).innerHTML = foto ? `<img class="ph" src="${esc(foto)}" alt="">` : `<div class="ph">${esc(initials(f.nome.value))}</div>`; };
+    const drAreas = () => { $('#ar', main).innerHTML = areas.map((x, i) => `<div class="r"><input data-ai="${i}" data-k="nome" placeholder="Área (ex.: Direito Civil)" maxlength="80" value="${esc(x.nome)}"><textarea data-ai="${i}" data-k="desc" placeholder="Descrição curta" maxlength="400">${esc(x.desc)}</textarea><button type="button" class="btn danger sm" data-rm="${i}">✕</button></div>`).join(''); };
+    drFoto(); drAreas();
+    $('#ar', main).oninput = e => { const t = e.target; if (t.dataset.ai !== undefined) areas[+t.dataset.ai][t.dataset.k] = t.value; };
+    $('#ar', main).onclick = e => { const b = e.target.closest('[data-rm]'); if (b) { areas.splice(+b.dataset.rm, 1); drAreas(); } };
+    $('#aa', main).onclick = () => { if (areas.length >= 12) return toast('Máximo de 12 áreas.', true); areas.push({ nome: '', desc: '' }); drAreas(); };
+    $('#fi', main).onchange = async e => { const file = e.target.files[0]; if (!file) return; try { foto = await reduzFoto(file); drFoto(); } catch (x) { toast(x.message, true); } e.target.value = ''; };
+    $('#fr', main).onclick = () => { foto = ''; drFoto(); };
+    f.onsubmit = async e => {
+      e.preventDefault(); const err = $('#se', main), btn = $('#sb', main); err.textContent = ''; btn.disabled = true;
+      try {
+        const data = { nome: f.nome.value.trim(), titulo: f.titulo.value.trim(), bio: f.bio.value.trim(), foto, areas: areas.filter(x => x.nome.trim()).map(x => ({ nome: x.nome.trim(), desc: (x.desc || '').trim() })),
+          contato: { email: f.c_email.value.trim(), telefone: f.c_tel.value.trim(), whatsapp: f.c_wa.value.trim(), instagram: f.c_ig.value.trim(), linkedin: f.c_in.value.trim(), endereco: f.c_end.value.trim() },
+          formContato: f.form.checked, tema: f.tema.value, publicado: !!f.pub.checked && !bloq, atualizadoAt: serverTimestamp() };
+        if (data.nome.length < 2) throw new Error('Informe o nome do site.');
+        if (data.contato.linkedin && !safeUrl(data.contato.linkedin)) throw new Error('O link do LinkedIn precisa começar com https://');
+        if (S.site) await updateDoc(doc(db, 'sites', S.site.slug), data);
+        else {
+          const slug = f.slug.value.trim().toLowerCase();
+          if (!/^[a-z0-9][a-z0-9-]{1,38}[a-z0-9]$/.test(slug)) throw new Error('Endereço inválido: use 3 a 40 letras minúsculas, números ou hífen.');
+          const b = writeBatch(db);
+          b.set(doc(db, 'sites', slug), { ...data, slug, ownerUid: S.user.uid, bloqueado: false, criadoAt: serverTimestamp() });
+          b.update(doc(db, 'associados', S.user.uid), { siteSlug: slug });
+          try { await b.commit(); } catch (x) { if (x.code === 'permission-denied') throw new Error('Não foi possível criar: este endereço já está em uso ou o cadastro não está ativo.'); throw x; }
+        }
+        toast(data.publicado ? 'Site salvo e publicado.' : 'Site salvo (rascunho).');
+      } catch (x) { err.textContent = errMsg(x); }
+      btn.disabled = false;
+    };
+    key = (S.assoc?.status || '') + (S.site ? 'y' : 'n');
+  };
+  build();
+  return { refresh() { const k = (S.assoc?.status || '') + (S.site ? 'y' : 'n'); if (k !== key) build(); } };
+}
+
+/* ---------- administração ---------- */
+function viewAdminHome(main) {
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Administração</div><h1>Visão <em>geral</em></h1><p>Acompanhe os associados, os sites e a atividade do portal em tempo real.</p></div><a class="btn" href="#/admin/comunicados">＋ Novo comunicado</a></div><div id="cs"></div><div class="dgrid" id="dg"></div></div>`;
+  const draw = () => {
+    const A = S.associados, ativos = A.filter(a => a.status === 'ativo'), pend = A.filter(a => a.status === 'pendente'), now = Date.now();
+    const l24 = S.logins.filter(l => now - ms(l.em) < 864e5 && l.tipo !== 'admin').length, l7 = S.logins.filter(l => now - ms(l.em) < 7 * 864e5 && l.tipo !== 'admin').length;
+    $('#cs', main).innerHTML = `<div class="cards"><a class="stat" href="#/admin/associados"><b>${A.length}</b><span>Associados</span></a><a class="stat" href="#/admin/associados"><b>${ativos.length}</b><span>Ativos</span></a><a class="stat" href="#/admin/associados"><b>${pend.length}</b><span>Aguardando aprovação</span></a><div class="stat"><b>${A.filter(online).length}</b><span>Online agora</span></div><div class="stat"><b>${S.sites.filter(s => s.publicado).length}</b><span>Sites no ar</span></div><div class="stat"><b>${ativos.filter(a => !a.siteSlug).length}</b><span>Ativos sem site</span></div><div class="stat"><b>${l24}</b><span>Acessos em 24 h</span></div><div class="stat"><b>${l7}</b><span>Acessos em 7 dias</span></div></div>`;
+    const dias = [...Array(7)].map((_, i) => { const d = new Date(now - (6 - i) * 864e5), k = dayKey(d.getTime()); return [d.toLocaleDateString('pt-BR', { weekday: 'short' }).replace('.', ''), S.logins.filter(l => l.tipo !== 'admin' && dayKey(ms(l.em)) === k).length]; }), mx = Math.max(1, ...dias.map(x => x[1]));
+    $('#dg', main).innerHTML = `<div class="pnl"><h3>Aguardando aprovação</h3><div class="mini">${pend.length ? pend.slice(0, 6).map(a => `<div><span>${esc(a.nome)}<br><small style="text-align:left">OAB ${esc(a.oab || '—')}/${esc(a.seccional || '')} · ${fmtD(a.criadoAt)}</small></span><button class="btn sm" data-ok="${a.id}">Aprovar</button></div>`).join('') : '<div class="none">Nenhum cadastro pendente.</div>'}</div></div>
+      <div class="pnl"><h3>Acessos nos últimos 7 dias</h3><div class="bars">${dias.map(([n, v]) => `<div><span>${v}</span><i style="height:${Math.max(2, v / mx * 80)}%"></i><span>${n}</span></div>`).join('')}</div></div>
+      <div class="pnl"><h3>Últimos acessos</h3><div class="mini">${[...S.logins].filter(l => l.tipo !== 'admin').sort((a, b) => ms(b.em) - ms(a.em)).slice(0, 7).map(l => `<div><span>${esc(l.nome)}</span><small>${ago(l.em)}</small></div>`).join('') || '<div class="none">Sem acessos registrados.</div>'}</div></div>
+      <div class="pnl"><h3>Comunicados no ar</h3><div class="mini">${visiveis().slice(0, 6).map(c => `<a href="#/admin/comunicados"><span>${(TIPOS[c.tipo] || TIPOS.aviso)[0]} ${esc(c.titulo)}</span><small>${fmtD(c.criadoAt)}</small></a>`).join('') || '<div class="none">Nenhum comunicado ativo.</div>'}</div></div>`;
+  };
+  main.onclick = e => { const b = e.target.closest('[data-ok]'); if (b) mudaStatus(b.dataset.ok, 'ativo'); };
+  draw(); return { refresh: draw };
+}
+async function mudaStatus(uid, status, motivo = '') {
+  const a = S.associados.find(x => x.id === uid); if (!a) return;
+  try {
+    await updateDoc(doc(db, 'associados', uid), { status, motivo, ...(status === 'ativo' ? { aprovadoAt: serverTimestamp(), aprovadoPor: ADMIN_EMAIL } : {}) });
+    if (a.siteSlug) {
+      if (status === 'ativo') await updateDoc(doc(db, 'sites', a.siteSlug), { bloqueado: false });
+      else await updateDoc(doc(db, 'sites', a.siteSlug), { publicado: false, bloqueado: true });
+    }
+    toast(status === 'ativo' ? `${a.nome} aprovado(a).` : 'Status atualizado.');
+  } catch (e) { toast(errMsg(e), true); }
+}
+function viewAdminAssoc(main) {
+  let q = '', st = '';
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Gestão</div><h1><em>Associados</em></h1><p>Aprove cadastros, suspenda acessos e veja quem está usando o portal.</p></div></div>
+  <div class="toolbar"><input id="q" placeholder="Buscar por nome, e-mail ou OAB…"><select id="st"><option value="">Todos os status</option>${Object.entries(STATUS).map(([k, v]) => `<option value="${k}">${v[0]}</option>`).join('')}</select></div><div class="list" id="ls"></div></div>`;
+  const draw = () => {
+    const t = q.toLowerCase(), l = S.associados.filter(a => (!st || a.status === st) && (!t || [a.nome, a.email, a.oab].join(' ').toLowerCase().includes(t))).sort((a, b) => (a.status === 'pendente' ? 0 : 1) - (b.status === 'pendente' ? 0 : 1) || ms(b.criadoAt) - ms(a.criadoAt));
+    $('#ls', main).innerHTML = l.length ? l.map(a => { const s = STATUS[a.status] || STATUS.pendente, site = S.sites.find(x => x.id === a.siteSlug);
+      return `<div class="item"><div class="main"><h3><span class="${online(a) ? 'on-dot' : 'off-dot'}" title="${online(a) ? 'Online agora' : 'Offline'}"></span>${esc(a.nome)} <span class="chip ${s[1]}">${s[0]}</span>${site ? `<span class="chip ${site.publicado ? 's-ok' : 's-mute'}">${site.publicado ? 'site no ar' : 'site rascunho'}</span>` : ''}</h3>
+      <p>${esc(a.email)} · OAB ${esc(a.oab || '—')}${a.seccional ? '/' + esc(a.seccional) : ''} · ${esc(a.telefone || '')}<br>Cadastro: ${fmtD(a.criadoAt)} · Último acesso: ${a.ultimoAcesso ? fmtDT(a.ultimoAcesso) + ' (' + ago(a.ultimoAcesso) + ')' : 'nunca'} · ${a.acessos || 0} acesso(s)${a.motivo ? '<br>Motivo: ' + esc(a.motivo) : ''}</p></div>
+      <div class="acts" data-u="${a.id}">${a.status !== 'ativo' ? '<button class="btn sm" data-a="ok">Aprovar</button>' : ''}${a.status === 'pendente' ? '<button class="btn danger sm" data-a="rec">Recusar</button>' : ''}${a.status === 'ativo' ? '<button class="btn danger sm" data-a="sus">Suspender</button>' : ''}${site ? `<a class="btn ghost sm" href="#/a/${esc(site.id)}" target="_blank">Ver site</a>` : ''}<button class="btn ghost sm" data-a="pw">Link de senha</button><button class="btn danger sm" data-a="del">Excluir</button></div></div>`; }).join('')
+      : '<div class="empty"><b>Nenhum associado encontrado</b></div>';
+  };
+  $('#q', main).oninput = e => { q = e.target.value; draw(); }; $('#st', main).onchange = e => { st = e.target.value; draw(); };
+  main.onclick = async e => {
+    const b = e.target.closest('[data-a]'); if (!b) return; const uid = b.closest('[data-u]').dataset.u, a = S.associados.find(x => x.id === uid); if (!a) return;
+    if (b.dataset.a === 'ok') mudaStatus(uid, 'ativo');
+    else if (b.dataset.a === 'sus' || b.dataset.a === 'rec') { const m = await askText(b.dataset.a === 'sus' ? 'Suspender acesso' : 'Recusar cadastro', 'Informe o motivo (o associado verá esta mensagem). O site, se existir, sai do ar.', b.dataset.a === 'sus' ? 'Suspender' : 'Recusar'); if (m !== null) mudaStatus(uid, b.dataset.a === 'sus' ? 'suspenso' : 'recusado', m); }
+    else if (b.dataset.a === 'pw') { try { await sendPasswordResetEmail(auth, a.email); toast('Link de senha enviado para ' + a.email); } catch (x) { toast(errMsg(x), true); } }
+    else if (b.dataset.a === 'del') {
+      if (!await confirmBox(`Excluir o cadastro de <b>${esc(a.nome)}</b>? O site e as mensagens recebidas também serão apagados. (A conta de login continua existindo no Firebase Authentication; remova-a lá se necessário.)`, 'Excluir')) return;
+      try { if (a.siteSlug) { for (const d of (await getDocs(collection(db, 'sites', a.siteSlug, 'mensagens'))).docs) await deleteDoc(d.ref); await deleteDoc(doc(db, 'sites', a.siteSlug)); } await deleteDoc(doc(db, 'associados', uid)); toast('Cadastro excluído.'); } catch (x) { toast(errMsg(x), true); }
+    }
+  };
+  draw(); return { refresh: draw };
+}
+function formComunicado(c) {
+  const n = !c;
+  openModal(`<h2>${n ? 'Novo comunicado' : 'Editar comunicado'}</h2><form id="cf">
+    <div class="row2"><div class="field"><label>Tipo</label><select name="tipo">${Object.entries(TIPOS).map(([k, v]) => `<option value="${k}" ${(c?.tipo || 'aviso') === k ? 'selected' : ''}>${v[0]} ${v[1]}</option>`).join('')}</select></div><div class="field"><label>Expira em (opcional)</label><input type="date" name="exp" value="${esc(c?.expiraEm)}"></div></div>
+    <div class="field"><label>Título</label><input name="t" required maxlength="140" value="${esc(c?.titulo)}"></div>
+    <div class="field"><label>Texto</label><textarea name="x" required maxlength="3000">${esc(c?.texto)}</textarea></div>
+    <div class="row2"><div class="field"><label>Link (opcional)</label><input name="l" maxlength="300" value="${esc(c?.link)}" placeholder="https://…"></div><div class="field"><label>Texto do link</label><input name="lt" maxlength="40" value="${esc(c?.linkTexto)}" placeholder="Saiba mais"></div></div>
+    <label class="check"><input type="checkbox" name="popup" ${c?.popup ? 'checked' : ''}><span>Exibir em <b style="color:var(--cream)">pop-up</b> quando o associado entrar ou criar a conta</span></label>
+    <label class="check"><input type="checkbox" name="pub" ${c ? (c.publico ? 'checked' : '') : 'checked'}><span>Mostrar na <b style="color:var(--cream)">página inicial</b> para visitantes (desmarcado: só para quem fez login)</span></label>
+    <label class="check"><input type="checkbox" name="fix" ${c?.fixado ? 'checked' : ''}><span>Fixar no topo do quadro</span></label>
+    <label class="check"><input type="checkbox" name="ativo" ${c ? (c.ativo !== false ? 'checked' : '') : 'checked'}><span>Ativo (visível)</span></label>
+    <p class="msg-err" id="ce"></p><div class="acts"><button type="button" class="btn ghost sm" data-no>Cancelar</button><button class="btn sm">${n ? 'Publicar' : 'Salvar'}</button></div></form>`,
+  (m, close) => {
+    $('[data-no]', m).onclick = close;
+    $('#cf', m).onsubmit = async e => { e.preventDefault(); const f = e.target;
+      try {
+        if (f.l.value.trim() && !safeUrl(f.l.value.trim())) throw new Error('O link precisa começar com https://');
+        const d = { tipo: f.tipo.value, titulo: f.t.value.trim(), texto: f.x.value.trim(), link: f.l.value.trim(), linkTexto: f.lt.value.trim(), expiraEm: f.exp.value, popup: f.popup.checked, publico: f.pub.checked, fixado: f.fix.checked, ativo: f.ativo.checked, atualizadoAt: serverTimestamp() };
+        if (n) await addDoc(collection(db, 'comunicados'), { ...d, criadoAt: serverTimestamp() }); else await updateDoc(doc(db, 'comunicados', c.id), d);
+        close(); toast(n ? 'Comunicado publicado.' : 'Comunicado atualizado.');
+      } catch (x) { $('#ce', m).textContent = errMsg(x); } };
+  });
+}
+function viewAdminCom(main) {
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Comunicação</div><h1><em>Comunicados</em></h1><p>Avisos, alertas, publicações e atualizações exibidos na página inicial e no acesso dos associados. Os marcados como pop-up aparecem ao entrar ou criar a conta.</p></div><button class="btn" id="nv">＋ Novo comunicado</button></div><div id="ls" class="board"></div></div>`;
+  const draw = () => {
+    const l = [...S.com].sort((a, b) => (b.fixado ? 1 : 0) - (a.fixado ? 1 : 0) || ms(b.criadoAt) - ms(a.criadoAt));
+    $('#ls', main).innerHTML = l.length ? l.map(c => `<div>${avisoHtml(c, true)}<div style="display:flex;gap:.4rem;margin:.4rem 0 .6rem;flex-wrap:wrap"><button class="btn ghost sm" data-e="${c.id}">Editar</button><button class="btn ghost sm" data-t="${c.id}">${c.ativo === false ? 'Reativar' : 'Desativar'}</button><button class="btn danger sm" data-d="${c.id}">Excluir</button></div></div>`).join('') : '<div class="empty"><b>Nenhum comunicado</b>Clique em “Novo comunicado” para publicar o primeiro.</div>';
+  };
+  $('#nv', main).onclick = () => formComunicado(null);
+  main.onclick = async e => { const b = e.target.closest('[data-e],[data-t],[data-d]'); if (!b) return; const id = b.dataset.e || b.dataset.t || b.dataset.d, c = S.com.find(x => x.id === id); if (!c) return;
+    try { if (b.dataset.e) formComunicado(c); else if (b.dataset.t) await updateDoc(doc(db, 'comunicados', id), { ativo: c.ativo === false, atualizadoAt: serverTimestamp() }); else if (await confirmBox(`Excluir o comunicado “${esc(c.titulo)}”?`, 'Excluir')) { await deleteDoc(doc(db, 'comunicados', id)); toast('Excluído.'); } } catch (x) { toast(errMsg(x), true); } };
+  draw(); return { refresh: draw };
+}
+function viewAdminAcessos(main) {
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Atividade</div><h1><em>Acessos</em> ao portal</h1><p>Registro dos logins dos últimos 30 dias e associados online agora (atividade nos últimos 10 minutos).</p></div></div><div id="on"></div><div class="sec-t">Logins recentes</div><div class="list" id="ls"></div></div>`;
+  const draw = () => {
+    const on = S.associados.filter(online);
+    $('#on', main).innerHTML = `<div class="pnl"><h3>Online agora (${on.length})</h3><div class="mini">${on.map(a => `<div><span><span class="on-dot"></span> ${esc(a.nome)}</span><small>${esc(a.email)}</small></div>`).join('') || '<div class="none">Ninguém online neste momento.</div>'}</div></div>`;
+    const l = [...S.logins].sort((a, b) => ms(b.em) - ms(a.em)).slice(0, 200);
+    $('#ls', main).innerHTML = l.length ? l.map(x => `<div class="item"><div class="main"><h3>${esc(x.nome)} ${x.tipo === 'admin' ? '<span class="chip s-purple">admin</span>' : ''}</h3><p>${esc(x.email)}</p></div><span style="font-size:.72rem;color:var(--muted)">${fmtDT(x.em)} · ${ago(x.em)}</span></div>`).join('') : '<div class="empty"><b>Sem registros</b></div>';
+  };
+  draw(); return { refresh: draw };
+}
+function viewAdminConfig(main) {
+  const c = S.config;
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Sistema</div><h1><em>Configurações</em></h1></div></div>
+  <form class="card" id="cf" style="max-width:720px"><div class="field"><label>Título da página inicial</label><input name="ht" maxlength="140" value="${esc(c.heroTitulo)}"></div>
+  <div class="field"><label>Texto de apresentação</label><textarea name="hx" maxlength="600">${esc(c.heroTexto)}</textarea></div>
+  <div class="field"><label>E-mail de suporte (exibido no portal)</label><input name="se" type="email" maxlength="150" value="${esc(c.suporteEmail)}"></div>
+  <div class="field"><label>Termo de aceite do cadastro</label><textarea name="tm" maxlength="800">${esc(c.termos)}</textarea></div>
+  <label class="check"><input type="checkbox" name="auto" ${c.aprovacaoAuto ? 'checked' : ''}><span><b style="color:var(--cream)">Aprovação automática</b> — novos cadastros já entram como ativos (sem validação manual). Deixe desmarcado para aprovar um a um.</span></label>
+  <p class="msg-err" id="ce"></p><button class="btn">Salvar configurações</button></form>
+  <div class="card" style="max-width:720px;margin-top:1.2rem"><div class="eyebrow">Senha do administrador</div><p class="hint" style="margin-bottom:1rem">Se ainda usa a senha inicial de implantação, troque-a agora por uma senha forte: enviaremos um link para ${esc(S.user.email)}.</p><button class="btn ghost" id="pw">Enviar link para trocar a senha</button></div></div>`;
+  $('#cf', main).onsubmit = async e => { e.preventDefault(); const f = e.target;
+    try { const d = { heroTitulo: f.ht.value.trim(), heroTexto: f.hx.value.trim(), suporteEmail: f.se.value.trim(), termos: f.tm.value.trim(), aprovacaoAuto: f.auto.checked }; await setDoc(doc(db, 'config', 'portal'), d); S.config = { ...DEF, ...d }; toast('Configurações salvas.'); } catch (x) { $('#ce', main).textContent = errMsg(x); } };
+  $('#pw', main).onclick = async () => { try { await sendPasswordResetEmail(auth, S.user.email); toast('Link enviado para ' + S.user.email); } catch (x) { toast(errMsg(x), true); } };
+  return {};
+}
+
+/* ---------- rotas ---------- */
+function route() {
+  S.view?.destroy?.(); S.view = null;
+  const [r, a] = location.hash.replace(/^#\/?/, '').split('/');
+  if (r === 'a' && a) { S.view = viewSite(decodeURIComponent(a).toLowerCase()); return; }
+  renderShell(); const main = $('#main'); window.scrollTo(0, 0);
+  if ((r === 'entrar' || r === 'cadastro') && !S.user) S.view = viewAuth(main, r === 'cadastro' ? 'reg' : 'login');
+  else if (r === 'entrar' || r === 'cadastro') location.replace(S.admin ? '#/admin' : '#/painel');
+  else if (r === 'advogados') S.view = viewDirectory(main);
+  else if (r === 'painel') {
+    if (!S.user) return location.replace('#/entrar'); if (S.admin) return location.replace('#/admin');
+    S.view = a === 'site' ? viewSiteEditor(main) : a === 'mensagens' ? viewMsgs(main) : a === 'perfil' ? viewPerfil(main) : viewPainel(main);
+  } else if (r === 'admin') {
+    if (!S.admin) return location.replace(S.user ? '#/painel' : '#/entrar');
+    S.view = a === 'associados' ? viewAdminAssoc(main) : a === 'comunicados' ? viewAdminCom(main) : a === 'acessos' ? viewAdminAcessos(main) : a === 'config' ? viewAdminConfig(main) : viewAdminHome(main);
+  } else S.view = viewHome(main);
+  renderHeader();
+}
+window.addEventListener('hashchange', route);
+function onData() { renderHeader(); S.view?.refresh?.(); }
+
+/* ---------- sessão ---------- */
+function publicListeners() {
+  S.pubUnsub?.(); S.pubUnsub = onSnapshot(query(collection(db, 'sites'), where('publicado', '==', true), limit(100)), s => { S.dirSites = docs(s).sort((a, b) => ms(b.criadoAt) - ms(a.criadoAt)); onData(); }, e => console.warn('dir', e.code));
+}
+function attach(user) {
+  const uid = user.uid;
+  const comQ = S.admin ? collection(db, 'comunicados') : query(collection(db, 'comunicados'), where('ativo', '==', true));
+  listen(comQ, s => { S.com = docs(s); S.comLoaded = true; if (S.popupPending) { S.popupPending = false; showPopups(); } onData(); });
+  if (S.admin) {
+    listen(collection(db, 'associados'), s => { S.associados = docs(s); onData(); });
+    listen(collection(db, 'sites'), s => { S.sites = docs(s); onData(); });
+    listen(query(collection(db, 'logins'), where('em', '>=', Timestamp.fromMillis(Date.now() - 30 * 864e5)), orderBy('em', 'desc'), limit(1500)), s => { S.logins = docs(s); onData(); });
+  } else {
+    let siteUnsub = null, msgUnsub = null, curSlug = '';
+    listen(doc(db, 'associados', uid), s => {
+      const prev = S.assoc?.status; S.assoc = s.exists() ? { id: s.id, ...s.data({ serverTimestamps: 'estimate' }) } : null;
+      const slug = S.assoc?.siteSlug || '';
+      if (slug !== curSlug) {
+        curSlug = slug; siteUnsub?.(); msgUnsub?.(); S.site = null; S.msgs = [];
+        if (slug) {
+          siteUnsub = onSnapshot(doc(db, 'sites', slug), d => { S.site = d.exists() ? { id: d.id, ...d.data() } : null; onData(); }, () => {}); S.unsubs.push(() => siteUnsub?.());
+          msgUnsub = onSnapshot(collection(db, 'sites', slug, 'mensagens'), m => { S.msgs = docs(m); onData(); }, () => {}); S.unsubs.push(() => msgUnsub?.());
+        }
+      }
+      if (prev && prev !== S.assoc?.status && S.assoc?.status === 'ativo') toast('🎉 Seu cadastro foi aprovado! Crie o seu site em “Meu site”.');
+      onData();
+    });
+    S.hb = setInterval(() => { if (document.visibilityState === 'visible' && S.assoc) updateDoc(doc(db, 'associados', uid), { visto: serverTimestamp() }).catch(() => {}); }, 5 * 60e3);
+  }
+}
+async function boot() {
+  try { const c = await getDoc(doc(db, 'config', 'portal')); if (c.exists()) S.config = { ...DEF, ...c.data() }; } catch { /* usa o padrão */ }
+  publicListeners();
+  onAuthStateChanged(auth, async user => {
+    stopAll(); S.user = user; S.admin = false; S.assoc = null; S.site = null; S.msgs = []; S.associados = []; S.logins = []; S.sites = []; S.com = [];
+    if (user) {
+      S.admin = (user.email || '').toLowerCase() === ADMIN_EMAIL;
+      try { if (!S.admin) await ensureAssoc(user); } catch (e) { console.warn('cadastro', e.code); toast(errMsg(e), true); }
+      S.popupPending = await logAccess(user);
+    } else {
+      S.popupPending = false;
+      listen(query(collection(db, 'comunicados'), where('ativo', '==', true), where('publico', '==', true)), s => { S.com = docs(s); onData(); });
+    }
+    if (user) attach(user);
+    route();
+  });
+}
+let deferredInstall = null;
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredInstall = e; const b = $('#instBtn'); if (b) b.hidden = false; });
+if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+boot();
+</script>
+</body>
+</html>

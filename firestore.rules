@@ -1,0 +1,139 @@
+rules_version = '2';
+
+// =====================================================================
+//  Portal AAB – Associação dos Advogados do Brasil
+//  Projeto Firebase: portaladvocacia
+//  Administrador do portal: willbrasilia@gmail.com
+//  Cole este conteúdo em Firestore Database → Regras → Publicar
+// =====================================================================
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- funções auxiliares ----------
+    function signed()  { return request.auth != null; }
+    function mail()    { return request.auth.token.email.lower(); }
+    function isAdmin() { return signed() && request.auth.token.email != null && mail() == 'willbrasilia@gmail.com'; }
+    function isMe(uid) { return signed() && request.auth.uid == uid; }
+
+    function assocPath(uid) { return /databases/$(database)/documents/associados/$(uid); }
+    function isActive(uid)  { return exists(assocPath(uid)) && get(assocPath(uid)).data.status == 'ativo'; }
+    function autoApprove()  {
+      return exists(/databases/$(database)/documents/config/portal)
+        && get(/databases/$(database)/documents/config/portal).data.get('aprovacaoAuto', false) == true;
+    }
+    function str(v, max) { return v is string && v.size() <= max; }
+
+    // ---------- configurações do portal ----------
+    match /config/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // ---------- comunicados (avisos, alertas, publicações, atualizações) ----------
+    match /comunicados/{id} {
+      allow read: if isAdmin()
+        || (signed() && resource.data.ativo == true)
+        || (resource.data.ativo == true && resource.data.publico == true);
+      allow write: if isAdmin();
+    }
+
+    // ---------- cadastro dos associados ----------
+    match /associados/{uid} {
+      allow read: if isAdmin() || isMe(uid);
+
+      // o próprio advogado cria o seu cadastro (pendente, ou ativo se a aprovação automática estiver ligada)
+      allow create: if isMe(uid)
+        && request.resource.data.keys().hasOnly(['uid','nome','email','telefone','oab','seccional','status','acessos','criadoAt'])
+        && request.resource.data.uid == uid
+        && request.resource.data.email == mail()
+        && str(request.resource.data.nome, 150)
+        && str(request.resource.data.telefone, 40)
+        && str(request.resource.data.oab, 20)
+        && str(request.resource.data.seccional, 2)
+        && request.resource.data.acessos == 0
+        && (request.resource.data.status == 'pendente'
+            || (request.resource.data.status == 'ativo' && autoApprove()));
+
+      // o advogado edita só os próprios dados; nunca o status
+      allow update: if isAdmin()
+        || (isMe(uid)
+            && request.resource.data.status == resource.data.status
+            && request.resource.data.email == resource.data.email
+            && request.resource.data.diff(resource.data).affectedKeys()
+                 .hasOnly(['nome','telefone','oab','seccional','ultimoAcesso','visto','acessos','siteSlug'])
+            && str(request.resource.data.nome, 150)
+            && str(request.resource.data.telefone, 40)
+            && str(request.resource.data.oab, 20)
+            && str(request.resource.data.seccional, 2)
+            // o slug só pode ser definido uma vez e por associado ativo
+            && (!('siteSlug' in request.resource.data.diff(resource.data).affectedKeys())
+                || (resource.data.get('siteSlug', null) == null && resource.data.status == 'ativo')));
+
+      allow delete: if isAdmin();
+    }
+
+    // ---------- sites pessoais ----------
+    match /sites/{slug} {
+      // público só vê o que está publicado; dono e administrador veem sempre
+      allow read: if isAdmin()
+        || resource.data.publicado == true
+        || (signed() && resource.data.ownerUid == request.auth.uid);
+
+      allow create: if signed()
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.slug == slug
+        && slug.matches('^[a-z0-9][a-z0-9-]{1,38}[a-z0-9]$')
+        && request.resource.data.bloqueado == false
+        && isActive(request.auth.uid)
+        && str(request.resource.data.nome, 150)
+        && str(request.resource.data.bio, 3000);
+
+      allow update: if isAdmin()
+        || (signed()
+            && resource.data.ownerUid == request.auth.uid
+            && resource.data.bloqueado == false
+            && isActive(request.auth.uid)
+            && request.resource.data.ownerUid == resource.data.ownerUid
+            && request.resource.data.slug == resource.data.slug
+            && request.resource.data.bloqueado == false
+            && str(request.resource.data.nome, 150)
+            && str(request.resource.data.bio, 3000));
+
+      allow delete: if isAdmin();
+
+      // mensagens do formulário de contato
+      match /mensagens/{mid} {
+        allow create: if get(/databases/$(database)/documents/sites/$(slug)).data.publicado == true
+          && request.resource.data.keys().hasOnly(['nome','email','telefone','mensagem','criadoAt','lida'])
+          && request.resource.data.lida == false
+          && str(request.resource.data.nome, 150) && request.resource.data.nome.size() > 0
+          && str(request.resource.data.email, 150)
+          && str(request.resource.data.telefone, 40)
+          && str(request.resource.data.mensagem, 3000) && request.resource.data.mensagem.size() > 0;
+
+        allow read, delete: if isAdmin()
+          || (signed() && get(/databases/$(database)/documents/sites/$(slug)).data.ownerUid == request.auth.uid);
+
+        allow update: if isAdmin()
+          || (signed() && get(/databases/$(database)/documents/sites/$(slug)).data.ownerUid == request.auth.uid
+              && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lida']));
+      }
+    }
+
+    // ---------- registro de acessos ----------
+    match /logins/{id} {
+      allow create: if signed()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.email == mail()
+        && request.resource.data.tipo in ['login','admin']
+        && (request.resource.data.tipo == 'login' || isAdmin());
+      allow read: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    // tudo o mais fica bloqueado
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
