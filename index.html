@@ -40,7 +40,7 @@ a{color:var(--gold)}button{font-family:inherit;cursor:pointer}
 .sub-nav a:hover{color:var(--cream)}.sub-nav a.on{color:var(--gold);border-bottom-color:var(--gold)}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--bad);display:inline-block}
 main{min-height:70vh}
-.pad{padding:2.2rem 0 4.5rem}
+.pad{padding-top:2.2rem;padding-bottom:4.5rem}
 footer.ft{border-top:1px solid var(--border);padding:1.6rem 1.4rem 2.4rem;text-align:center;font-size:.68rem;color:var(--muted);letter-spacing:.06em;line-height:1.9}
 footer.ft button{background:none;border:none;color:var(--muted);text-decoration:underline;font-size:inherit}
 /* botões / campos */
@@ -58,7 +58,11 @@ footer.ft button{background:none;border:none;color:var(--muted);text-decoration:
 .field small,.hint{font-size:.66rem;color:var(--muted);line-height:1.55}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 1rem}
 .check{display:flex;gap:.6rem;align-items:flex-start;font-size:.74rem;line-height:1.55;color:var(--muted);margin-bottom:1rem;cursor:pointer}
-.check input{margin-top:.25rem;accent-color:var(--gold);width:auto}
+.check{color:var(--cream);align-items:center;border:1px solid var(--border);padding:.8rem .9rem}
+.check input{-webkit-appearance:none;appearance:none;flex:none;width:26px;height:26px;margin:0;border:2px solid var(--gold);background:transparent;cursor:pointer;position:relative;border-radius:4px}
+.check input:checked{background:var(--gold)}
+.check input:checked::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:18px;font-weight:700;line-height:1}
+.check:has(input:checked){border-color:var(--gold)}
 .msg-err{color:var(--bad);font-size:.75rem;min-height:1.1rem;margin-bottom:.6rem}.msg-ok{color:var(--ok);font-size:.75rem;margin-bottom:.6rem}
 .card{border:1px solid var(--border);background:var(--navy2);padding:1.5rem}
 .page-h{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.6rem}
@@ -145,31 +149,87 @@ a.stat:hover{border-color:var(--gold)}
 .toast.on{opacity:1;transform:translateX(-50%)}.toast.err{background:var(--bad);color:#fff}
 .loading{text-align:center;padding:6rem 1rem;color:var(--muted);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
 /* site pessoal */
-.site{--sb:#0d1821;--sb2:#162030;--sa:#c9a84c;--st:#f8f5ef;--sm:#8a8070;background:var(--sb);color:var(--st);min-height:100vh;font-family:'Montserrat',sans-serif}
-.site a{color:var(--sa)}
+.site{--sb:#0d1821;--sb2:#162030;--sa:#c9a84c;--st:#f8f5ef;--sm:#8a8070;--sl:color-mix(in srgb,var(--sa) 25%,transparent);background:var(--sb);color:var(--st);min-height:100vh;font-family:'Montserrat',sans-serif;font-weight:300;position:relative}
+.site a{color:var(--sa)}.site [id^="s-"]{scroll-margin-top:74px}
 .site .bar{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.55rem 1.4rem;background:rgba(0,0,0,.35);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase}
 .site .bar a{color:var(--st);text-decoration:none;opacity:.8}.site .bar a:hover{opacity:1;color:var(--sa)}
-.site .sh{max-width:980px;margin:auto;padding:5rem 1.4rem 3.5rem;display:grid;grid-template-columns:auto 1fr;gap:2.6rem;align-items:center}
-.site .sh .pic{width:200px;height:200px;border-radius:50%;object-fit:cover;border:3px solid var(--sa);box-shadow:0 0 0 7px var(--sb),0 0 0 8px var(--sa);background:var(--sb2);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:4rem;color:var(--sa)}
-.site h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5vw,4rem);line-height:1;font-weight:400}
-.site .role{margin-top:.8rem;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sa)}
-.site .sec{max-width:980px;margin:auto;padding:3rem 1.4rem;border-top:1px solid color-mix(in srgb,var(--sa) 25%,transparent)}
-.site .sec h2{font-size:2.2rem;margin-bottom:1.2rem}.site .sec h2 em{color:var(--sa)}
-.site .bio{font-size:.92rem;line-height:2;color:var(--st);opacity:.88;white-space:pre-wrap;max-width:720px}
-.site .ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:color-mix(in srgb,var(--sa) 25%,transparent);border:1px solid color-mix(in srgb,var(--sa) 25%,transparent)}
-.site .ag div{background:var(--sb2);padding:1.6rem}.site .ag h3{font-size:1.3rem;margin-bottom:.5rem}.site .ag p{font-size:.78rem;line-height:1.75;color:var(--sm)}
-.site .ct{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem}
-.site .ci{display:flex;flex-direction:column;gap:1rem;font-size:.86rem}.site .ci a{text-decoration:none}.site .ci small{display:block;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sm);margin-bottom:.15rem}
-.site .fi{display:flex;flex-direction:column;gap:1rem}
-.site .fi input,.site .fi textarea{background:transparent;border:none;border-bottom:1px solid color-mix(in srgb,var(--sa) 35%,transparent);color:var(--st);padding:.7rem 0;font:inherit;font-size:.88rem;outline:none;width:100%}
-.site .fi input:focus,.site .fi textarea:focus{border-bottom-color:var(--sa)}.site .fi textarea{height:90px;resize:none}
-.site .fi button{background:var(--sa);color:var(--sb);border:none;padding:.9rem 2rem;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;align-self:flex-start}
-.site .fo{padding:2rem 1.4rem;text-align:center;font-size:.64rem;letter-spacing:.1em;color:var(--sm);border-top:1px solid color-mix(in srgb,var(--sa) 25%,transparent)}
 .site .prev{background:var(--sa);color:var(--sb);text-align:center;padding:.5rem;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.site nav.sn{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem 1.6rem;background:color-mix(in srgb,var(--sb) 94%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--sl)}
+.site .sn .lg{font-family:'Cormorant Garamond',serif;color:var(--sa);font-size:1.7rem;font-weight:600;line-height:1;letter-spacing:.06em;text-decoration:none}
+.site .sn .lg small{display:block;font-family:'Montserrat',sans-serif;font-size:.5rem;letter-spacing:.3em;color:var(--st);opacity:.75;margin-top:4px;font-weight:300}
+.site .sn ul{list-style:none;display:flex;gap:1.6rem;align-items:center}
+.site .sn ul a{color:var(--st);text-decoration:none;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+.site .sn ul a:hover{color:var(--sa);opacity:1}
+.site .sn .tg{display:none;width:48px;height:48px;border:1px solid var(--sl);background:transparent;color:var(--st);flex-direction:column;gap:6px;align-items:center;justify-content:center}
+.site .sn .tg i{display:block;width:22px;height:2px;background:currentColor}
+.site .hero2{position:relative;overflow:hidden;padding:6rem 1.6rem 5rem;background:radial-gradient(ellipse 70% 60% at 80% 20%,color-mix(in srgb,var(--sa) 12%,transparent),transparent 60%),linear-gradient(160deg,var(--sb),var(--sb2) 70%,var(--sb))}
+.site .hero2.cv{background-size:cover;background-position:center}
+.site .hero2 .dim{position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--sb) 92%,transparent),color-mix(in srgb,var(--sb) 55%,transparent))}
+.site .hero2 .in{position:relative;max-width:1000px;margin:auto}
+.site .pre{display:flex;gap:1rem;align-items:center;font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--sa);margin-bottom:1.4rem}
+.site .pre::before{content:'';flex:none;width:46px;height:1px;background:var(--sa)}
+.site .hero2 h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(3rem,10vw,6rem);line-height:.98}
+.site .hero2 h1 em{color:var(--sa);display:block}
+.site .tag{margin-top:1.6rem;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sm);max-width:640px;line-height:1.9}
+.site .ctas{margin-top:2.2rem;display:flex;gap:.9rem;flex-wrap:wrap}
+.site .b1,.site .b2{padding:1rem 1.7rem;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;font-weight:600;display:inline-block}
+.site .b1{background:var(--sa);color:var(--sb)}.site .b2{border:1px solid var(--sl);color:var(--st)}.site .b2:hover{border-color:var(--sa);color:var(--sa)}
+.site .deco{position:absolute;right:5%;top:50%;transform:translateY(-50%);width:clamp(140px,22vw,300px);color:var(--sa);opacity:.12}
+.site .intro{max-width:1000px;margin:auto;padding:4.5rem 1.6rem;display:grid;grid-template-columns:.9fr 1.1fr;gap:3.5rem;align-items:center}
+.site .ph2{position:relative;aspect-ratio:4/5;background:var(--sb2);border:1px solid var(--sl);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.site .ph2 img{width:100%;height:100%;object-fit:cover;display:block}.site .ph2 .ini{font-family:'Cormorant Garamond',serif;font-size:6rem;color:var(--sa)}
+.site .ph2 .cap{position:absolute;left:1.2rem;bottom:1.2rem;right:1.2rem;border-left:3px solid var(--sa);padding:.3rem 0 .3rem 1rem;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.site .ph2 .cap h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.6rem;color:#fff}.site .ph2 .cap p{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sa)}
+.site .eb{display:flex;gap:1rem;align-items:center;font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:var(--sa);margin-bottom:1rem}
+.site .eb::after{content:'';flex:none;width:46px;height:1px;background:var(--sa)}.site .eb.c{justify-content:center}
+.site h2.hd{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,5.5vw,3.2rem);line-height:1.1;margin-bottom:1.4rem}.site h2.hd em{color:var(--sa)}
+.site .tx p{font-size:.92rem;line-height:2;opacity:.82;margin-bottom:1rem}
+.site .oab{display:inline-flex;gap:1rem;align-items:center;border:1px solid var(--sl);padding:1rem 1.4rem;margin-top:1rem}
+.site .oab small{display:block;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sm)}.site .oab strong{font-weight:400;color:var(--sa);font-size:.92rem}
+.site .qt{text-align:center;padding:4.5rem 1.6rem;border-top:1px solid var(--sl);border-bottom:1px solid var(--sl);position:relative;overflow:hidden}
+.site .qt::before{content:'“';position:absolute;left:50%;top:-1.2rem;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;font-size:11rem;line-height:1;color:var(--sa);opacity:.1}
+.site .qt blockquote{position:relative;max-width:820px;margin:auto;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(1.5rem,4vw,2.3rem);line-height:1.4}
+.site .qt cite{display:block;margin-top:1.4rem;font-family:'Montserrat',sans-serif;font-style:normal;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--sa)}
+.site .areas{background:var(--sb2);padding:4.5rem 1.6rem}.site .areas .wrap2,.site .arts .wrap2,.site .contact .wrap2{max-width:1000px;margin:auto}
+.site .head{text-align:center}
+.site .tabs2{display:flex;justify-content:center;gap:2rem;border-bottom:1px solid var(--sl);margin:2rem auto 2.5rem;flex-wrap:wrap}
+.site .tabs2 button{background:none;border:none;color:var(--sm);padding:1rem .4rem;font:inherit;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer}
+.site .tabs2 button.on{color:var(--st);border-bottom-color:var(--sa)}
+.site .ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1px;background:var(--sl);border:1px solid var(--sl);margin-top:2rem}
+.site .tabs2+.ag{margin-top:0}
+.site .ac{background:var(--sb);padding:2rem}.site .ac .ic{font-size:1.8rem;margin-bottom:1rem}.site .ac h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.5rem;margin-bottom:.6rem}.site .ac p{font-size:.8rem;line-height:1.8;color:var(--sm)}
+.site .arts{padding:4.5rem 1.6rem}
+.site .artg{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.4rem;margin-top:2.4rem}
+.site .art{border:1px solid var(--sl);background:var(--sb2);display:flex;flex-direction:column;text-align:left;color:inherit;font:inherit;cursor:pointer;padding:0}
+.site .art:hover{border-color:var(--sa)}
+.site .art .cv2{height:160px;display:flex;align-items:center;justify-content:center;font-size:3.4rem;background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--sa) 22%,transparent),transparent 65%)}
+.site .art .bd{padding:1.4rem 1.5rem 1.6rem;display:flex;flex-direction:column;gap:.6rem;flex:1}
+.site .art .dt{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sm)}
+.site .art h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.55rem;line-height:1.2;color:var(--st)}
+.site .art p{font-size:.8rem;line-height:1.75;color:var(--sm)}.site .art .rl{margin-top:auto;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sa)}
+.site .sub{margin-top:2.6rem;border:1px solid var(--sl);padding:2rem;text-align:center}.site .sub h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.7rem;margin-bottom:.4rem}.site .sub p{font-size:.8rem;color:var(--sm);margin-bottom:1.2rem}
+.site .subf{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}.site .subf input{flex:1;min-width:150px;max-width:260px}
+.site .contact{padding:4.5rem 1.6rem}
+.site .ct{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem}
+.site .ci{display:flex;flex-direction:column;gap:1.1rem;font-size:.86rem}.site .ci a{text-decoration:none}.site .ci small{display:block;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sm);margin-bottom:.15rem}
+.site .fi{display:flex;flex-direction:column;gap:1rem}.site .fi .two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.site input,.site textarea,.site select{background:transparent;border:none;border-bottom:1px solid color-mix(in srgb,var(--sa) 35%,transparent);color:var(--st);padding:.7rem 0;font:inherit;font-size:.88rem;outline:none;width:100%;border-radius:0}
+.site select option{background:var(--sb2);color:var(--st)}
+.site input:focus,.site textarea:focus,.site select:focus{border-bottom-color:var(--sa)}.site textarea{height:100px;resize:none}
+.site .fi button,.site .subf button{background:var(--sa);color:var(--sb);border:none;padding:.9rem 2rem;font:inherit;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;align-self:flex-start;cursor:pointer}
+.site .fo{padding:2.2rem 1.4rem 5rem;text-align:center;font-size:.64rem;letter-spacing:.1em;color:var(--sm);border-top:1px solid var(--sl)}
+.site .fo .ln{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.site .fo .ln a,.site .fo .ln button{background:none;border:none;color:var(--st);font:inherit;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;cursor:pointer;opacity:.85}
+.site .fab{position:fixed;right:1.1rem;bottom:1.1rem;z-index:60;width:58px;height:58px;border-radius:50%;background:var(--sa);color:var(--sb);border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.4);cursor:pointer}
+.site .rd{position:fixed;inset:0;z-index:80;background:var(--sb);overflow:auto;padding:1.4rem}
+.site .rin{max-width:720px;margin:2rem auto 4rem}.site .rin .x{background:none;border:1px solid var(--sl);color:var(--st);padding:.6rem 1rem;font:inherit;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;margin-bottom:2rem}
+.site .rin .dt{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sa)}.site .rin h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2rem,6vw,3rem);line-height:1.15;margin:.6rem 0 1.6rem}
+.site .rin h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.6rem;margin:1.8rem 0 .6rem;color:var(--sa)}.site .rin p{font-size:.95rem;line-height:2;opacity:.88;margin-bottom:1rem}
+.areas-ed .r2{display:grid;grid-template-columns:56px 1fr 150px auto;gap:.5rem;align-items:start;border:1px solid var(--border);padding:.6rem}.areas-ed .r2 textarea{grid-column:1/-1}.areas-ed .r2 select{background:transparent;border:1px solid var(--border);color:var(--cream);padding:.55rem .4rem;font:inherit;font-size:.78rem;width:100%}.areas-ed .r2 select option{background:var(--navy2)}
 @media(max-width:800px){
- .row2,.row3,.dgrid,.auth-grid,.site .ct{grid-template-columns:1fr}.feat{grid-template-columns:1fr}
+ .row2,.row3,.dgrid,.auth-grid{grid-template-columns:1fr}.feat{grid-template-columns:1fr}
  .auth-grid .card{position:static}.hero{padding:3.5rem 0 3rem}.hero .seal{display:none}.page-h h1{font-size:1.8rem}
- .site .sh{grid-template-columns:1fr;text-align:center;justify-items:center;padding-top:3rem}.areas-ed .r{grid-template-columns:1fr}
+ .site .intro,.site .ct,.site .fi .two{grid-template-columns:1fr}.site .sn .tg{display:flex}.site .sn ul{display:none}.site .sn.open ul{display:flex;flex-direction:column;align-items:flex-start;position:absolute;top:100%;left:0;right:0;background:var(--sb);padding:1.2rem 1.6rem;gap:1.2rem;border-bottom:1px solid var(--sl)}.site .deco{display:none}.site .hero2{padding:4rem 1.4rem 3.5rem}.areas-ed .r2{grid-template-columns:56px 1fr auto}.areas-ed .r2 select{grid-column:1/-1}.areas-ed .r{grid-template-columns:1fr}
  .hdr nav{margin-left:0;width:100%}
 }
 </style>
@@ -183,7 +243,7 @@ a.stat:hover{border-color:var(--gold)}
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, updateProfile }
   from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, getDocs, setDoc, addDoc, updateDoc, deleteDoc, collection, query, where, orderBy, limit, onSnapshot, serverTimestamp, increment, writeBatch, Timestamp }
+import { initializeFirestore, doc, getDoc, getDocs, setDoc, addDoc, updateDoc, deleteDoc, collection, query, where, orderBy, limit, onSnapshot, serverTimestamp, increment, writeBatch, Timestamp }
   from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -195,7 +255,7 @@ const firebaseConfig = {
   appId: "1:140785106769:web:b59e39bae510765719dd70",
   measurementId: "G-5YFBEGCECB"
 };
-const app = initializeApp(firebaseConfig), auth = getAuth(app), db = getFirestore(app);
+const app = initializeApp(firebaseConfig), auth = getAuth(app), db = initializeFirestore(app, { experimentalAutoDetectLongPolling: true });
 
 const ADMIN_EMAIL = 'willbrasilia@gmail.com';
 const UFS = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
@@ -225,6 +285,7 @@ const slugify = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').to
 const initials = n => String(n || '?').trim().split(/\s+/).filter(Boolean).slice(0, 2).map(x => x[0]).join('').toUpperCase();
 const online = a => Date.now() - ms(a.visto) < 10 * 60e3;
 const siteUrl = slug => location.origin + location.pathname + '#/a/' + slug;
+const withTimeout = (p, ms = 8000) => Promise.race([p, new Promise((_, rj) => setTimeout(() => rj(new Error('timeout')), ms))]);
 let toastT;
 function toast(msg, err) { const t = $('#toast'); t.textContent = msg; t.className = 'toast on' + (err ? ' err' : ''); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), err ? 5000 : 3200); }
 function openModal(html, mount) {
@@ -252,7 +313,7 @@ const errMsg = e => ({
 const docs = snap => snap.docs.map(d => ({ id: d.id, ...d.data({ serverTimestamps: 'estimate' }) }));
 
 /* ---------- estado ---------- */
-const S = { user: null, admin: false, assoc: null, site: null, config: { ...DEF }, com: [], dirSites: [], associados: [], logins: [], sites: [], msgs: [], unsubs: [], pubUnsub: null, view: null, pending: null, popupPending: false, hb: 0, comLoaded: false };
+const S = { user: null, admin: false, assoc: null, site: null, config: { ...DEF }, com: [], dirSites: [], associados: [], logins: [], sites: [], msgs: [], arts: [], insc: [], unsubs: [], pubUnsub: null, view: null, pending: null, popupPending: false, hb: 0, comLoaded: false };
 const listen = (q, fn) => { const u = onSnapshot(q, fn, e => console.warn('listen', e.code)); S.unsubs.push(u); return u; };
 function stopAll() { S.unsubs.forEach(u => u()); S.unsubs = []; clearInterval(S.hb); S.comLoaded = false; }
 
@@ -319,7 +380,7 @@ function renderHeader() {
   const sn = $('#subnav'); if (!sn) return;
   const p = location.hash.replace(/^#\/?/, '').split('/');
   const un = S.msgs.filter(m => !m.lida).length;
-  if (S.user && !S.admin && p[0] === 'painel') sn.innerHTML = `<div class="sub-nav">${[['#/painel', 'Início', ''], ['#/painel/site', 'Meu site', 'site'], ['#/painel/mensagens', 'Mensagens', 'mensagens'], ['#/painel/perfil', 'Meu perfil', 'perfil']].map(([hr, t, k]) => `<a class="${(p[1] || '') === k ? 'on' : ''}" href="${hr}">${t}${k === 'mensagens' && un ? '<span class="dot"></span>' : ''}</a>`).join('')}</div>`;
+  if (S.user && !S.admin && p[0] === 'painel') sn.innerHTML = `<div class="sub-nav">${[['#/painel', 'Início', ''], ['#/painel/site', 'Meu site', 'site'], ['#/painel/artigos', 'Artigos', 'artigos'], ['#/painel/mensagens', 'Mensagens', 'mensagens'], ['#/painel/perfil', 'Meu perfil', 'perfil']].map(([hr, t, k]) => `<a class="${(p[1] || '') === k ? 'on' : ''}" href="${hr}">${t}${k === 'mensagens' && un ? '<span class="dot"></span>' : ''}</a>`).join('')}</div>`;
   else if (S.admin && p[0] === 'admin') sn.innerHTML = `<div class="sub-nav">${[['#/admin', 'Resumo', ''], ['#/admin/associados', 'Associados', 'associados'], ['#/admin/comunicados', 'Comunicados', 'comunicados'], ['#/admin/acessos', 'Acessos', 'acessos'], ['#/admin/config', 'Configurações', 'config']].map(([hr, t, k]) => `<a class="${(p[1] || '') === k ? 'on' : ''}" href="${hr}">${t}${k === 'associados' && S.associados.some(a => a.status === 'pendente') ? '<span class="dot"></span>' : ''}</a>`).join('')}</div>`;
   else sn.innerHTML = '';
 }
@@ -386,33 +447,100 @@ function viewAuth(main, mode) {
 }
 
 /* ---------- site pessoal (público) ---------- */
+const GRUPOS_PADRAO = ['Áreas tradicionais', 'Especializações'];
+const SUGESTOES = [
+  { icone: '⚖️', nome: 'Direito Civil', desc: 'Contratos, responsabilidade civil, família e sucessões, com soluções personalizadas para cada demanda.', grupo: 0 },
+  { icone: '🔒', nome: 'Direito Penal', desc: 'Defesa e representação em crimes e contravenções, do inquérito policial às instâncias recursais.', grupo: 0 },
+  { icone: '🤝', nome: 'Direito do Trabalho', desc: 'Defesa de trabalhadores e empresas em reclamações trabalhistas, rescisões e acordos.', grupo: 0 },
+  { icone: '🏢', nome: 'Direito Empresarial', desc: 'Contratos comerciais, constituição e dissolução de sociedades e assessoria ao mercado corporativo.', grupo: 0 },
+  { icone: '📊', nome: 'Direito Tributário', desc: 'Planejamento fiscal e defesa em autuações e contenciosos administrativos e judiciais.', grupo: 0 },
+  { icone: '🏛️', nome: 'Direito Administrativo', desc: 'Relações com o Estado: licitações, contratos públicos, servidores e atos administrativos.', grupo: 0 },
+  { icone: '💻', nome: 'Direito Digital', desc: 'LGPD, crimes virtuais, proteção de dados, e-commerce e responsabilidade em redes sociais.', grupo: 1 },
+  { icone: '📋', nome: 'Compliance e Ética', desc: 'Prevenção de riscos legais e implantação de programas de integridade nas empresas.', grupo: 1 },
+  { icone: '🌿', nome: 'Direito Ambiental', desc: 'Licenciamento, responsabilidade por danos e regularização de projetos ambientais.', grupo: 1 },
+  { icone: '🛡️', nome: 'Direito do Consumidor', desc: 'Defesa em cobranças indevidas, produtos defeituosos e propaganda enganosa.', grupo: 1 },
+  { icone: '🏥', nome: 'Direito Médico e da Saúde', desc: 'Responsabilidade civil médica, planos de saúde e atuação de profissionais e hospitais.', grupo: 1 },
+  { icone: '🏠', nome: 'Direito Imobiliário', desc: 'Compra e venda, locações, incorporações, usucapião e regularização de imóveis.', grupo: 1 }
+];
+const SCALE_SVG = '<svg viewBox="0 0 200 230" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="100" cy="14" r="5"/><path d="M100 19V196M30 46H170M30 46L10 124M30 46L50 124M170 46L150 124M170 46L190 124M6 124H54Q30 160 6 124ZM146 124H194Q170 160 146 124ZM70 212H130M80 196H120L126 212H74Z"/></svg>';
+const okImg = u => /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(u || '') ? u : '';
+const paras = t => String(t || '').split(/\n+/).map(x => x.trim()).filter(Boolean);
+const fmtArt = d => { try { return new Date(d + 'T12:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }); } catch { return ''; } };
 function viewSite(slug) {
   $('#root').innerHTML = '<div class="loading">Carregando…</div>';
+  let alive = true;
   (async () => {
-    let s = null;
-    try { const d = await getDoc(doc(db, 'sites', slug)); if (d.exists()) s = { id: d.id, ...d.data() }; } catch { /* não encontrado ou sem permissão */ }
+    let s = null, arts = [];
+    try { const d = await withTimeout(getDoc(doc(db, 'sites', slug)), 10000); if (d.exists()) s = { id: d.id, ...d.data() }; } catch { /* não encontrado ou sem permissão */ }
+    if (!alive) return;
     if (!s) { $('#root').innerHTML = `<div class="wrap pad" style="text-align:center"><div class="empty"><b>Site não encontrado</b>Este endereço não existe ou ainda não foi publicado.<br><br><a class="btn" href="#/">Voltar ao portal da AAB</a></div></div>`; return; }
+    try { arts = docs(await withTimeout(getDocs(query(collection(db, 'sites', slug, 'artigos'), where('publicado', '==', true))), 10000)).sort((a, b) => String(b.data || '').localeCompare(String(a.data || '')) || ms(b.criadoAt) - ms(a.criadoAt)); } catch { /* sem artigos */ }
+    if (!alive) return;
     const t = TEMAS[s.tema] || TEMAS.classico, ct = s.contato || {}, wa = String(ct.whatsapp || '').replace(/\D/g, '');
+    const pn = String(s.nome || '').trim().split(/\s+/), n2 = pn.length > 1 ? pn.pop() : '', n1 = pn.join(' ');
+    const ps = paras(s.bio), areas = (s.areas || []).filter(a => a.nome), grupos = s.areasGrupos || GRUPOS_PADRAO, usados = [0, 1].filter(g => areas.some(a => (a.grupo | 0) === g));
+    const cit = s.citacao || {}, capa = okImg(s.capa), foto = okImg(s.foto) || (/^https?:/.test(s.foto || '') ? s.foto : ''), ini = initials(s.nome);
+    const aberto = s.publicado, temSobre = ps.length || foto, url = siteUrl(slug);
+    const links = [['sobre', 'Sobre', temSobre], ['areas', 'Áreas', areas.length], ['artigos', 'Artigos', arts.length], ['contato', 'Contato', true]].filter(x => x[2]);
     document.title = `${s.nome} | AAB`;
-    const prev = !s.publicado ? '<div class="prev">Pré-visualização: este site ainda não está publicado</div>' : '';
-    $('#root').innerHTML = `<div class="site" style="--sb:${t[1]};--sb2:${t[2]};--sa:${t[3]};--st:${t[4]};--sm:${t[5]}">${prev}<div class="bar"><span>${esc(s.nome)}</span><a href="#/">Site oferecido pela AAB ↗</a></div>
-    <section class="sh">${s.foto ? `<img class="pic" src="${esc(s.foto)}" alt="${esc(s.nome)}">` : `<div class="pic">${esc(initials(s.nome))}</div>`}<div><h1>${esc(s.nome)}</h1><div class="role">${esc(s.titulo || '')}</div></div></section>
-    ${s.bio ? `<section class="sec"><h2>Sobre <em>mim</em></h2><p class="bio">${esc(s.bio)}</p></section>` : ''}
-    ${(s.areas || []).length ? `<section class="sec"><h2>Áreas de <em>atuação</em></h2><div class="ag">${s.areas.map(a => `<div><h3>${esc(a.nome)}</h3><p>${esc(a.desc || '')}</p></div>`).join('')}</div></section>` : ''}
-    <section class="sec"><h2>Fale <em>comigo</em></h2><div class="${s.formContato !== false ? 'ct' : ''}"><div class="ci">
+    $('#root').innerHTML = `<div class="site" style="--sb:${t[1]};--sb2:${t[2]};--sa:${t[3]};--st:${t[4]};--sm:${t[5]}">
+    ${!aberto ? '<div class="prev">Pré-visualização: este site ainda não está publicado</div>' : ''}<div class="bar"><span>${esc(s.nome)}</span><a href="#/">Site oferecido pela AAB ↗</a></div>
+    <nav class="sn" id="sn"><a class="lg" data-go="topo" href="#/a/${esc(slug)}">${esc(ini)}<small>ADVOCACIA</small></a>
+      <ul>${links.map(l => `<li><a href="#/a/${esc(slug)}" data-go="${l[0]}">${l[1]}</a></li>`).join('')}</ul><button class="tg" aria-label="Abrir menu"><i></i><i></i><i></i></button></nav>
+    <header class="hero2 ${capa ? 'cv' : ''}" id="s-topo" ${capa ? `style="background-image:url(${capa})"` : ''}>${capa ? '<div class="dim"></div>' : `<div class="deco">${SCALE_SVG}</div>`}
+      <div class="in"><div class="pre">${esc(s.pretitulo || 'Advocacia e consultoria jurídica')}</div><h1>${esc(n1)}${n2 ? `<em>${esc(n2)}</em>` : ''}</h1>
+      ${s.tagline || s.titulo ? `<p class="tag">${esc(s.tagline || s.titulo)}</p>` : ''}
+      <div class="ctas"><a class="b1" href="#/a/${esc(slug)}" data-go="${areas.length ? 'areas' : 'sobre'}">${esc(s.btn1 || (areas.length ? 'Áreas de atuação' : 'Sobre mim'))}</a><a class="b2" href="#/a/${esc(slug)}" data-go="contato">${esc(s.btn2 || 'Fale comigo')}</a></div></div></header>
+    ${temSobre ? `<section class="intro" id="s-sobre"><div class="ph2">${foto ? `<img src="${esc(foto)}" alt="${esc(s.nome)}">` : `<div class="ini">${esc(ini)}</div>`}<div class="cap"><h3>${esc(s.nome)}</h3><p>${esc(s.titulo || '')}</p></div></div>
+      <div class="tx"><div class="eb">${esc(s.sobreEyebrow || 'Sobre mim')}</div><h2 class="hd">${esc(s.sobreH1 || 'Compromisso com a')}<br><em>${esc(s.sobreH2 || 'justiça')}</em></h2>${ps.map(p => `<p>${esc(p)}</p>`).join('')}
+      ${s.registro ? `<div class="oab"><span>⚖</span><div><small>Registro profissional</small><strong>${esc(s.registro)}</strong></div></div>` : ''}</div></section>` : ''}
+    ${cit.texto ? `<section class="qt"><blockquote>${esc(cit.texto)}${cit.autor ? `<cite>— ${esc(cit.autor)}</cite>` : ''}</blockquote></section>` : ''}
+    ${areas.length ? `<section class="areas" id="s-areas"><div class="wrap2"><div class="head"><div class="eb c">Atuação profissional</div><h2 class="hd">Áreas de <em>atuação</em></h2></div>
+      ${usados.length > 1 ? `<div class="tabs2" id="tb">${usados.map((g, i) => `<button data-g="${g}" class="${i ? '' : 'on'}">${esc(grupos[g] || GRUPOS_PADRAO[g])}</button>`).join('')}</div>` : ''}<div class="ag" id="ag"></div></div></section>` : ''}
+    ${arts.length ? `<section class="arts" id="s-artigos"><div class="wrap2"><div class="head"><div class="eb c">Publicações</div><h2 class="hd">Publicações e <em>reflexões</em></h2></div>
+      <div class="artg">${arts.map((a, i) => `<button class="art" data-art="${i}"><div class="cv2">${esc(a.icone || '📰')}</div><div class="bd"><span class="dt">${esc(fmtArt(a.data))}</span><h3>${esc(a.titulo)}</h3><p>${esc(a.resumo || '')}</p><span class="rl">Ler artigo →</span></div></button>`).join('')}</div>
+      ${aberto ? `<div class="sub"><h3>Receba novos artigos</h3><p>Deixe seu e-mail para ser avisado(a) das próximas publicações.</p><form class="subf" id="nf"><input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true"><input name="nome" placeholder="Seu nome (opcional)" maxlength="150"><input name="email" type="email" placeholder="Seu melhor e-mail" required maxlength="150"><button>Quero receber</button></form><p id="nm" style="margin:.8rem 0 0"></p></div>` : ''}</div></section>` : ''}
+    <section class="contact" id="s-contato"><div class="wrap2"><div class="eb">Contato</div><h2 class="hd">Fale <em>comigo</em></h2><div class="${s.formContato !== false && aberto ? 'ct' : ''}"><div class="ci">
       ${ct.email ? `<div><small>E-mail</small><a href="mailto:${esc(ct.email)}">${esc(ct.email)}</a></div>` : ''}${ct.telefone ? `<div><small>Telefone</small><a href="tel:${esc(ct.telefone)}">${esc(ct.telefone)}</a></div>` : ''}
       ${wa.length >= 10 ? `<div><small>WhatsApp</small><a target="_blank" rel="noopener" href="https://wa.me/${wa.startsWith('55') ? wa : '55' + wa}">Conversar agora</a></div>` : ''}
       ${ct.instagram ? `<div><small>Instagram</small><a target="_blank" rel="noopener" href="https://instagram.com/${esc(String(ct.instagram).replace(/^@/, ''))}">${esc(ct.instagram)}</a></div>` : ''}
-      ${safeUrl(ct.linkedin) ? `<div><small>LinkedIn</small><a target="_blank" rel="noopener" href="${esc(ct.linkedin)}">Ver perfil</a></div>` : ''}${ct.endereco ? `<div><small>Endereço</small>${esc(ct.endereco)}</div>` : ''}</div>
-      ${s.formContato !== false && s.publicado ? `<form class="fi" id="sf"><input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true"><input name="nome" placeholder="Seu nome" required maxlength="150"><input name="email" type="email" placeholder="Seu e-mail" required maxlength="150"><input name="tel" placeholder="Telefone (opcional)" maxlength="40"><textarea name="msg" placeholder="Como posso ajudar?" required maxlength="3000"></textarea><button>Enviar mensagem</button><p id="sm" style="font-size:.78rem"></p></form>` : ''}</div></section>
-    <div class="fo">© ${new Date().getFullYear()} ${esc(s.nome)} · Associado(a) à <a href="#/">AAB – Associação dos Advogados do Brasil</a></div></div>`;
+      ${safeUrl(ct.linkedin) ? `<div><small>LinkedIn</small><a target="_blank" rel="noopener" href="${esc(ct.linkedin)}">Ver perfil</a></div>` : ''}${ct.endereco ? `<div><small>Localização</small>${esc(ct.endereco)}</div>` : ''}</div>
+      ${s.formContato !== false && aberto ? `<form class="fi" id="sf"><input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true"><div class="two"><input name="nome" placeholder="Seu nome" required maxlength="150"><input name="tel" type="tel" placeholder="Telefone" maxlength="40"></div><input name="email" type="email" placeholder="Seu e-mail" required maxlength="150">
+        <select name="area"><option value="">Área de interesse</option>${areas.map(a => `<option>${esc(a.nome)}</option>`).join('')}<option>Outro assunto</option></select><textarea name="msg" placeholder="Descreva brevemente o seu caso" required maxlength="3000"></textarea><button>Enviar consulta →</button><p id="sm" style="font-size:.78rem"></p></form>` : ''}</div></div></section>
+    <footer class="fo"><div class="ln">${ct.email ? `<a href="mailto:${esc(ct.email)}">E-mail</a>` : ''}${ct.instagram ? `<a target="_blank" rel="noopener" href="https://instagram.com/${esc(String(ct.instagram).replace(/^@/, ''))}">Instagram</a>` : ''}<button data-share>Compartilhar</button><a href="#/">Portal AAB</a></div>
+      © ${new Date().getFullYear()} ${esc(s.nome)} · Associado(a) à AAB – Associação dos Advogados do Brasil</footer>
+    <button class="fab" data-share aria-label="Compartilhar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></button></div>`;
+    const site = $('.site');
+    const drawAreas = g => { $('#ag', site).innerHTML = areas.filter(a => (a.grupo | 0) === g).map(a => `<div class="ac"><div class="ic">${esc(a.icone || '⚖️')}</div><h3>${esc(a.nome)}</h3><p>${esc(a.desc || '')}</p></div>`).join(''); };
+    if (areas.length) drawAreas(usados[0] ?? 0);
+    const fechar = () => { $('.rd', site)?.remove(); document.body.style.overflow = ''; };
+    const abre = i => {
+      const a = arts[i]; if (!a) return; const box = document.createElement('div'); box.className = 'rd';
+      box.innerHTML = `<div class="rin"><button class="x" data-x>← Voltar</button><div class="dt">${esc(fmtArt(a.data))}</div><h2>${esc(a.titulo)}</h2>${paras(a.texto).map(x => x.startsWith('## ') ? `<h3>${esc(x.slice(3))}</h3>` : `<p>${esc(x)}</p>`).join('') || `<p>${esc(a.resumo || '')}</p>`}<div class="ctas"><a class="b1" href="#/a/${esc(slug)}" data-go="contato" data-x>Falar com ${esc(s.nome.split(/\s+/)[0])}</a><button class="b2" style="background:none;cursor:pointer;font:inherit;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--st)" data-share>Compartilhar</button></div></div>`;
+      site.appendChild(box); document.body.style.overflow = 'hidden'; box.scrollTop = 0;
+    };
+    const partilhar = async () => { try { if (navigator.share) await navigator.share({ title: s.nome, text: `${s.nome} – ${s.titulo || 'Advogado(a)'}`, url }); else { await navigator.clipboard.writeText(url); toast('Link copiado.'); } } catch { /* cancelado */ } };
+    site.addEventListener('click', e => {
+      const g = e.target.closest('[data-go]'), tb = e.target.closest('[data-g]'), ar = e.target.closest('[data-art]');
+      if (e.target.closest('[data-share]')) return partilhar();
+      if (e.target.closest('.tg')) return $('#sn').classList.toggle('open');
+      if (tb) { $$('#tb button').forEach(b => b.classList.toggle('on', b === tb)); return drawAreas(+tb.dataset.g); }
+      if (ar) return abre(+ar.dataset.art);
+      if (g) { e.preventDefault(); if (g.closest('.rd')) fechar(); const el = g.dataset.go === 'topo' ? null : $('#s-' + g.dataset.go); el ? el.scrollIntoView({ behavior: 'smooth' }) : window.scrollTo({ top: 0, behavior: 'smooth' }); $('#sn').classList.remove('open'); return; }
+      if (e.target.closest('[data-x]')) fechar();
+    });
     const f = $('#sf'); if (f) f.onsubmit = async e => {
       e.preventDefault(); if (f.website.value) return; const b = $('button', f), m = $('#sm'); b.disabled = true;
-      try { await addDoc(collection(db, 'sites', slug, 'mensagens'), { nome: f.nome.value.trim(), email: f.email.value.trim(), telefone: f.tel.value.trim(), mensagem: f.msg.value.trim(), criadoAt: serverTimestamp(), lida: false }); m.textContent = 'Mensagem enviada! Retornarei em breve.'; f.reset(); }
+      try { await addDoc(collection(db, 'sites', slug, 'mensagens'), { nome: f.nome.value.trim(), email: f.email.value.trim(), telefone: f.tel.value.trim(), areaInteresse: f.area.value, mensagem: f.msg.value.trim(), criadoAt: serverTimestamp(), lida: false }); m.textContent = 'Mensagem enviada! Retornarei em breve.'; f.reset(); }
       catch { m.textContent = 'Não foi possível enviar agora. Tente novamente.'; } b.disabled = false;
     };
+    const nf = $('#nf'); if (nf) nf.onsubmit = async e => {
+      e.preventDefault(); if (nf.website.value) return; const b = $('button', nf), m = $('#nm'); b.disabled = true;
+      try { await addDoc(collection(db, 'sites', slug, 'inscritos'), { nome: nf.nome.value.trim(), email: nf.email.value.trim(), criadoAt: serverTimestamp() }); m.textContent = 'Inscrição feita! Obrigado.'; nf.reset(); }
+      catch { m.textContent = 'Não foi possível se inscrever agora.'; } b.disabled = false;
+    };
   })();
-  return { destroy() { document.title = 'AAB | Associação dos Advogados do Brasil'; } };
+  return { destroy() { alive = false; document.body.style.overflow = ''; document.title = 'AAB | Associação dos Advogados do Brasil'; } };
 }
 
 /* ---------- painel do associado ---------- */
@@ -430,7 +558,7 @@ function viewPainel(main) {
     $('#nm', main).textContent = (a.nome || '').split(/\s+/)[0]; $('#st', main).innerHTML = statusBanner() + (!a.oab ? '<div class="status-b"><b>Complete o seu cadastro</b>Informe o número da OAB e a seccional em <a href="#/painel/perfil">Meu perfil</a> para a validação.</div>' : '');
     $('#cs', main).innerHTML = `<div class="cards"><div class="stat"><b>${(STATUS[a.status] || ['—'])[0]}</b><span>Situação do cadastro</span></div>
       <a class="stat" href="#/painel/site"><b>${S.site ? (S.site.publicado ? 'No ar' : 'Rascunho') : 'Não criado'}</b><span>Meu site</span></a>
-      <a class="stat" href="#/painel/mensagens"><b>${S.msgs.filter(m => !m.lida).length}</b><span>Mensagens novas</span></a></div>
+      <a class="stat" href="#/painel/mensagens"><b>${S.msgs.filter(m => !m.lida).length}</b><span>Mensagens novas</span></a><a class="stat" href="#/painel/artigos"><b>${S.arts.filter(x => x.publicado).length}</b><span>Artigos publicados</span></a><a class="stat" href="#/painel/mensagens"><b>${S.insc.length}</b><span>Inscritos newsletter</span></a></div>
       ${S.site?.publicado ? `<p class="hint" style="margin-bottom:1rem">Seu site: <a href="#/a/${esc(S.site.slug)}">${esc(siteUrl(S.site.slug))}</a></p>` : ''}`;
     $('#bd', main).innerHTML = boardHtml(visiveis());
   };
@@ -450,62 +578,132 @@ function viewPerfil(main) {
   draw(); return { refresh: draw };
 }
 function viewMsgs(main) {
-  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Meu site</div><h1>Mensagens <em>recebidas</em></h1><p>Mensagens enviadas pelo formulário do seu site pessoal.</p></div></div><div class="list" id="ls"></div></div>`;
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Meu site</div><h1>Mensagens <em>recebidas</em></h1><p>Mensagens enviadas pelo formulário do seu site pessoal e inscritos na newsletter de artigos.</p></div></div><div class="list" id="ls"></div><div class="sec-t" id="inh"></div><div id="inb"></div></div>`;
   const draw = () => {
     const l = [...S.msgs].sort((a, b) => ms(b.criadoAt) - ms(a.criadoAt));
-    $('#ls', main).innerHTML = l.length ? l.map(m => `<div class="item" style="${m.lida ? '' : 'border-left:3px solid var(--gold)'}"><div class="main"><h3>${esc(m.nome)} ${m.lida ? '' : '<span class="chip s-warn">nova</span>'}</h3><p>${esc(m.email)}${m.telefone ? ' · ' + esc(m.telefone) : ''} · ${fmtDT(m.criadoAt)}</p><p style="color:var(--cream);margin-top:.5rem;white-space:pre-wrap;font-size:.84rem">${esc(m.mensagem)}</p></div>
+    $('#ls', main).innerHTML = l.length ? l.map(m => `<div class="item" style="${m.lida ? '' : 'border-left:3px solid var(--gold)'}"><div class="main"><h3>${esc(m.nome)} ${m.lida ? '' : '<span class="chip s-warn">nova</span>'}${m.areaInteresse ? `<span class="chip s-info">${esc(m.areaInteresse)}</span>` : ''}</h3><p>${esc(m.email)}${m.telefone ? ' · ' + esc(m.telefone) : ''} · ${fmtDT(m.criadoAt)}</p><p style="color:var(--cream);margin-top:.5rem;white-space:pre-wrap;font-size:.84rem">${esc(m.mensagem)}</p></div>
       <div class="acts"><a class="btn ghost sm" href="mailto:${esc(m.email)}?subject=${encodeURIComponent('Re: contato pelo meu site')}">Responder</a><button class="btn ghost sm" data-r="${m.id}">${m.lida ? 'Marcar como não lida' : 'Marcar como lida'}</button><button class="btn danger sm" data-d="${m.id}">Excluir</button></div></div>`).join('')
       : '<div class="empty"><b>Nenhuma mensagem ainda</b>Quando alguém escrever pelo seu site, a mensagem aparece aqui.</div>';
+    const ins = [...S.insc].sort((a, b) => ms(b.criadoAt) - ms(a.criadoAt));
+    $('#inh', main).textContent = `Inscritos na newsletter (${ins.length})`;
+    $('#inb', main).innerHTML = ins.length ? `<div class="list">${ins.map(i => `<div class="item"><div class="main"><h3 style="font-size:1.05rem">${esc(i.email)}</h3><p>${esc(i.nome || '')}${i.nome ? ' · ' : ''}${fmtD(i.criadoAt)}</p></div><div class="acts"><button class="btn danger sm" data-di="${i.id}">Remover</button></div></div>`).join('')}</div><p style="margin-top:1rem"><button class="btn ghost sm" id="cp">Copiar todos os e-mails</button></p>` : '<div class="empty">Ninguém se inscreveu ainda. O formulário aparece na seção de artigos do seu site.</div>';
   };
   main.onclick = async e => {
-    const r = e.target.closest('[data-r]'), d = e.target.closest('[data-d]'), slug = S.assoc?.siteSlug; if (!slug) return;
-    try { if (r) { const m = S.msgs.find(x => x.id === r.dataset.r); await updateDoc(doc(db, 'sites', slug, 'mensagens', m.id), { lida: !m.lida }); } else if (d && await confirmBox('Excluir esta mensagem?', 'Excluir')) await deleteDoc(doc(db, 'sites', slug, 'mensagens', d.dataset.d)); } catch (x) { toast(errMsg(x), true); }
+    const r = e.target.closest('[data-r]'), d = e.target.closest('[data-d]'), di = e.target.closest('[data-di]'), slug = S.assoc?.siteSlug; if (!slug) return;
+    try {
+      if (r) { const m = S.msgs.find(x => x.id === r.dataset.r); await updateDoc(doc(db, 'sites', slug, 'mensagens', m.id), { lida: !m.lida }); }
+      else if (d && await confirmBox('Excluir esta mensagem?', 'Excluir')) await deleteDoc(doc(db, 'sites', slug, 'mensagens', d.dataset.d));
+      else if (di) await deleteDoc(doc(db, 'sites', slug, 'inscritos', di.dataset.di));
+      else if (e.target.closest('#cp')) { await navigator.clipboard.writeText(S.insc.map(i => i.email).join(', ')); toast('E-mails copiados.'); }
+    } catch (x) { toast(errMsg(x), true); }
   };
   draw(); return { refresh: draw };
 }
-function reduzFoto(file) {
+function formArtigo(a) {
+  const n = !a, slug = S.assoc?.siteSlug;
+  openModal(`<h2>${n ? 'Novo artigo' : 'Editar artigo'}</h2><form id="af">
+    <div class="row2"><div class="field"><label>Título</label><input name="t" required maxlength="160" value="${esc(a?.titulo)}"></div><div class="field"><label>Data</label><input type="date" name="d" value="${esc(a?.data || dayKey())}"></div></div>
+    <div class="row2"><div class="field"><label>Ícone (emoji)</label><input name="i" maxlength="8" value="${esc(a?.icone || '📰')}"></div><div class="field"><label>&nbsp;</label><span class="hint">Aparece na capa do cartão (ex.: ⚖️ 💍 🏠 📄).</span></div></div>
+    <div class="field"><label>Resumo (aparece no cartão)</label><textarea name="r" maxlength="400" style="min-height:80px">${esc(a?.resumo)}</textarea></div>
+    <div class="field"><label>Texto completo</label><textarea name="x" maxlength="15000" style="min-height:220px">${esc(a?.texto)}</textarea><small>Separe os parágrafos com uma linha. Para um subtítulo, comece a linha com “## ”.</small></div>
+    <label class="check"><input type="checkbox" name="p" ${a ? (a.publicado ? 'checked' : '') : 'checked'}><span>Publicado (visível no seu site)</span></label>
+    <p class="msg-err" id="ae"></p><div class="acts"><button type="button" class="btn ghost sm" data-no>Cancelar</button><button class="btn sm">Salvar</button></div></form>`,
+  (m, close) => {
+    $('[data-no]', m).onclick = close;
+    $('#af', m).onsubmit = async e => { e.preventDefault(); const f = e.target;
+      try {
+        const d = { titulo: f.t.value.trim(), data: f.d.value, icone: f.i.value.trim() || '📰', resumo: f.r.value.trim(), texto: f.x.value.trim(), publicado: f.p.checked, atualizadoAt: serverTimestamp() };
+        if (!d.titulo) throw new Error('Informe o título.');
+        if (n) await addDoc(collection(db, 'sites', slug, 'artigos'), { ...d, criadoAt: serverTimestamp() }); else await updateDoc(doc(db, 'sites', slug, 'artigos', a.id), d);
+        close(); toast('Artigo salvo.');
+      } catch (x) { $('#ae', m).textContent = errMsg(x); } };
+  });
+}
+function viewArtigos(main) {
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Meu site</div><h1>Meus <em>artigos</em></h1><p>Publicações e reflexões exibidas na seção “Artigos” do seu site.</p></div><button class="btn" id="nv">＋ Novo artigo</button></div><div class="list" id="ls"></div></div>`;
+  const draw = () => {
+    if (!S.assoc) { $('#ls', main).innerHTML = '<div class="loading">Carregando…</div>'; return; }
+    if (S.assoc.status !== 'ativo' || !S.assoc.siteSlug) { $('#nv', main).hidden = true; $('#ls', main).innerHTML = '<div class="empty"><b>Crie o seu site primeiro</b>Os artigos ficam no seu site pessoal. Vá em <a href="#/painel/site">Meu site</a> e salve os dados.</div>'; return; }
+    $('#nv', main).hidden = false;
+    const l = [...S.arts].sort((a, b) => String(b.data || '').localeCompare(String(a.data || '')));
+    $('#ls', main).innerHTML = l.length ? l.map(a => `<div class="item"><div style="font-size:1.8rem">${esc(a.icone || '📰')}</div><div class="main"><h3>${esc(a.titulo)} <span class="chip ${a.publicado ? 's-ok' : 's-mute'}">${a.publicado ? 'publicado' : 'rascunho'}</span></h3><p>${esc(fmtArt(a.data))}${a.resumo ? ' · ' + esc(a.resumo.slice(0, 120)) : ''}</p></div><div class="acts"><button class="btn ghost sm" data-e="${a.id}">Editar</button><button class="btn ghost sm" data-t="${a.id}">${a.publicado ? 'Despublicar' : 'Publicar'}</button><button class="btn danger sm" data-d="${a.id}">Excluir</button></div></div>`).join('')
+      : '<div class="empty"><b>Nenhum artigo ainda</b>Escreva o primeiro: ele aparece no seu site junto com um formulário de newsletter.</div>';
+  };
+  $('#nv', main).onclick = () => formArtigo(null);
+  main.onclick = async e => {
+    const b = e.target.closest('[data-e],[data-t],[data-d]'); if (!b) return; const id = b.dataset.e || b.dataset.t || b.dataset.d, a = S.arts.find(x => x.id === id), slug = S.assoc?.siteSlug; if (!a || !slug) return;
+    try { if (b.dataset.e) formArtigo(a); else if (b.dataset.t) await updateDoc(doc(db, 'sites', slug, 'artigos', id), { publicado: !a.publicado }); else if (await confirmBox(`Excluir o artigo “${esc(a.titulo)}”?`, 'Excluir')) { await deleteDoc(doc(db, 'sites', slug, 'artigos', id)); toast('Artigo excluído.'); } } catch (x) { toast(errMsg(x), true); }
+  };
+  draw(); return { refresh: draw };
+}
+function reduzImg(file, w, h, q, crop) {
   return new Promise((res, rej) => { const img = new Image(), u = URL.createObjectURL(file);
-    img.onload = () => { const n = 360, c = document.createElement('canvas'); c.width = c.height = n; const l = Math.min(img.width, img.height); c.getContext('2d').drawImage(img, (img.width - l) / 2, (img.height - l) / 2, l, l, 0, 0, n, n); URL.revokeObjectURL(u); res(c.toDataURL('image/jpeg', .82)); };
+    img.onload = () => { const c = document.createElement('canvas'); let sx = 0, sy = 0, sw = img.width, sh = img.height;
+      if (crop) { const r = w / h; if (sw / sh > r) { const nw = sh * r; sx = (sw - nw) / 2; sw = nw; } else { const nh = sw / r; sy = (sh - nh) / 2; sh = nh; } c.width = w; c.height = h; }
+      else { const k = Math.min(1, w / img.width); c.width = Math.round(img.width * k); c.height = Math.round(img.height * k); }
+      c.getContext('2d').drawImage(img, sx, sy, sw, sh, 0, 0, c.width, c.height); URL.revokeObjectURL(u); res(c.toDataURL('image/jpeg', q)); };
     img.onerror = () => rej(new Error('Não foi possível ler esta imagem.')); img.src = u; });
 }
 function viewSiteEditor(main) {
-  let key = '', foto = '', areas = [];
+  let key = '', foto = '', capa = '', areas = [];
   const build = () => {
     const a = S.assoc;
     if (!a) { main.innerHTML = '<div class="loading">Carregando…</div>'; return; }
     if (a.status !== 'ativo') { main.innerHTML = `<div class="wrap pad">${statusBanner() || ''}<div class="empty"><b>Site indisponível</b>O seu site pessoal é liberado depois da aprovação do cadastro pela AAB.</div></div>`; return; }
-    const s = S.site || { publicado: false, nome: a.nome, titulo: `Advogado(a)${a.oab ? ' · OAB/' + (a.seccional || '') + ' ' + a.oab : ''}`, bio: '', areas: [], contato: { email: a.email, whatsapp: a.telefone }, tema: 'classico', formContato: true };
-    foto = s.foto || ''; areas = (s.areas || []).map(x => ({ ...x })); const ct = s.contato || {}; const bloq = !!s.bloqueado;
+    const s = S.site || { publicado: false, nome: a.nome, titulo: 'Advogado(a)', registro: a.oab ? `OAB/${a.seccional || ''} ${a.oab}`.replace('/ ', ' ') : '', pretitulo: 'Advocacia e consultoria jurídica', areas: [], contato: { email: a.email, whatsapp: a.telefone }, tema: 'classico', formContato: true };
+    foto = s.foto || ''; capa = s.capa || ''; areas = (s.areas || []).map(x => ({ icone: '⚖️', grupo: 0, ...x })); const ct = s.contato || {}, cit = s.citacao || {}, gr = s.areasGrupos || GRUPOS_PADRAO, bloq = !!s.bloqueado;
+    const F = (n, l, v, extra = '') => `<div class="field"><label>${l}</label><input name="${n}" ${extra} value="${esc(v)}"></div>`;
     main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Meu site pessoal</div><h1>Editar <em>site</em></h1><p>${S.site ? `Endereço: <a href="#/a/${esc(S.site.slug)}" target="_blank">${esc(siteUrl(S.site.slug))}</a>` : 'Preencha os dados e salve para criar o seu site.'}</p></div>${S.site ? `<a class="btn ghost" href="#/a/${esc(S.site.slug)}" target="_blank">👁 Ver site</a>` : ''}</div>
     ${bloq ? '<div class="status-b bad"><b>Site bloqueado pela AAB</b>Entre em contato com a associação para liberar.</div>' : ''}
     <form id="sf" class="card" style="max-width:780px">
       <div class="field"><label>Endereço do site</label><input name="slug" maxlength="40" value="${esc(S.site?.slug || slugify(a.nome))}" ${S.site ? 'readonly style="opacity:.6"' : ''} placeholder="nome-sobrenome"><small>${S.site ? 'O endereço não pode ser alterado depois de criado.' : 'Somente letras minúsculas, números e hífen (3 a 40 caracteres). Depois de criado, não muda.'}</small></div>
-      <div class="photo-row"><div id="fp"></div><div><label class="btn ghost sm" style="cursor:pointer">Escolher foto<input type="file" id="fi" accept="image/*" hidden></label> <button type="button" class="btn ghost sm" id="fr">Remover</button><p class="hint" style="margin-top:.4rem">A foto é recortada em quadrado e reduzida automaticamente.</p></div></div>
-      <div class="row2"><div class="field"><label>Nome no site</label><input name="nome" required maxlength="150" value="${esc(s.nome)}"></div><div class="field"><label>Título / registro</label><input name="titulo" maxlength="150" value="${esc(s.titulo)}" placeholder="Advogada · OAB/DF 00000"></div></div>
-      <div class="field"><label>Sobre você</label><textarea name="bio" maxlength="3000" style="min-height:150px">${esc(s.bio)}</textarea></div>
-      <div class="sec-t">Áreas de atuação</div><div class="areas-ed" id="ar"></div><button type="button" class="btn ghost sm" id="aa">+ Adicionar área</button>
-      <div class="sec-t">Contato</div><div class="row2"><div class="field"><label>E-mail</label><input name="c_email" maxlength="150" value="${esc(ct.email)}"></div><div class="field"><label>Telefone</label><input name="c_tel" maxlength="40" value="${esc(ct.telefone)}"></div></div>
-      <div class="row2"><div class="field"><label>WhatsApp (com DDD)</label><input name="c_wa" maxlength="30" value="${esc(ct.whatsapp)}"></div><div class="field"><label>Instagram</label><input name="c_ig" maxlength="60" value="${esc(ct.instagram)}" placeholder="@usuario"></div></div>
-      <div class="row2"><div class="field"><label>LinkedIn (link)</label><input name="c_in" maxlength="200" value="${esc(ct.linkedin)}" placeholder="https://linkedin.com/in/…"></div><div class="field"><label>Endereço do escritório</label><input name="c_end" maxlength="250" value="${esc(ct.endereco)}"></div></div>
-      <label class="check"><input type="checkbox" name="form" ${s.formContato !== false ? 'checked' : ''}><span>Exibir formulário de mensagens no site</span></label>
-      <div class="sec-t">Aparência</div><div class="themes">${Object.entries(TEMAS).map(([k, t]) => `<label><input type="radio" name="tema" value="${k}" ${(s.tema || 'classico') === k ? 'checked' : ''}><i><u style="background:${t[1]}"></u><u style="background:${t[2]}"></u><u style="background:${t[3]}"></u><u style="background:${t[4]}"></u></i>${t[0]}</label>`).join('')}</div>
-      <div class="sec-t">Publicação</div><label class="check"><input type="checkbox" name="pub" ${s.publicado ? 'checked' : ''} ${bloq ? 'disabled' : ''}><span><b style="color:var(--cream)">Publicar o site</b> — visível para qualquer pessoa e listado no diretório de advogados associados.</span></label>
+      <div class="sec-t">1 · Capa (início do site)</div>
+      <div class="row2">${F('nome', 'Seu nome', s.nome, 'required maxlength="150"')}${F('pre', 'Frase acima do nome', s.pretitulo, 'maxlength="80" placeholder="Advocacia e consultoria jurídica"')}</div>
+      ${F('tagline', 'Frase abaixo do nome', s.tagline, 'maxlength="140" placeholder="OAB · Brasília, DF · Defesa dos seus direitos"')}
+      <div class="row2">${F('b1', 'Texto do 1º botão', s.btn1, 'maxlength="30" placeholder="Áreas de atuação"')}${F('b2', 'Texto do 2º botão', s.btn2, 'maxlength="30" placeholder="Fale comigo"')}</div>
+      <div class="photo-row"><div id="cp"></div><div><label class="btn ghost sm" style="cursor:pointer">Foto de capa (opcional)<input type="file" id="ci" accept="image/*" hidden></label> <button type="button" class="btn ghost sm" id="cr">Remover</button><p class="hint" style="margin-top:.4rem">Imagem de fundo do início do site. Sem foto, aparece a balança decorativa.</p></div></div>
+      <div class="sec-t">2 · Sobre você</div>
+      <div class="photo-row"><div id="fp"></div><div><label class="btn ghost sm" style="cursor:pointer">Escolher foto<input type="file" id="fi" accept="image/*" hidden></label> <button type="button" class="btn ghost sm" id="fr">Remover</button><p class="hint" style="margin-top:.4rem">Foto de retrato, recortada automaticamente.</p></div></div>
+      <div class="row2">${F('titulo', 'Cargo / legenda da foto', s.titulo, 'maxlength="150" placeholder="Advogada · OAB/DF 00000"')}${F('registro', 'Registro profissional', s.registro, 'maxlength="60" placeholder="OAB/DF 00000"')}</div>
+      <div class="row3">${F('seb', 'Etiqueta', s.sobreEyebrow, 'maxlength="40" placeholder="Sobre mim"')}${F('sh1', 'Título (linha 1)', s.sobreH1, 'maxlength="50" placeholder="Compromisso com a"')}${F('sh2', 'Título (destaque)', s.sobreH2, 'maxlength="50" placeholder="justiça"')}</div>
+      <div class="field"><label>Texto sobre você</label><textarea name="bio" maxlength="3000" style="min-height:170px">${esc(s.bio)}</textarea><small>Cada linha vira um parágrafo.</small></div>
+      <div class="sec-t">3 · Frase de destaque (citação)</div>
+      <div class="field"><label>Frase</label><textarea name="ctx" maxlength="300" style="min-height:70px" placeholder="“É justo que muito custe o que muito vale.”">${esc(cit.texto)}</textarea></div>${F('cau', 'Autor (opcional)', cit.autor, 'maxlength="80"')}
+      <div class="sec-t">4 · Áreas de atuação</div>
+      <div class="row2">${F('g0', 'Nome da 1ª aba', gr[0], 'maxlength="40"')}${F('g1', 'Nome da 2ª aba', gr[1], 'maxlength="40"')}</div>
+      <div class="areas-ed" id="ar"></div><div style="display:flex;gap:.6rem;flex-wrap:wrap"><button type="button" class="btn ghost sm" id="aa">+ Adicionar área</button><button type="button" class="btn ghost sm" id="as">Usar sugestões da AAB</button></div>
+      <div class="sec-t">5 · Contato</div><div class="row2">${F('c_email', 'E-mail', ct.email, 'maxlength="150"')}${F('c_tel', 'Telefone', ct.telefone, 'maxlength="40"')}</div>
+      <div class="row2">${F('c_wa', 'WhatsApp (com DDD)', ct.whatsapp, 'maxlength="30"')}${F('c_ig', 'Instagram', ct.instagram, 'maxlength="60" placeholder="@usuario"')}</div>
+      <div class="row2">${F('c_in', 'LinkedIn (link)', ct.linkedin, 'maxlength="200" placeholder="https://linkedin.com/in/…"')}${F('c_end', 'Localização / endereço', ct.endereco, 'maxlength="250" placeholder="Brasília, DF"')}</div>
+      <label class="check"><input type="checkbox" name="form" ${s.formContato !== false ? 'checked' : ''}><span>Exibir formulário de consulta no site</span></label>
+      <div class="sec-t">6 · Aparência</div><div class="themes">${Object.entries(TEMAS).map(([k, t]) => `<label><input type="radio" name="tema" value="${k}" ${(s.tema || 'classico') === k ? 'checked' : ''}><i><u style="background:${t[1]}"></u><u style="background:${t[2]}"></u><u style="background:${t[3]}"></u><u style="background:${t[4]}"></u></i>${t[0]}</label>`).join('')}</div>
+      <div class="sec-t">7 · Publicação</div><label class="check"><input type="checkbox" name="pub" ${s.publicado ? 'checked' : ''} ${bloq ? 'disabled' : ''}><span><b style="color:var(--cream)">Publicar o site</b> — visível para qualquer pessoa e listado no diretório de advogados associados.</span></label>
+      <p class="hint" style="margin-bottom:1rem">Os <a href="#/painel/artigos">artigos</a> ficam na página “Artigos” do painel.</p>
       <p class="msg-err" id="se"></p><button class="btn" id="sb">${S.site ? 'Salvar alterações' : 'Criar meu site'}</button></form></div>`;
-    const f = $('#sf', main), drFoto = () => { $('#fp', main).innerHTML = foto ? `<img class="ph" src="${esc(foto)}" alt="">` : `<div class="ph">${esc(initials(f.nome.value))}</div>`; };
-    const drAreas = () => { $('#ar', main).innerHTML = areas.map((x, i) => `<div class="r"><input data-ai="${i}" data-k="nome" placeholder="Área (ex.: Direito Civil)" maxlength="80" value="${esc(x.nome)}"><textarea data-ai="${i}" data-k="desc" placeholder="Descrição curta" maxlength="400">${esc(x.desc)}</textarea><button type="button" class="btn danger sm" data-rm="${i}">✕</button></div>`).join(''); };
-    drFoto(); drAreas();
-    $('#ar', main).oninput = e => { const t = e.target; if (t.dataset.ai !== undefined) areas[+t.dataset.ai][t.dataset.k] = t.value; };
+    const f = $('#sf', main), img = (v, cls) => v ? `<img class="ph" style="${cls}" src="${esc(v)}" alt="">` : '';
+    const drFoto = () => { $('#fp', main).innerHTML = foto ? img(foto, '') : `<div class="ph">${esc(initials(f.nome.value))}</div>`; };
+    const drCapa = () => { $('#cp', main).innerHTML = capa ? img(capa, 'border-radius:6px;width:140px;height:84px') : '<div class="ph" style="border-radius:6px;width:140px;height:84px;font-size:.7rem">sem capa</div>'; };
+    const drAreas = () => { $('#ar', main).innerHTML = areas.map((x, i) => `<div class="r2"><input data-ai="${i}" data-k="icone" maxlength="8" value="${esc(x.icone)}" title="Ícone (emoji)"><input data-ai="${i}" data-k="nome" placeholder="Área (ex.: Direito Civil)" maxlength="80" value="${esc(x.nome)}"><select data-ai="${i}" data-k="grupo"><option value="0" ${(x.grupo | 0) === 0 ? 'selected' : ''}>${esc(f.g0.value || GRUPOS_PADRAO[0])}</option><option value="1" ${(x.grupo | 0) === 1 ? 'selected' : ''}>${esc(f.g1.value || GRUPOS_PADRAO[1])}</option></select><button type="button" class="btn danger sm" data-rm="${i}">✕</button><textarea data-ai="${i}" data-k="desc" placeholder="Descrição curta" maxlength="400">${esc(x.desc)}</textarea></div>`).join(''); };
+    drFoto(); drCapa(); drAreas();
+    $('#ar', main).oninput = e => { const t = e.target; if (t.dataset.ai !== undefined) areas[+t.dataset.ai][t.dataset.k] = t.dataset.k === 'grupo' ? +t.value : t.value; };
     $('#ar', main).onclick = e => { const b = e.target.closest('[data-rm]'); if (b) { areas.splice(+b.dataset.rm, 1); drAreas(); } };
-    $('#aa', main).onclick = () => { if (areas.length >= 12) return toast('Máximo de 12 áreas.', true); areas.push({ nome: '', desc: '' }); drAreas(); };
-    $('#fi', main).onchange = async e => { const file = e.target.files[0]; if (!file) return; try { foto = await reduzFoto(file); drFoto(); } catch (x) { toast(x.message, true); } e.target.value = ''; };
+    $('#aa', main).onclick = () => { if (areas.length >= 24) return toast('Máximo de 24 áreas.', true); areas.push({ icone: '⚖️', nome: '', desc: '', grupo: 0 }); drAreas(); };
+    $('#as', main).onclick = async () => { if (areas.some(x => x.nome.trim()) && !await confirmBox('Substituir as áreas atuais pelas sugestões da AAB? Você poderá editar tudo depois.', 'Substituir')) return; areas = SUGESTOES.map(x => ({ ...x })); drAreas(); };
+    f.g0.onchange = f.g1.onchange = drAreas;
+    $('#fi', main).onchange = async e => { const file = e.target.files[0]; if (!file) return; try { foto = await reduzImg(file, 400, 500, .82, true); drFoto(); } catch (x) { toast(x.message, true); } e.target.value = ''; };
     $('#fr', main).onclick = () => { foto = ''; drFoto(); };
+    $('#ci', main).onchange = async e => { const file = e.target.files[0]; if (!file) return; try { capa = await reduzImg(file, 1280, 720, .7, false); drCapa(); } catch (x) { toast(x.message, true); } e.target.value = ''; };
+    $('#cr', main).onclick = () => { capa = ''; drCapa(); };
     f.onsubmit = async e => {
       e.preventDefault(); const err = $('#se', main), btn = $('#sb', main); err.textContent = ''; btn.disabled = true;
       try {
-        const data = { nome: f.nome.value.trim(), titulo: f.titulo.value.trim(), bio: f.bio.value.trim(), foto, areas: areas.filter(x => x.nome.trim()).map(x => ({ nome: x.nome.trim(), desc: (x.desc || '').trim() })),
-          contato: { email: f.c_email.value.trim(), telefone: f.c_tel.value.trim(), whatsapp: f.c_wa.value.trim(), instagram: f.c_ig.value.trim(), linkedin: f.c_in.value.trim(), endereco: f.c_end.value.trim() },
+        const v = n => f[n].value.trim();
+        const data = { nome: v('nome'), pretitulo: v('pre'), tagline: v('tagline'), btn1: v('b1'), btn2: v('b2'), titulo: v('titulo'), registro: v('registro'), sobreEyebrow: v('seb'), sobreH1: v('sh1'), sobreH2: v('sh2'), bio: v('bio'),
+          citacao: { texto: v('ctx'), autor: v('cau') }, foto, capa, areasGrupos: [v('g0') || GRUPOS_PADRAO[0], v('g1') || GRUPOS_PADRAO[1]],
+          areas: areas.filter(x => x.nome.trim()).map(x => ({ icone: (x.icone || '⚖️').trim().slice(0, 8), nome: x.nome.trim(), desc: (x.desc || '').trim(), grupo: +x.grupo === 1 ? 1 : 0 })),
+          contato: { email: v('c_email'), telefone: v('c_tel'), whatsapp: v('c_wa'), instagram: v('c_ig'), linkedin: v('c_in'), endereco: v('c_end') },
           formContato: f.form.checked, tema: f.tema.value, publicado: !!f.pub.checked && !bloq, atualizadoAt: serverTimestamp() };
-        if (data.nome.length < 2) throw new Error('Informe o nome do site.');
+        if (data.nome.length < 2) throw new Error('Informe o seu nome.');
         if (data.contato.linkedin && !safeUrl(data.contato.linkedin)) throw new Error('O link do LinkedIn precisa começar com https://');
         if (S.site) await updateDoc(doc(db, 'sites', S.site.slug), data);
         else {
@@ -573,7 +771,7 @@ function viewAdminAssoc(main) {
     else if (b.dataset.a === 'pw') { try { await sendPasswordResetEmail(auth, a.email); toast('Link de senha enviado para ' + a.email); } catch (x) { toast(errMsg(x), true); } }
     else if (b.dataset.a === 'del') {
       if (!await confirmBox(`Excluir o cadastro de <b>${esc(a.nome)}</b>? O site e as mensagens recebidas também serão apagados. (A conta de login continua existindo no Firebase Authentication; remova-a lá se necessário.)`, 'Excluir')) return;
-      try { if (a.siteSlug) { for (const d of (await getDocs(collection(db, 'sites', a.siteSlug, 'mensagens'))).docs) await deleteDoc(d.ref); await deleteDoc(doc(db, 'sites', a.siteSlug)); } await deleteDoc(doc(db, 'associados', uid)); toast('Cadastro excluído.'); } catch (x) { toast(errMsg(x), true); }
+      try { if (a.siteSlug) { for (const sc of ['mensagens', 'artigos', 'inscritos']) for (const d of (await getDocs(collection(db, 'sites', a.siteSlug, sc))).docs) await deleteDoc(d.ref); await deleteDoc(doc(db, 'sites', a.siteSlug)); } await deleteDoc(doc(db, 'associados', uid)); toast('Cadastro excluído.'); } catch (x) { toast(errMsg(x), true); }
     }
   };
   draw(); return { refresh: draw };
@@ -649,7 +847,7 @@ function route() {
   else if (r === 'advogados') S.view = viewDirectory(main);
   else if (r === 'painel') {
     if (!S.user) return location.replace('#/entrar'); if (S.admin) return location.replace('#/admin');
-    S.view = a === 'site' ? viewSiteEditor(main) : a === 'mensagens' ? viewMsgs(main) : a === 'perfil' ? viewPerfil(main) : viewPainel(main);
+    S.view = a === 'site' ? viewSiteEditor(main) : a === 'mensagens' ? viewMsgs(main) : a === 'artigos' ? viewArtigos(main) : a === 'perfil' ? viewPerfil(main) : viewPainel(main);
   } else if (r === 'admin') {
     if (!S.admin) return location.replace(S.user ? '#/painel' : '#/entrar');
     S.view = a === 'associados' ? viewAdminAssoc(main) : a === 'comunicados' ? viewAdminCom(main) : a === 'acessos' ? viewAdminAcessos(main) : a === 'config' ? viewAdminConfig(main) : viewAdminHome(main);
@@ -672,15 +870,17 @@ function attach(user) {
     listen(collection(db, 'sites'), s => { S.sites = docs(s); onData(); });
     listen(query(collection(db, 'logins'), where('em', '>=', Timestamp.fromMillis(Date.now() - 30 * 864e5)), orderBy('em', 'desc'), limit(1500)), s => { S.logins = docs(s); onData(); });
   } else {
-    let siteUnsub = null, msgUnsub = null, curSlug = '';
+    let siteUnsub = null, msgUnsub = null, artUnsub = null, inUnsub = null, curSlug = '';
     listen(doc(db, 'associados', uid), s => {
       const prev = S.assoc?.status; S.assoc = s.exists() ? { id: s.id, ...s.data({ serverTimestamps: 'estimate' }) } : null;
       const slug = S.assoc?.siteSlug || '';
       if (slug !== curSlug) {
-        curSlug = slug; siteUnsub?.(); msgUnsub?.(); S.site = null; S.msgs = [];
+        curSlug = slug; siteUnsub?.(); msgUnsub?.(); artUnsub?.(); inUnsub?.(); S.site = null; S.msgs = []; S.arts = []; S.insc = [];
         if (slug) {
           siteUnsub = onSnapshot(doc(db, 'sites', slug), d => { S.site = d.exists() ? { id: d.id, ...d.data() } : null; onData(); }, () => {}); S.unsubs.push(() => siteUnsub?.());
           msgUnsub = onSnapshot(collection(db, 'sites', slug, 'mensagens'), m => { S.msgs = docs(m); onData(); }, () => {}); S.unsubs.push(() => msgUnsub?.());
+          artUnsub = onSnapshot(collection(db, 'sites', slug, 'artigos'), m => { S.arts = docs(m); onData(); }, () => {}); S.unsubs.push(() => artUnsub?.());
+          inUnsub = onSnapshot(collection(db, 'sites', slug, 'inscritos'), m => { S.insc = docs(m); onData(); }, () => {}); S.unsubs.push(() => inUnsub?.());
         }
       }
       if (prev && prev !== S.assoc?.status && S.assoc?.status === 'ativo') toast('🎉 Seu cadastro foi aprovado! Crie o seu site em “Meu site”.');
@@ -690,20 +890,21 @@ function attach(user) {
   }
 }
 async function boot() {
-  try { const c = await getDoc(doc(db, 'config', 'portal')); if (c.exists()) S.config = { ...DEF, ...c.data() }; } catch { /* usa o padrão */ }
+  const watchdog = setTimeout(() => { if (!S.routed) { S.routed = true; try { route(); } catch (e) { console.error(e); } } }, 7000);
+  try { const c = await withTimeout(getDoc(doc(db, 'config', 'portal')), 4000); if (c.exists()) S.config = { ...DEF, ...c.data() }; } catch { /* usa o padrão */ }
   publicListeners();
-  onAuthStateChanged(auth, async user => {
-    stopAll(); S.user = user; S.admin = false; S.assoc = null; S.site = null; S.msgs = []; S.associados = []; S.logins = []; S.sites = []; S.com = [];
-    if (user) {
-      S.admin = (user.email || '').toLowerCase() === ADMIN_EMAIL;
+  onAuthStateChanged(auth, user => {
+    stopAll(); S.user = user; S.admin = false; S.assoc = null; S.site = null; S.msgs = []; S.arts = []; S.insc = []; S.associados = []; S.logins = []; S.sites = []; S.com = [];
+    S.popupPending = false;
+    if (user) { S.admin = (user.email || '').toLowerCase() === ADMIN_EMAIL; attach(user); }
+    else listen(query(collection(db, 'comunicados'), where('ativo', '==', true), where('publico', '==', true)), s => { S.com = docs(s); onData(); });
+    clearTimeout(watchdog); S.routed = true;
+    try { route(); } catch (e) { console.error(e); $('#root').innerHTML = '<div class="wrap pad"><div class="empty"><b>Erro ao carregar</b>Atualize a página. Se persistir, limpe os dados do site no navegador.</div></div>'; }
+    if (user) (async () => {
       try { if (!S.admin) await ensureAssoc(user); } catch (e) { console.warn('cadastro', e.code); toast(errMsg(e), true); }
-      S.popupPending = await logAccess(user);
-    } else {
-      S.popupPending = false;
-      listen(query(collection(db, 'comunicados'), where('ativo', '==', true), where('publico', '==', true)), s => { S.com = docs(s); onData(); });
-    }
-    if (user) attach(user);
-    route();
+      const first = await logAccess(user);
+      if (first && auth.currentUser?.uid === user.uid && !S.admin) { if (S.comLoaded) showPopups(); else S.popupPending = true; }
+    })();
   });
 }
 let deferredInstall = null;

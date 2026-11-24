@@ -101,10 +101,38 @@ service cloud.firestore {
 
       allow delete: if isAdmin();
 
+      // artigos do advogado (leitura pública só se o artigo e o site estiverem publicados)
+      match /artigos/{aid} {
+        allow read: if isAdmin()
+          || (signed() && get(/databases/$(database)/documents/sites/$(slug)).data.ownerUid == request.auth.uid)
+          || (resource.data.publicado == true && get(/databases/$(database)/documents/sites/$(slug)).data.publicado == true);
+        allow create, update: if signed()
+          && get(/databases/$(database)/documents/sites/$(slug)).data.ownerUid == request.auth.uid
+          && isActive(request.auth.uid)
+          && str(request.resource.data.titulo, 160)
+          && str(request.resource.data.resumo, 400)
+          && str(request.resource.data.texto, 15000)
+          && request.resource.data.publicado is bool;
+        allow delete: if isAdmin()
+          || (signed() && get(/databases/$(database)/documents/sites/$(slug)).data.ownerUid == request.auth.uid);
+      }
+
+      // inscritos na newsletter de artigos
+      match /inscritos/{iid} {
+        allow create: if get(/databases/$(database)/documents/sites/$(slug)).data.publicado == true
+          && request.resource.data.keys().hasOnly(['nome','email','criadoAt'])
+          && str(request.resource.data.nome, 150)
+          && str(request.resource.data.email, 150) && request.resource.data.email.size() > 4;
+        allow read, delete: if isAdmin()
+          || (signed() && get(/databases/$(database)/documents/sites/$(slug)).data.ownerUid == request.auth.uid);
+        allow update: if false;
+      }
+
       // mensagens do formulário de contato
       match /mensagens/{mid} {
         allow create: if get(/databases/$(database)/documents/sites/$(slug)).data.publicado == true
-          && request.resource.data.keys().hasOnly(['nome','email','telefone','mensagem','criadoAt','lida'])
+          && request.resource.data.keys().hasOnly(['nome','email','telefone','areaInteresse','mensagem','criadoAt','lida'])
+          && (!('areaInteresse' in request.resource.data) || str(request.resource.data.areaInteresse, 100))
           && request.resource.data.lida == false
           && str(request.resource.data.nome, 150) && request.resource.data.nome.size() > 0
           && str(request.resource.data.email, 150)
