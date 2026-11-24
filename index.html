@@ -220,12 +220,40 @@ a.stat:hover{border-color:var(--gold)}
 .site .fo{padding:2.2rem 1.4rem 5rem;text-align:center;font-size:.64rem;letter-spacing:.1em;color:var(--sm);border-top:1px solid var(--sl)}
 .site .fo .ln{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
 .site .fo .ln a,.site .fo .ln button{background:none;border:none;color:var(--st);font:inherit;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;cursor:pointer;opacity:.85}
-.site .fab{position:fixed;right:1.1rem;bottom:1.1rem;z-index:60;width:58px;height:58px;border-radius:50%;background:var(--sa);color:var(--sb);border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.4);cursor:pointer}
+.site .fab{position:fixed;right:1.4rem;bottom:1.4rem;z-index:60;width:48px;height:48px;border-radius:50%;background:var(--sa);color:var(--sb);border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(0,0,0,.45);cursor:pointer;transition:transform .2s}
+.site .fab:hover{transform:translateY(-3px)}.site .fab svg{width:20px;height:20px}
+.site .shov{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;background:rgba(5,10,15,.8);backdrop-filter:blur(6px);padding:1rem}
+.site .shbox{background:var(--sb2);border:1px solid var(--sl);border-radius:8px;padding:2rem;width:min(360px,92vw);text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.55)}
+.site .shx{position:absolute;top:.8rem;right:.9rem;background:none;border:none;color:var(--sm);cursor:pointer;font-size:1.1rem}
+.site .shtt{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sa);margin-bottom:1.2rem}
+.site .shqr{background:#fff;border-radius:8px;padding:.9rem;display:inline-block;margin-bottom:1.1rem}.site .shqr img{display:block;width:190px;height:190px}
+.site .shurl{font-size:.66rem;color:var(--sm);margin-bottom:1.2rem;word-break:break-all;line-height:1.6}
+.site .shac{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
+.site .shac button{display:flex;align-items:center;gap:.4rem;padding:.55rem 1rem;font:inherit;font-size:.72rem;cursor:pointer;border:1px solid var(--sl);background:transparent;color:var(--st)}
+.site .shac button:hover{border-color:var(--sa);color:var(--sa)}.site .shac button.pr{background:var(--sa);color:var(--sb);border-color:var(--sa);font-weight:600}.site .shac svg{width:14px;height:14px;flex:none}
+.site .shcp{font-size:.7rem;color:var(--sa);margin-top:.9rem;min-height:1em}
 .site .rd{position:fixed;inset:0;z-index:80;background:var(--sb);overflow:auto;padding:1.4rem}
 .site .rin{max-width:720px;margin:2rem auto 4rem}.site .rin .x{background:none;border:1px solid var(--sl);color:var(--st);padding:.6rem 1rem;font:inherit;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;margin-bottom:2rem}
 .site .rin .dt{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sa)}.site .rin h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2rem,6vw,3rem);line-height:1.15;margin:.6rem 0 1.6rem}
 .site .rin h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.6rem;margin:1.8rem 0 .6rem;color:var(--sa)}.site .rin p{font-size:.95rem;line-height:2;opacity:.88;margin-bottom:1rem}
 .areas-ed .r2{display:grid;grid-template-columns:56px 1fr 150px auto;gap:.5rem;align-items:start;border:1px solid var(--border);padding:.6rem}.areas-ed .r2 textarea{grid-column:1/-1}.areas-ed .r2 select{background:transparent;border:1px solid var(--border);color:var(--cream);padding:.55rem .4rem;font:inherit;font-size:.78rem;width:100%}.areas-ed .r2 select option{background:var(--navy2)}
+.kb{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;align-items:start}
+.kb .col{border:1px solid var(--border);background:rgba(255,255,255,.02);padding:.8rem;min-height:140px}
+.kb .col h3{font-family:'Montserrat',sans-serif;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;font-weight:500;display:flex;justify-content:space-between}
+.kb .tk{background:var(--navy2);border:1px solid var(--border);padding:.8rem;margin-bottom:.6rem;font-size:.78rem;line-height:1.5;color:var(--muted)}
+.kb .tk h4{font-family:'Montserrat',sans-serif;font-size:.86rem;font-weight:500;color:var(--cream);margin-bottom:.3rem}
+.kb .tk .a{display:flex;gap:.3rem;margin-top:.6rem;flex-wrap:wrap}
+.tl{position:relative;margin-left:.5rem;padding-left:1.5rem;border-left:1px solid var(--border);display:flex;flex-direction:column;gap:1rem}
+.tl .e{position:relative;background:var(--navy2);border:1px solid var(--border);padding:.9rem 1.1rem}
+.tl .e::before{content:'';position:absolute;left:-1.95rem;top:1.15rem;width:11px;height:11px;border-radius:50%;background:var(--gold)}
+.tl .e.int::before{background:#4a5668}
+.tl .e .d{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.3rem}
+.tl .e p{font-size:.84rem;line-height:1.7;white-space:pre-wrap;color:var(--cream)}
+.dbadge{flex:none;width:54px;text-align:center;border:1px solid var(--border);padding:.4rem 0;line-height:1.1}
+.dbadge b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--gold)}.dbadge small{font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;font-size:.8rem;margin-bottom:1rem}.kv small{display:block;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem}
+.late{color:var(--bad)}
+@media(max-width:800px){.kb{grid-template-columns:1fr}}
 @media(max-width:800px){
  .row2,.row3,.dgrid,.auth-grid{grid-template-columns:1fr}.feat{grid-template-columns:1fr}
  .auth-grid .card{position:static}.hero{padding:3.5rem 0 3rem}.hero .seal{display:none}.page-h h1{font-size:1.8rem}
@@ -240,7 +268,7 @@ a.stat:hover{border-color:var(--gold)}
 <div class="toast" id="toast"></div>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { initializeApp, deleteApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, updateProfile }
   from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import { initializeFirestore, doc, getDoc, getDocs, setDoc, addDoc, updateDoc, deleteDoc, collection, query, where, orderBy, limit, onSnapshot, serverTimestamp, increment, writeBatch, Timestamp }
@@ -313,7 +341,7 @@ const errMsg = e => ({
 const docs = snap => snap.docs.map(d => ({ id: d.id, ...d.data({ serverTimestamps: 'estimate' }) }));
 
 /* ---------- estado ---------- */
-const S = { user: null, admin: false, assoc: null, site: null, config: { ...DEF }, com: [], dirSites: [], associados: [], logins: [], sites: [], msgs: [], arts: [], insc: [], unsubs: [], pubUnsub: null, view: null, pending: null, popupPending: false, hb: 0, comLoaded: false };
+const S = { user: null, admin: false, assoc: null, site: null, config: { ...DEF }, com: [], dirSites: [], associados: [], logins: [], sites: [], msgs: [], arts: [], insc: [], cli: [], proc: [], ev: [], tar: [], cliente: null, roleLoading: false, unsubs: [], pubUnsub: null, view: null, pending: null, popupPending: false, hb: 0, comLoaded: false };
 const listen = (q, fn) => { const u = onSnapshot(q, fn, e => console.warn('listen', e.code)); S.unsubs.push(u); return u; };
 function stopAll() { S.unsubs.forEach(u => u()); S.unsubs = []; clearInterval(S.hb); S.comLoaded = false; }
 
@@ -331,7 +359,7 @@ function avisoHtml(c, adm) {
 const boardHtml = (list, vazio) => list.length ? `<div class="board">${list.map(c => avisoHtml(c)).join('')}</div>` : `<div class="empty"><b>Sem comunicados no momento</b>${vazio || 'Os avisos e atualizações da AAB aparecem aqui.'}</div>`;
 const seenKey = c => `aab_seen_${S.user?.uid}_${c.id}_${ms(c.atualizadoAt || c.criadoAt)}`;
 function showPopups() {
-  if (!S.user || S.admin) return;
+  if (!S.user || S.admin || S.cliente) return;
   const list = visiveis().filter(c => c.popup && !localStorage.getItem(seenKey(c)));
   if (!list.length) return;
   openModal(`<div class="eyebrow">Comunicados da AAB</div><h2>Novidades para você</h2><div class="board" style="max-height:55vh;overflow:auto;margin-bottom:.4rem">${list.map(c => avisoHtml(c)).join('')}</div><div class="acts"><button class="btn sm" data-ok>Entendi</button></div>`,
@@ -373,14 +401,15 @@ function renderHeader() {
   const l = (href, t, k, cls = '') => `<a class="${cls} ${r === k ? 'on' : ''}" href="${href}">${t}</a>`;
   h.innerHTML = `<a class="brand" href="#/"><img src="icons/icon-192.png" alt=""><div><b>AAB</b><small>Associação dos Advogados do Brasil</small></div></a>
   <nav>${l('#/', 'Início', '')}${l('#/advogados', 'Advogados', 'advogados')}${S.user
-    ? `${S.admin ? l('#/admin', 'Administração', 'admin') : l('#/painel', 'Meu painel', 'painel')}<button id="contaBtn">Conta</button><button id="outBtn">Sair</button>`
+    ? `${S.admin ? l('#/admin', 'Administração', 'admin') : S.cliente ? l('#/cliente', 'Área do cliente', 'cliente') : l('#/painel', 'Meu painel', 'painel')}<button id="contaBtn">Conta</button><button id="outBtn">Sair</button>`
     : `${l('#/entrar', 'Entrar', 'entrar')}${l('#/cadastro', 'Associar-se', 'cadastro', 'cta')}`}</nav>`;
   $('#outBtn') && ($('#outBtn').onclick = () => { signOut(auth); location.hash = '#/'; });
   $('#contaBtn') && ($('#contaBtn').onclick = formConta);
   const sn = $('#subnav'); if (!sn) return;
   const p = location.hash.replace(/^#\/?/, '').split('/');
   const un = S.msgs.filter(m => !m.lida).length;
-  if (S.user && !S.admin && p[0] === 'painel') sn.innerHTML = `<div class="sub-nav">${[['#/painel', 'Início', ''], ['#/painel/site', 'Meu site', 'site'], ['#/painel/artigos', 'Artigos', 'artigos'], ['#/painel/mensagens', 'Mensagens', 'mensagens'], ['#/painel/perfil', 'Meu perfil', 'perfil']].map(([hr, t, k]) => `<a class="${(p[1] || '') === k ? 'on' : ''}" href="${hr}">${t}${k === 'mensagens' && un ? '<span class="dot"></span>' : ''}</a>`).join('')}</div>`;
+  if (S.cliente && p[0] === 'cliente') sn.innerHTML = `<div class="sub-nav">${[['#/cliente', 'Meus processos', ''], ['#/cliente/agenda', 'Agenda', 'agenda']].map(([hr, t, k]) => `<a class="${(p[1] || '') === k ? 'on' : ''}" href="${hr}">${t}</a>`).join('')}</div>`;
+  else if (S.user && !S.admin && !S.cliente && p[0] === 'painel') sn.innerHTML = `<div class="sub-nav">${[['#/painel', 'Início', ''], ['#/painel/clientes', 'Clientes', 'clientes'], ['#/painel/processos', 'Processos', 'processo'], ['#/painel/agenda', 'Agenda', 'agenda'], ['#/painel/tarefas', 'Tarefas', 'tarefas'], ['#/painel/site', 'Meu site', 'site'], ['#/painel/artigos', 'Artigos', 'artigos'], ['#/painel/mensagens', 'Mensagens', 'mensagens'], ['#/painel/perfil', 'Meu perfil', 'perfil']].map(([hr, t, k]) => `<a class="${((p[1] || '') === k || (k === 'processo' && p[1] === 'processos')) ? 'on' : ''}" href="${hr}">${t}${k === 'mensagens' && un ? '<span class="dot"></span>' : ''}</a>`).join('')}</div>`;
   else if (S.admin && p[0] === 'admin') sn.innerHTML = `<div class="sub-nav">${[['#/admin', 'Resumo', ''], ['#/admin/associados', 'Associados', 'associados'], ['#/admin/comunicados', 'Comunicados', 'comunicados'], ['#/admin/acessos', 'Acessos', 'acessos'], ['#/admin/config', 'Configurações', 'config']].map(([hr, t, k]) => `<a class="${(p[1] || '') === k ? 'on' : ''}" href="${hr}">${t}${k === 'associados' && S.associados.some(a => a.status === 'pendente') ? '<span class="dot"></span>' : ''}</a>`).join('')}</div>`;
   else sn.innerHTML = '';
 }
@@ -395,7 +424,7 @@ function viewHome(main) {
   const c = S.config;
   main.innerHTML = `<section class="hero"><svg class="seal" viewBox="0 0 200 230" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="14" r="5"/><path d="M100 19V196M30 46H170M30 46L10 124M30 46L50 124M170 46L150 124M170 46L190 124M6 124H54Q30 160 6 124ZM146 124H194Q170 160 146 124ZM70 212H130M80 196H120L126 212H74Z"/></svg>
     <div class="wrap"><div class="eyebrow">Associação dos Advogados do Brasil</div><h1>${esc(c.heroTitulo)}</h1><p class="lead">${esc(c.heroTexto)}</p>
-    <div class="ctas">${S.user ? `<a class="btn" href="${S.admin ? '#/admin' : '#/painel'}">Ir para o meu painel</a>` : '<a class="btn" href="#/cadastro">Quero me associar</a><a class="btn ghost" href="#/entrar">Já sou associado</a>'}<a class="btn ghost" href="#/advogados">Ver advogados associados</a></div></div></section>
+    <div class="ctas">${S.user ? `<a class="btn" href="${S.admin ? '#/admin' : S.cliente ? '#/cliente' : '#/painel'}">${S.cliente ? 'Ir para a área do cliente' : 'Ir para o meu painel'}</a>` : '<a class="btn" href="#/cadastro">Quero me associar</a><a class="btn ghost" href="#/entrar">Já sou associado</a>'}<a class="btn ghost" href="#/advogados">Ver advogados associados</a></div></div></section>
   <div class="wrap pad"><div class="eyebrow">Quadro de avisos</div><h2 style="font-size:2.2rem;margin-bottom:1.2rem">Comunicados da <em style="color:var(--gold)">AAB</em></h2><div id="bd"></div>
   <div class="sec-t" style="margin-top:3rem">O que você recebe</div>
   <div class="feat"><div><span>🌐</span><h3>Site pessoal</h3><p>Uma página profissional com seu perfil, áreas de atuação, contato e formulário de mensagens, no ar em minutos.</p></div><div><span>📣</span><h3>Comunicados oficiais</h3><p>Avisos, alertas, publicações e atualizações da associação direto no seu acesso.</p></div><div><span>🛡️</span><h3>Gestão pela associação</h3><p>Cadastro validado pela AAB e controle de acesso para manter a rede de associados confiável.</p></div></div>
@@ -509,7 +538,7 @@ function viewSite(slug) {
         <select name="area"><option value="">Área de interesse</option>${areas.map(a => `<option>${esc(a.nome)}</option>`).join('')}<option>Outro assunto</option></select><textarea name="msg" placeholder="Descreva brevemente o seu caso" required maxlength="3000"></textarea><button>Enviar consulta →</button><p id="sm" style="font-size:.78rem"></p></form>` : ''}</div></div></section>
     <footer class="fo"><div class="ln">${ct.email ? `<a href="mailto:${esc(ct.email)}">E-mail</a>` : ''}${ct.instagram ? `<a target="_blank" rel="noopener" href="https://instagram.com/${esc(String(ct.instagram).replace(/^@/, ''))}">Instagram</a>` : ''}<button data-share>Compartilhar</button><a href="#/">Portal AAB</a></div>
       © ${new Date().getFullYear()} ${esc(s.nome)} · Associado(a) à AAB – Associação dos Advogados do Brasil</footer>
-    <button class="fab" data-share aria-label="Compartilhar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></button></div>`;
+    <button class="fab" data-share aria-label="Compartilhar o site" title="Compartilhar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button></div>`;
     const site = $('.site');
     const drawAreas = g => { $('#ag', site).innerHTML = areas.filter(a => (a.grupo | 0) === g).map(a => `<div class="ac"><div class="ic">${esc(a.icone || '⚖️')}</div><h3>${esc(a.nome)}</h3><p>${esc(a.desc || '')}</p></div>`).join(''); };
     if (areas.length) drawAreas(usados[0] ?? 0);
@@ -519,10 +548,30 @@ function viewSite(slug) {
       box.innerHTML = `<div class="rin"><button class="x" data-x>← Voltar</button><div class="dt">${esc(fmtArt(a.data))}</div><h2>${esc(a.titulo)}</h2>${paras(a.texto).map(x => x.startsWith('## ') ? `<h3>${esc(x.slice(3))}</h3>` : `<p>${esc(x)}</p>`).join('') || `<p>${esc(a.resumo || '')}</p>`}<div class="ctas"><a class="b1" href="#/a/${esc(slug)}" data-go="contato" data-x>Falar com ${esc(s.nome.split(/\s+/)[0])}</a><button class="b2" style="background:none;cursor:pointer;font:inherit;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--st)" data-share>Compartilhar</button></div></div>`;
       site.appendChild(box); document.body.style.overflow = 'hidden'; box.scrollTop = 0;
     };
-    const partilhar = async () => { try { if (navigator.share) await navigator.share({ title: s.nome, text: `${s.nome} – ${s.titulo || 'Advogado(a)'}`, url }); else { await navigator.clipboard.writeText(url); toast('Link copiado.'); } } catch { /* cancelado */ } };
+    const QR = (n, c) => 'https://api.qrserver.com/v1/create-qr-code/?size=' + n + 'x' + n + '&format=png&color=' + c + '&bgcolor=ffffff&qzone=1&data=' + encodeURIComponent(url);
+    const partilhar = (tit, link) => {
+      const u = link || url, tt = tit || 'Compartilhar site'; $('.shov', site)?.remove();
+      const ov = document.createElement('div'); ov.className = 'shov';
+      ov.innerHTML = `<div class="shbox"><button class="shx" aria-label="Fechar" data-shx>✕</button><p class="shtt">📱 ${esc(tt)}</p><div class="shqr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=380x380&format=png&color=${esc(t[1].slice(1))}&bgcolor=ffffff&qzone=1&data=${encodeURIComponent(u)}" alt="QR Code" width="190" height="190"></div><p class="shurl">${esc(u.replace(/^https?:\/\//, ''))}</p>
+        <div class="shac"><button class="pr" data-sh="cp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copiar link</button>
+        <button data-sh="wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</button>
+        ${navigator.share ? '<button data-sh="nat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>Compartilhar</button>' : ''}
+        <button data-sh="dl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>QR Code</button></div><p class="shcp"></p></div>`;
+      site.appendChild(ov);
+      const say = m => { $('.shcp', ov).textContent = m; setTimeout(() => { const p = $('.shcp', ov); if (p) p.textContent = ''; }, 2200); };
+      ov.addEventListener('mousedown', e => { if (e.target === ov) ov.remove(); });
+      ov.addEventListener('click', async e => {
+        if (e.target.closest('[data-shx]')) return ov.remove();
+        const b = e.target.closest('[data-sh]'); if (!b) return;
+        if (b.dataset.sh === 'cp') { try { await navigator.clipboard.writeText(u); say('✅ Link copiado!'); } catch { prompt('Copie o link:', u); } }
+        else if (b.dataset.sh === 'wa') window.open('https://api.whatsapp.com/send/?text=' + encodeURIComponent('Olá! Confira ' + s.nome + ' 👉 ' + u), '_blank', 'noopener');
+        else if (b.dataset.sh === 'nat') navigator.share({ title: s.nome, text: s.nome, url: u }).catch(() => {});
+        else if (b.dataset.sh === 'dl') { const src = 'https://api.qrserver.com/v1/create-qr-code/?size=600x600&format=png&color=0d1821&bgcolor=ffffff&qzone=2&data=' + encodeURIComponent(u); try { const bl = await (await fetch(src)).blob(); const a = document.createElement('a'); a.href = URL.createObjectURL(bl); a.download = 'qrcode-' + slug + '.png'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1500); } catch { window.open(src, '_blank', 'noopener'); } }
+      });
+    };
     site.addEventListener('click', e => {
       const g = e.target.closest('[data-go]'), tb = e.target.closest('[data-g]'), ar = e.target.closest('[data-art]');
-      if (e.target.closest('[data-share]')) return partilhar();
+      if (e.target.closest('[data-share]')) return partilhar(e.target.closest('.rd') ? 'Compartilhar artigo' : 'Compartilhar site');
       if (e.target.closest('.tg')) return $('#sn').classList.toggle('open');
       if (tb) { $$('#tb button').forEach(b => b.classList.toggle('on', b === tb)); return drawAreas(+tb.dataset.g); }
       if (ar) return abre(+ar.dataset.art);
@@ -552,7 +601,7 @@ function statusBanner() {
   return '';
 }
 function viewPainel(main) {
-  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Painel do associado</div><h1>Olá, <em id="nm"></em></h1></div></div><div id="st"></div><div id="cs"></div><div class="sec-t">Quadro de avisos</div><div id="bd"></div></div>`;
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Painel do associado</div><h1>Olá, <em id="nm"></em></h1></div></div><div id="st"></div><div id="cs"></div><div id="dx"></div><div class="sec-t">Quadro de avisos</div><div id="bd"></div></div>`;
   const draw = () => {
     const a = S.assoc; if (!a) { $('#st', main).innerHTML = '<div class="loading">Carregando…</div>'; return; }
     $('#nm', main).textContent = (a.nome || '').split(/\s+/)[0]; $('#st', main).innerHTML = statusBanner() + (!a.oab ? '<div class="status-b"><b>Complete o seu cadastro</b>Informe o número da OAB e a seccional em <a href="#/painel/perfil">Meu perfil</a> para a validação.</div>' : '');
@@ -560,7 +609,7 @@ function viewPainel(main) {
       <a class="stat" href="#/painel/site"><b>${S.site ? (S.site.publicado ? 'No ar' : 'Rascunho') : 'Não criado'}</b><span>Meu site</span></a>
       <a class="stat" href="#/painel/mensagens"><b>${S.msgs.filter(m => !m.lida).length}</b><span>Mensagens novas</span></a><a class="stat" href="#/painel/artigos"><b>${S.arts.filter(x => x.publicado).length}</b><span>Artigos publicados</span></a><a class="stat" href="#/painel/mensagens"><b>${S.insc.length}</b><span>Inscritos newsletter</span></a></div>
       ${S.site?.publicado ? `<p class="hint" style="margin-bottom:1rem">Seu site: <a href="#/a/${esc(S.site.slug)}">${esc(siteUrl(S.site.slug))}</a></p>` : ''}`;
-    $('#bd', main).innerHTML = boardHtml(visiveis());
+    $('#bd', main).innerHTML = boardHtml(visiveis()); $('#dx', main).innerHTML = resumoAdv();
   };
   draw(); return { refresh: draw };
 }
@@ -724,6 +773,253 @@ function viewSiteEditor(main) {
   return { refresh() { const k = (S.assoc?.status || '') + (S.site ? 'y' : 'n'); if (k !== key) build(); } };
 }
 
+/* ---------- Área do cliente: processos, agenda e tarefas ---------- */
+const PSTATUS = { andamento: ['Em andamento', 's-info'], aguardando: ['Aguardando', 's-warn'], suspenso: ['Suspenso', 's-mute'], encerrado: ['Encerrado', 's-ok'] };
+const ETIPOS = { audiencia: ['⚖️', 'Audiência'], prazo: ['⏰', 'Prazo'], reuniao: ['🤝', 'Reunião'], outro: ['📌', 'Compromisso'] };
+const TCOLS = [['afazer', 'A fazer'], ['andamento', 'Em andamento'], ['feita', 'Concluídas']];
+const PRIO = { alta: ['Alta', 's-bad'], media: ['Média', 's-warn'], baixa: ['Baixa', 's-mute'] };
+const MESES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+const fmtDia = d => d ? d.split('-').reverse().join('/') : '';
+const addDias = n => dayKey(Date.now() + n * 864e5);
+const cmpEv = (a, b) => (a.data + (a.hora || '')).localeCompare(b.data + (b.hora || ''));
+const cliNome = uid => S.cli.find(c => c.id === uid)?.nome || '';
+const procNome = id => { const p = S.proc.find(x => x.id === id); return p ? (p.titulo + (p.numero ? ' · ' + p.numero : '')) : ''; };
+const genSenha = () => { const c = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789', a = new Uint32Array(8); crypto.getRandomValues(a); return [...a].map(x => c[x % c.length]).join(''); };
+async function criarConta(email, senha, nome) {
+  const sec = initializeApp(firebaseConfig, 'sec' + Date.now());
+  try {
+    const a = getAuth(sec), cr = await createUserWithEmailAndPassword(a, email, senha);
+    try { await updateProfile(cr.user, { displayName: nome }); } catch { /* ok */ }
+    const uid = cr.user.uid; await signOut(a); return uid;
+  } finally { deleteApp(sec).catch(() => {}); }
+}
+function bloqueado(main) {
+  const a = S.assoc;
+  if (!a) { main.innerHTML = '<div class="loading">Carregando…</div>'; return true; }
+  if (a.status !== 'ativo') { main.innerHTML = `<div class="wrap pad">${statusBanner()}<div class="empty"><b>Recurso indisponível</b>A Área do cliente é liberada depois da aprovação do seu cadastro pela AAB.</div></div>`; return true; }
+  return false;
+}
+function guarded(main, build) {
+  let v = null, ok = false;
+  const upd = () => { if (bloqueado(main)) { ok = false; v = null; return; } if (!ok) { v = build(main); ok = true; } else v.refresh?.(); };
+  upd(); return { refresh: upd, destroy() { v?.destroy?.(); } };
+}
+const optCli = (sel, vazio) => `<option value="">${vazio}</option>` + [...S.cli].filter(c => c.ativo !== false || c.id === sel).sort((a, b) => a.nome.localeCompare(b.nome)).map(c => `<option value="${c.id}" ${c.id === sel ? 'selected' : ''}>${esc(c.nome)}</option>`).join('');
+const optProc = (sel, vazio) => `<option value="">${vazio}</option>` + [...S.proc].filter(p => !p.arquivado || p.id === sel).map(p => `<option value="${p.id}" ${p.id === sel ? 'selected' : ''}>${esc(procNome(p.id))}</option>`).join('');
+
+/* --- resumo no início do painel --- */
+function resumoAdv() {
+  if (S.assoc?.status !== 'ativo') return '';
+  const h = dayKey(), ev = S.ev.filter(e => e.data >= h).sort(cmpEv), tk = S.tar.filter(t => t.status !== 'feita').sort((a, b) => (a.prazo || '9999').localeCompare(b.prazo || '9999'));
+  return `<div class="sec-t">Área do cliente</div><div class="cards"><a class="stat" href="#/painel/clientes"><b>${S.cli.filter(c => c.ativo !== false).length}</b><span>Clientes</span></a><a class="stat" href="#/painel/processos"><b>${S.proc.filter(p => !p.arquivado && p.status !== 'encerrado').length}</b><span>Processos ativos</span></a><a class="stat" href="#/painel/agenda"><b>${ev.filter(e => e.data <= addDias(7)).length}</b><span>Compromissos em 7 dias</span></a><a class="stat" href="#/painel/tarefas"><b>${tk.length}</b><span>Tarefas abertas</span></a></div>
+  <div class="dgrid"><div class="pnl"><h3>Próximos compromissos</h3><div class="mini">${ev.slice(0, 5).map(e => `<a href="#/painel/agenda"><span>${ETIPOS[e.tipo]?.[0] || '📌'} ${esc(e.titulo)}</span><small>${fmtDia(e.data)}${e.hora ? ' ' + esc(e.hora) : ''}</small></a>`).join('') || '<div class="none">Nenhum compromisso futuro.</div>'}</div></div>
+  <div class="pnl"><h3>Tarefas pendentes</h3><div class="mini">${tk.slice(0, 5).map(t => `<a href="#/painel/tarefas"><span>${esc(t.titulo)}</span><small class="${t.prazo && t.prazo < h ? 'late' : ''}">${t.prazo ? fmtDia(t.prazo) : 'sem prazo'}</small></a>`).join('') || '<div class="none">Nenhuma tarefa aberta.</div>'}</div></div></div>`;
+}
+
+/* --- clientes --- */
+function acessoCliente(nome, email, senha, tel) {
+  const url = location.origin + location.pathname, txt = `Olá, ${nome.split(/\s+/)[0]}! Seu acesso à Área do Cliente – ${S.assoc.nome}\nEndereço: ${url}\nClique em “Entrar”\nE-mail: ${email}\nSenha provisória: ${senha}\nPor segurança, troque a senha em “Conta” > “Enviar link para trocar a senha”.`;
+  openModal(`<h2>Acesso criado</h2><p style="font-size:.85rem;line-height:1.6;margin-bottom:.8rem">Envie estes dados para <b>${esc(nome)}</b>:</p><textarea readonly id="acTxt" style="width:100%;min-height:170px;font-size:.8rem;background:transparent;color:var(--cream);border:1px solid var(--border);padding:.7rem">${esc(txt)}</textarea>
+  <div class="acts"><button class="btn ghost sm" id="acCp">Copiar</button>${String(tel).replace(/\D/g, '').length >= 10 ? '<button class="btn ghost sm" id="acWa">Enviar por WhatsApp</button>' : ''}<button class="btn sm" data-ok>Fechar</button></div>`,
+  (m, c) => { m.querySelector('[data-ok]').onclick = c; m.querySelector('#acCp').onclick = async () => { try { await navigator.clipboard.writeText(txt); toast('Copiado.'); } catch { m.querySelector('#acTxt').select(); } };
+    const w = m.querySelector('#acWa'); if (w) w.onclick = () => { const n = String(tel).replace(/\D/g, ''); window.open('https://wa.me/' + (n.startsWith('55') ? n : '55' + n) + '?text=' + encodeURIComponent(txt), '_blank', 'noopener'); }; });
+}
+function formCliente(c) {
+  const n = !c, senha = genSenha();
+  openModal(`<h2>${n ? 'Novo cliente' : 'Editar cliente'}</h2><form id="cf"><div class="field"><label>Nome completo</label><input name="nome" required maxlength="150" value="${esc(c?.nome)}"></div>
+    <div class="row2"><div class="field"><label>E-mail (será o login)</label><input name="email" type="email" required maxlength="150" value="${esc(c?.email)}" ${n ? '' : 'readonly style="opacity:.6"'}></div><div class="field"><label>Telefone / WhatsApp</label><input name="tel" maxlength="40" value="${esc(c?.telefone)}"></div></div>
+    ${n ? `<div class="field"><label>Senha provisória</label><input name="senha" minlength="6" maxlength="40" value="${senha}"><small>O cliente poderá trocá-la depois. Anote ou envie pelo botão que aparece em seguida.</small></div>` : ''}
+    <p class="msg-err" id="ce"></p><div class="acts"><button type="button" class="btn ghost sm" data-no>Cancelar</button><button class="btn sm">${n ? 'Criar acesso' : 'Salvar'}</button></div></form>`,
+  (m, close) => { $('[data-no]', m).onclick = close;
+    $('#cf', m).onsubmit = async e => { e.preventDefault(); const f = e.target, btn = $('.btn.sm:not([data-no])', m); btn.disabled = true;
+      try {
+        const nome = f.nome.value.trim(), tel = f.tel.value.trim(); if (nome.length < 3) throw new Error('Informe o nome completo.');
+        if (!n) { await updateDoc(doc(db, 'clientes', c.id), { nome, telefone: tel }); close(); return toast('Cliente atualizado.'); }
+        const email = f.email.value.trim().toLowerCase(), pw = f.senha.value; if (email === ADMIN_EMAIL) throw new Error('Este e-mail não pode ser usado.');
+        let uid; try { uid = await criarConta(email, pw, nome); } catch (x) { if (x.code === 'auth/email-already-in-use') throw new Error('Este e-mail já tem conta no portal. Peça ao cliente outro e-mail, ou que use o “Esqueci minha senha” se ele já for seu cliente.'); throw x; }
+        try { await setDoc(doc(db, 'clientes', uid), { uid, nome, email, telefone: tel, advogadoUid: S.user.uid, advogadoNome: S.assoc.nome, siteSlug: S.assoc.siteSlug || '', ativo: true, criadoAt: serverTimestamp() }); }
+        catch (x) { throw new Error('A conta de login foi criada, mas o cadastro não foi salvo (' + errMsg(x) + '). Verifique as regras do Firestore e tente com outro e-mail.'); }
+        close(); acessoCliente(nome, email, pw, tel);
+      } catch (x) { $('#ce', m).textContent = errMsg(x); btn.disabled = false; } };
+  });
+}
+function mountClientes(main) {
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Área do cliente</div><h1>Meus <em>clientes</em></h1><p>Cadastre seus clientes para que acompanhem processos e compromissos em um acesso próprio. Você cria o login e envia a senha provisória.</p></div><button class="btn" id="nv">＋ Novo cliente</button></div><div class="toolbar"><input id="q" placeholder="Buscar cliente…"></div><div class="list" id="ls"></div></div>`;
+  let q = '';
+  const draw = () => { const t = q.toLowerCase(), l = S.cli.filter(c => !t || (c.nome + ' ' + c.email).toLowerCase().includes(t)).sort((a, b) => a.nome.localeCompare(b.nome));
+    $('#ls', main).innerHTML = l.length ? l.map(c => `<div class="item"><div class="main"><h3>${esc(c.nome)} <span class="chip ${c.ativo === false ? 's-mute' : 's-ok'}">${c.ativo === false ? 'acesso desativado' : 'ativo'}</span></h3><p>${esc(c.email)}${c.telefone ? ' · ' + esc(c.telefone) : ''} · ${S.proc.filter(p => p.clienteUid === c.id && !p.arquivado).length} processo(s) ativo(s)</p></div>
+      <div class="acts" data-u="${c.id}"><button class="btn sm" data-a="np">Novo processo</button><button class="btn ghost sm" data-a="ed">Editar</button><button class="btn ghost sm" data-a="pw">Link de senha</button><button class="btn ghost sm" data-a="at">${c.ativo === false ? 'Reativar' : 'Desativar'}</button><button class="btn danger sm" data-a="del">Excluir</button></div></div>`).join('')
+      : '<div class="empty"><b>Nenhum cliente ainda</b>Clique em “Novo cliente” para criar o primeiro acesso.</div>'; };
+  $('#q', main).oninput = e => { q = e.target.value; draw(); }; $('#nv', main).onclick = () => formCliente(null);
+  main.onclick = async e => { const b = e.target.closest('[data-a]'); if (!b) return; const c = S.cli.find(x => x.id === b.closest('[data-u]').dataset.u); if (!c) return;
+    try {
+      if (b.dataset.a === 'np') formProcesso(null, c.id); else if (b.dataset.a === 'ed') formCliente(c);
+      else if (b.dataset.a === 'pw') { await sendPasswordResetEmail(auth, c.email); toast('Link de senha enviado para ' + c.email); }
+      else if (b.dataset.a === 'at') { await updateDoc(doc(db, 'clientes', c.id), { ativo: c.ativo === false }); toast(c.ativo === false ? 'Acesso reativado.' : 'Acesso desativado.'); }
+      else if (b.dataset.a === 'del' && await confirmBox(`Excluir o cliente <b>${esc(c.nome)}</b>? Os processos continuam salvos, sem cliente vinculado. Prefira <b>Desativar</b> se quiser apenas bloquear o acesso.`, 'Excluir')) { await deleteDoc(doc(db, 'clientes', c.id)); toast('Cliente excluído.'); }
+    } catch (x) { toast(errMsg(x), true); } };
+  draw(); return { refresh: draw };
+}
+
+/* --- processos --- */
+function formProcesso(p, clienteId) {
+  const n = !p;
+  openModal(`<h2>${n ? 'Novo processo' : 'Editar processo'}</h2><form id="pf">
+    <div class="field"><label>Título / assunto</label><input name="t" required maxlength="200" value="${esc(p?.titulo)}" placeholder="Ex.: Ação de divórcio"></div>
+    <div class="row2"><div class="field"><label>Nº do processo</label><input name="n" maxlength="40" value="${esc(p?.numero)}" placeholder="0000000-00.0000.0.00.0000"></div><div class="field"><label>Cliente</label><select name="c">${optCli(p?.clienteUid || clienteId || '', 'Sem cliente vinculado')}</select></div></div>
+    <div class="row3"><div class="field"><label>Área</label><input name="a" maxlength="60" value="${esc(p?.area)}" placeholder="Família"></div><div class="field"><label>Vara / tribunal</label><input name="o" maxlength="80" value="${esc(p?.orgao)}"></div><div class="field"><label>Situação</label><select name="s">${Object.entries(PSTATUS).map(([k, v]) => `<option value="${k}" ${(p?.status || 'andamento') === k ? 'selected' : ''}>${v[0]}</option>`).join('')}</select></div></div>
+    <div class="field"><label>Resumo visível ao cliente</label><textarea name="r" maxlength="1500" style="min-height:80px">${esc(p?.resumoCliente)}</textarea></div>
+    <div class="field"><label>Anotações internas (o cliente não vê)</label><textarea name="x" maxlength="3000" style="min-height:80px">${esc(p?.notas)}</textarea></div>
+    <p class="msg-err" id="pe"></p><div class="acts"><button type="button" class="btn ghost sm" data-no>Cancelar</button><button class="btn sm">Salvar</button></div></form>`,
+  (m, close) => { $('[data-no]', m).onclick = close;
+    $('#pf', m).onsubmit = async e => { e.preventDefault(); const f = e.target;
+      try {
+        const d = { titulo: f.t.value.trim(), numero: f.n.value.trim(), clienteUid: f.c.value, area: f.a.value.trim(), orgao: f.o.value.trim(), status: f.s.value, resumoCliente: f.r.value.trim(), notas: f.x.value.trim(), atualizadoAt: serverTimestamp() };
+        if (!d.titulo) throw new Error('Informe o título do processo.');
+        if (n) { const r = await addDoc(collection(db, 'processos'), { ...d, advogadoUid: S.user.uid, arquivado: false, ultimoAndamento: '', criadoAt: serverTimestamp() }); close(); toast('Processo criado.'); location.hash = '#/painel/processo/' + r.id; }
+        else { await updateDoc(doc(db, 'processos', p.id), d); close(); toast('Processo atualizado.'); }
+      } catch (x) { $('#pe', m).textContent = errMsg(x); } };
+  });
+}
+function mountProcessos(main) {
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Área do cliente</div><h1><em>Processos</em></h1><p>Acompanhe cada processo, registre andamentos e escolha o que o cliente pode ver.</p></div><button class="btn" id="nv">＋ Novo processo</button></div>
+  <div class="toolbar"><input id="q" placeholder="Buscar por título, número ou cliente…"><select id="st"><option value="">Todas as situações</option>${Object.entries(PSTATUS).map(([k, v]) => `<option value="${k}">${v[0]}</option>`).join('')}</select><select id="cl"></select><label class="hint" style="display:flex;gap:.4rem;align-items:center"><input type="checkbox" id="ar" style="width:auto"> arquivados</label></div><div class="list" id="ls"></div></div>`;
+  let q = '', st = '', cl = '', ar = false;
+  const fillCl = () => { $('#cl', main).innerHTML = optCli(cl, 'Todos os clientes'); };
+  const draw = () => { fillCl(); const t = q.toLowerCase(), l = S.proc.filter(p => !!p.arquivado === ar && (!st || p.status === st) && (!cl || p.clienteUid === cl) && (!t || [p.titulo, p.numero, cliNome(p.clienteUid)].join(' ').toLowerCase().includes(t))).sort((a, b) => ms(b.atualizadoAt) - ms(a.atualizadoAt));
+    $('#ls', main).innerHTML = l.length ? l.map(p => { const s = PSTATUS[p.status] || PSTATUS.andamento; return `<a class="item" href="#/painel/processo/${p.id}" style="text-decoration:none;color:inherit"><div class="main"><h3>${esc(p.titulo)} <span class="chip ${s[1]}">${s[0]}</span></h3><p>${esc(p.numero || 'sem número')} · ${esc(cliNome(p.clienteUid) || 'sem cliente')}${p.area ? ' · ' + esc(p.area) : ''}${p.ultimoAndamento ? ' · último andamento ' + fmtDia(p.ultimoAndamento) : ''}</p></div><span style="color:var(--gold)">→</span></a>`; }).join('')
+      : '<div class="empty"><b>Nenhum processo</b>Clique em “Novo processo”.</div>'; };
+  $('#q', main).oninput = e => { q = e.target.value; draw(); }; $('#st', main).onchange = e => { st = e.target.value; draw(); }; $('#cl', main).onchange = e => { cl = e.target.value; draw(); }; $('#ar', main).onchange = e => { ar = e.target.checked; draw(); };
+  $('#nv', main).onclick = () => formProcesso(null); draw(); return { refresh: draw };
+}
+function mountProcesso(main, id) {
+  main.innerHTML = '<div class="wrap pad" id="pw"></div>'; let and = [], un = null, unlocked = false;
+  un = onSnapshot(collection(db, 'processos', id, 'andamentos'), s => { and = docs(s); draw(); }, () => {});
+  const draw = () => {
+    const p = S.proc.find(x => x.id === id), w = $('#pw', main); if (!p) { w.innerHTML = '<div class="empty"><b>Processo não encontrado</b><a href="#/painel/processos">Voltar aos processos</a></div>'; return; }
+    const s = PSTATUS[p.status] || PSTATUS.andamento, evs = S.ev.filter(e => e.processoId === id).sort(cmpEv), tks = S.tar.filter(t => t.processoId === id);
+    const keep = unlocked ? { d: $('#ad', w)?.value, t: $('#at', w)?.value, l: $('#al', w)?.value, v: $('#av', w)?.checked } : null;
+    w.innerHTML = `<p style="margin-bottom:1rem"><a href="#/painel/processos" style="font-size:.7rem;letter-spacing:.14em;text-transform:uppercase">← Processos</a></p><div class="page-h"><div><div class="eyebrow">${esc(p.numero || 'Processo')}</div><h1>${esc(p.titulo)}</h1><p><span class="chip ${s[1]}">${s[0]}</span> ${p.arquivado ? '<span class="chip s-mute">arquivado</span>' : ''}</p></div>
+      <div class="acts" style="display:flex;gap:.4rem;flex-wrap:wrap"><button class="btn ghost sm" data-a="ed">Editar</button><button class="btn ghost sm" data-a="arq">${p.arquivado ? 'Desarquivar' : 'Arquivar'}</button><button class="btn danger sm" data-a="del">Excluir</button></div></div>
+    <div class="card"><div class="kv"><div><small>Cliente</small>${esc(cliNome(p.clienteUid) || '—')}</div><div><small>Área</small>${esc(p.area || '—')}</div><div><small>Vara / tribunal</small>${esc(p.orgao || '—')}</div></div>
+      ${p.resumoCliente ? `<small class="hint">Resumo visível ao cliente</small><p style="font-size:.86rem;line-height:1.7;margin:.2rem 0 1rem;white-space:pre-wrap">${esc(p.resumoCliente)}</p>` : ''}${p.notas ? `<small class="hint">Anotações internas</small><p style="font-size:.84rem;line-height:1.7;color:var(--muted);white-space:pre-wrap">${esc(p.notas)}</p>` : ''}</div>
+    <div class="sec-t">Novo andamento</div><form class="card" id="af"><div class="row2"><div class="field"><label>Data</label><input type="date" id="ad" required value="${keep?.d || dayKey()}"></div><div class="field"><label>Link de documento (opcional)</label><input id="al" maxlength="300" placeholder="https://… (Drive, Dropbox)" value="${esc(keep?.l)}"></div></div>
+      <div class="field"><label>O que aconteceu</label><textarea id="at" required maxlength="3000" style="min-height:90px">${esc(keep?.t)}</textarea></div>
+      <label class="check"><input type="checkbox" id="av" ${keep?.v ? 'checked' : ''}><span>Mostrar este andamento ao cliente</span></label><p class="msg-err" id="ae"></p><button class="btn sm">Registrar andamento</button></form>
+    <div class="sec-t">Andamentos (${and.length})</div>${and.length ? `<div class="tl">${[...and].sort((a, b) => String(b.data).localeCompare(String(a.data)) || ms(b.criadoAt) - ms(a.criadoAt)).map(a => `<div class="e ${a.visivelCliente ? '' : 'int'}"><div class="d"><span>${fmtDia(a.data)}</span><span class="chip ${a.visivelCliente ? 's-ok' : 's-mute'}">${a.visivelCliente ? 'visível ao cliente' : 'interno'}</span><button class="btn danger sm" style="margin-left:auto;padding:.25rem .6rem" data-da="${a.id}">Excluir</button></div><p>${esc(a.texto)}</p>${safeUrl(a.link) ? `<a href="${esc(a.link)}" target="_blank" rel="noopener" style="font-size:.7rem">📎 Abrir documento</a>` : ''}</div>`).join('')}</div>` : '<div class="empty">Nenhum andamento registrado.</div>'}
+    <div class="sec-t">Agenda e tarefas deste processo</div><div class="dgrid"><div class="pnl"><h3>Compromissos <a href="#/painel/agenda" style="float:right;font-size:.6rem">abrir agenda</a></h3><div class="mini">${evs.map(e => `<div><span>${ETIPOS[e.tipo]?.[0] || '📌'} ${esc(e.titulo)}</span><small>${fmtDia(e.data)}</small></div>`).join('') || '<div class="none">Nenhum.</div>'}</div></div><div class="pnl"><h3>Tarefas <a href="#/painel/tarefas" style="float:right;font-size:.6rem">abrir tarefas</a></h3><div class="mini">${tks.map(t => `<div><span>${esc(t.titulo)}</span><small>${esc((TCOLS.find(c => c[0] === t.status) || [])[1] || '')}</small></div>`).join('') || '<div class="none">Nenhuma.</div>'}</div></div></div>`;
+    unlocked = true;
+    $('#af', w).onsubmit = async e => { e.preventDefault(); const er = $('#ae', w);
+      try { const d = { texto: $('#at', w).value.trim(), data: $('#ad', w).value, link: $('#al', w).value.trim(), visivelCliente: $('#av', w).checked, autor: S.assoc.nome, criadoAt: serverTimestamp() };
+        if (d.link && !safeUrl(d.link)) throw new Error('O link precisa começar com https://');
+        await addDoc(collection(db, 'processos', id, 'andamentos'), d); await updateDoc(doc(db, 'processos', id), { ultimoAndamento: d.data, atualizadoAt: serverTimestamp() }); unlocked = false; toast('Andamento registrado.');
+      } catch (x) { er.textContent = errMsg(x); } };
+  };
+  main.onclick = async e => { const b = e.target.closest('[data-a],[data-da]'); if (!b) return; const p = S.proc.find(x => x.id === id); if (!p) return;
+    try {
+      if (b.dataset.da) { if (await confirmBox('Excluir este andamento?', 'Excluir')) await deleteDoc(doc(db, 'processos', id, 'andamentos', b.dataset.da)); }
+      else if (b.dataset.a === 'ed') formProcesso(p); else if (b.dataset.a === 'arq') { await updateDoc(doc(db, 'processos', id), { arquivado: !p.arquivado, atualizadoAt: serverTimestamp() }); toast(p.arquivado ? 'Processo desarquivado.' : 'Processo arquivado.'); }
+      else if (b.dataset.a === 'del' && await confirmBox(`Excluir o processo <b>${esc(p.titulo)}</b> e todos os andamentos? Esta ação não pode ser desfeita.`, 'Excluir')) { for (const d of (await getDocs(collection(db, 'processos', id, 'andamentos'))).docs) await deleteDoc(d.ref); await deleteDoc(doc(db, 'processos', id)); toast('Processo excluído.'); location.hash = '#/painel/processos'; }
+    } catch (x) { toast(errMsg(x), true); } };
+  draw(); return { refresh: draw, destroy() { un?.(); } };
+}
+
+/* --- agenda --- */
+function baixaIcs(e) {
+  const d = e.data.replace(/-/g, ''), esc2 = t => String(t || '').replace(/[\;,]/g, m => '\\' + m).replace(/\n/g, '\\n'), p2 = n => String(n).padStart(2, '0'); let l;
+  if (e.hora) { const [h, m] = e.hora.split(':').map(Number); l = [`DTSTART:${d}T${p2(h)}${p2(m)}00`, `DTEND:${d}T${h < 23 ? p2(h + 1) + p2(m) : '2359'}00`]; }
+  else l = [`DTSTART;VALUE=DATE:${d}`, `DTEND;VALUE=DATE:${dayKey(new Date(e.data + 'T12:00:00').getTime() + 864e5).replace(/-/g, '')}`];
+  const txt = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//AAB//Portal//PT', 'BEGIN:VEVENT', 'UID:' + e.id + '@aab', 'DTSTAMP:' + new Date().toISOString().replace(/[-:]|\.\d+/g, ''), ...l, 'SUMMARY:' + esc2(e.titulo), e.local ? 'LOCATION:' + esc2(e.local) : '', e.notas ? 'DESCRIPTION:' + esc2(e.notas) : '', 'END:VEVENT', 'END:VCALENDAR'].filter(Boolean).join('\r\n');
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([txt], { type: 'text/calendar' })); a.download = 'compromisso.ics'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1500);
+}
+const evHtml = (e, adv) => { const dt = new Date(e.data + 'T12:00:00'), t = ETIPOS[e.tipo] || ETIPOS.outro;
+  return `<div class="item"><div class="dbadge"><b>${dt.getDate()}</b><small>${MESES[dt.getMonth()]}</small></div><div class="main"><h3>${t[0]} ${esc(e.titulo)} <span class="chip s-info">${t[1]}</span>${adv && e.visivelCliente ? '<span class="chip s-ok">visível ao cliente</span>' : ''}${e.data < dayKey() ? '<span class="chip s-mute">passou</span>' : ''}</h3>
+  <p>${fmtDia(e.data)}${e.hora ? ' às ' + esc(e.hora) : ' · dia todo'}${e.local ? ' · ' + esc(e.local) : ''}${adv && e.clienteUid ? ' · ' + esc(cliNome(e.clienteUid)) : ''}${adv && e.processoId ? ' · ' + esc(procNome(e.processoId)) : ''}</p>${e.notas ? `<p style="color:var(--cream)">${esc(e.notas)}</p>` : ''}</div>
+  <div class="acts" data-u="${e.id}"><button class="btn ghost sm" data-a="ics">Adicionar ao calendário</button>${adv ? '<button class="btn ghost sm" data-a="ed">Editar</button><button class="btn danger sm" data-a="del">Excluir</button>' : ''}</div></div>`; };
+function formEvento(e, pre = {}) {
+  const n = !e;
+  openModal(`<h2>${n ? 'Novo compromisso' : 'Editar compromisso'}</h2><form id="ef"><div class="field"><label>Título</label><input name="t" required maxlength="160" value="${esc(e?.titulo)}" placeholder="Ex.: Audiência de conciliação"></div>
+    <div class="row3"><div class="field"><label>Tipo</label><select name="k">${Object.entries(ETIPOS).map(([k, v]) => `<option value="${k}" ${(e?.tipo || 'outro') === k ? 'selected' : ''}>${v[0]} ${v[1]}</option>`).join('')}</select></div><div class="field"><label>Data</label><input type="date" name="d" required value="${esc(e?.data || pre.data || dayKey())}"></div><div class="field"><label>Hora (opcional)</label><input type="time" name="h" value="${esc(e?.hora)}"></div></div>
+    <div class="field"><label>Local / link da reunião</label><input name="l" maxlength="200" value="${esc(e?.local)}"></div>
+    <div class="row2"><div class="field"><label>Cliente</label><select name="c">${optCli(e?.clienteUid || pre.clienteUid || '', 'Sem cliente')}</select></div><div class="field"><label>Processo</label><select name="p">${optProc(e?.processoId || pre.processoId || '', 'Sem processo')}</select></div></div>
+    <div class="field"><label>Observações</label><textarea name="x" maxlength="1000" style="min-height:70px">${esc(e?.notas)}</textarea></div>
+    <label class="check"><input type="checkbox" name="v" ${e?.visivelCliente ? 'checked' : ''}><span>Mostrar na agenda do cliente (precisa ter um cliente selecionado)</span></label>
+    <p class="msg-err" id="ee"></p><div class="acts"><button type="button" class="btn ghost sm" data-no>Cancelar</button><button class="btn sm">Salvar</button></div></form>`,
+  (m, close) => { $('[data-no]', m).onclick = close;
+    $('#ef', m).onsubmit = async ev => { ev.preventDefault(); const f = ev.target;
+      try { const d = { titulo: f.t.value.trim(), tipo: f.k.value, data: f.d.value, hora: f.h.value, local: f.l.value.trim(), clienteUid: f.c.value, processoId: f.p.value, notas: f.x.value.trim(), visivelCliente: f.v.checked && !!f.c.value, atualizadoAt: serverTimestamp() };
+        if (!d.titulo || !d.data) throw new Error('Informe título e data.');
+        if (n) await addDoc(collection(db, 'eventos'), { ...d, advogadoUid: S.user.uid, criadoAt: serverTimestamp() }); else await updateDoc(doc(db, 'eventos', e.id), d);
+        close(); toast('Compromisso salvo.'); } catch (x) { $('#ee', m).textContent = errMsg(x); } };
+  });
+}
+function mountAgenda(main) {
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Área do cliente</div><h1><em>Agenda</em></h1><p>Audiências, prazos e reuniões. Os marcados como visíveis aparecem para o cliente.</p></div><button class="btn" id="nv">＋ Novo compromisso</button></div><div class="toolbar"><select id="f"><option value="prox">Próximos</option><option value="pass">Já passaram</option><option value="todos">Todos</option></select></div><div class="list" id="ls"></div></div>`;
+  let f = 'prox';
+  const draw = () => { const h = dayKey(), l = S.ev.filter(e => f === 'todos' || (f === 'prox' ? e.data >= h : e.data < h)).sort((a, b) => f === 'pass' ? cmpEv(b, a) : cmpEv(a, b));
+    $('#ls', main).innerHTML = l.length ? l.map(e => evHtml(e, true)).join('') : '<div class="empty"><b>Nenhum compromisso</b>Use “Novo compromisso” para cadastrar.</div>'; };
+  $('#f', main).onchange = e => { f = e.target.value; draw(); }; $('#nv', main).onclick = () => formEvento(null);
+  main.onclick = async e => { const b = e.target.closest('[data-a]'); if (!b) return; const ev = S.ev.find(x => x.id === b.closest('[data-u]').dataset.u); if (!ev) return;
+    try { if (b.dataset.a === 'ics') baixaIcs(ev); else if (b.dataset.a === 'ed') formEvento(ev); else if (b.dataset.a === 'del' && await confirmBox(`Excluir “${esc(ev.titulo)}”?`, 'Excluir')) { await deleteDoc(doc(db, 'eventos', ev.id)); toast('Excluído.'); } } catch (x) { toast(errMsg(x), true); } };
+  draw(); return { refresh: draw };
+}
+
+/* --- tarefas (quadro) --- */
+function formTarefa(t, status0) {
+  const n = !t;
+  openModal(`<h2>${n ? 'Nova tarefa' : 'Editar tarefa'}</h2><form id="tf"><div class="field"><label>Tarefa</label><input name="t" required maxlength="160" value="${esc(t?.titulo)}"></div>
+    <div class="field"><label>Detalhes</label><textarea name="x" maxlength="1500" style="min-height:80px">${esc(t?.descricao)}</textarea></div>
+    <div class="row3"><div class="field"><label>Prazo</label><input type="date" name="d" value="${esc(t?.prazo)}"></div><div class="field"><label>Prioridade</label><select name="p">${Object.entries(PRIO).map(([k, v]) => `<option value="${k}" ${(t?.prioridade || 'media') === k ? 'selected' : ''}>${v[0]}</option>`).join('')}</select></div><div class="field"><label>Situação</label><select name="s">${TCOLS.map(c => `<option value="${c[0]}" ${(t?.status || status0 || 'afazer') === c[0] ? 'selected' : ''}>${c[1]}</option>`).join('')}</select></div></div>
+    <div class="field"><label>Processo (opcional)</label><select name="r">${optProc(t?.processoId || '', 'Sem processo')}</select></div>
+    <p class="msg-err" id="te"></p><div class="acts"><button type="button" class="btn ghost sm" data-no>Cancelar</button><button class="btn sm">Salvar</button></div></form>`,
+  (m, close) => { $('[data-no]', m).onclick = close;
+    $('#tf', m).onsubmit = async e => { e.preventDefault(); const f = e.target;
+      try { const d = { titulo: f.t.value.trim(), descricao: f.x.value.trim(), prazo: f.d.value, prioridade: f.p.value, status: f.s.value, processoId: f.r.value, atualizadoAt: serverTimestamp() };
+        if (!d.titulo) throw new Error('Informe a tarefa.');
+        if (n) await addDoc(collection(db, 'tarefas'), { ...d, advogadoUid: S.user.uid, criadoAt: serverTimestamp() }); else await updateDoc(doc(db, 'tarefas', t.id), d);
+        close(); toast('Tarefa salva.'); } catch (x) { $('#te', m).textContent = errMsg(x); } };
+  });
+}
+function mountTarefas(main) {
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Área do cliente</div><h1><em>Tarefas</em></h1><p>Quadro simples para organizar o que precisa ser feito.</p></div><button class="btn" id="nv">＋ Nova tarefa</button></div><div class="kb" id="kb"></div></div>`;
+  const draw = () => { const h = dayKey();
+    $('#kb', main).innerHTML = TCOLS.map(([k, nome], ci) => { const l = S.tar.filter(t => (t.status || 'afazer') === k).sort((a, b) => (a.prazo || '9999').localeCompare(b.prazo || '9999'));
+      return `<div class="col"><h3><span>${nome}</span><span>${l.length}</span></h3>${l.map(t => `<div class="tk"><h4>${esc(t.titulo)}</h4>${t.descricao ? `<div>${esc(t.descricao.slice(0, 140))}</div>` : ''}<div style="margin-top:.4rem"><span class="chip ${PRIO[t.prioridade || 'media'][1]}">${PRIO[t.prioridade || 'media'][0]}</span> ${t.prazo ? `<span class="${t.prazo < h && k !== 'feita' ? 'late' : ''}">⏱ ${fmtDia(t.prazo)}</span>` : ''}</div>${t.processoId ? `<div style="margin-top:.3rem">⚖ ${esc(procNome(t.processoId))}</div>` : ''}
+        <div class="a" data-u="${t.id}">${ci > 0 ? '<button class="btn ghost sm" data-a="l">◀</button>' : ''}${ci < 2 ? '<button class="btn ghost sm" data-a="r">▶</button>' : ''}<button class="btn ghost sm" data-a="ed">Editar</button><button class="btn danger sm" data-a="del">✕</button></div></div>`).join('') || '<div class="hint">Nada aqui.</div>'}</div>`; }).join(''); };
+  $('#nv', main).onclick = () => formTarefa(null);
+  main.onclick = async e => { const b = e.target.closest('[data-a]'); if (!b) return; const t = S.tar.find(x => x.id === b.closest('[data-u]').dataset.u); if (!t) return; const ord = TCOLS.map(c => c[0]), i = ord.indexOf(t.status || 'afazer');
+    try { if (b.dataset.a === 'ed') formTarefa(t); else if (b.dataset.a === 'del') { if (await confirmBox(`Excluir a tarefa “${esc(t.titulo)}”?`, 'Excluir')) await deleteDoc(doc(db, 'tarefas', t.id)); } else await updateDoc(doc(db, 'tarefas', t.id), { status: ord[i + (b.dataset.a === 'r' ? 1 : -1)], atualizadoAt: serverTimestamp() }); } catch (x) { toast(errMsg(x), true); } };
+  draw(); return { refresh: draw };
+}
+
+/* ---------- Portal do cliente (visão do cliente) ---------- */
+function clienteOff(main) {
+  if (S.cliente?.ativo === false) { main.innerHTML = `<div class="wrap pad"><div class="status-b bad"><b>Acesso desativado</b>Fale com ${esc(S.cliente.advogadoNome || 'o seu advogado')} para reativar o seu acesso.</div></div>`; return true; }
+  return false;
+}
+function viewClienteHome(main) {
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Área do cliente</div><h1>Olá, <em id="nm"></em></h1><p>Acompanhe seus processos e compromissos com ${esc(S.cliente.advogadoNome || 'seu advogado')}.</p></div>${S.cliente.siteSlug ? `<a class="btn ghost" href="#/a/${esc(S.cliente.siteSlug)}">Site do advogado</a>` : ''}</div><div id="bx"></div></div>`;
+  const draw = () => { if (clienteOff(main)) return; $('#nm', main).textContent = (S.cliente.nome || '').split(/\s+/)[0]; const h = dayKey(), ev = S.ev.filter(e => e.data >= h).sort(cmpEv).slice(0, 5), ps = [...S.proc].filter(p => !p.arquivado).sort((a, b) => ms(b.atualizadoAt) - ms(a.atualizadoAt));
+    $('#bx', main).innerHTML = `<div class="sec-t" style="margin-top:0">Meus processos</div><div class="list">${ps.map(p => { const s = PSTATUS[p.status] || PSTATUS.andamento; return `<a class="item" href="#/cliente/processo/${p.id}" style="text-decoration:none;color:inherit"><div class="main"><h3>${esc(p.titulo)} <span class="chip ${s[1]}">${s[0]}</span></h3><p>${esc(p.numero || '')}${p.ultimoAndamento ? ' · última atualização ' + fmtDia(p.ultimoAndamento) : ''}</p></div><span style="color:var(--gold)">→</span></a>`; }).join('') || '<div class="empty"><b>Nenhum processo por enquanto</b>Quando o seu advogado cadastrar um processo, ele aparece aqui.</div>'}</div>
+      <div class="sec-t">Próximos compromissos</div><div class="list">${ev.map(e => evHtml(e, false).replace(/<div class="acts".*<\/div><\/div>$/s, '</div>')).join('') || '<div class="empty">Nenhum compromisso agendado.</div>'}</div>`; };
+  draw(); return { refresh: draw };
+}
+function viewClienteProc(main, id) {
+  main.innerHTML = '<div class="wrap pad" id="pw"></div>'; let and = [], un = null;
+  un = onSnapshot(query(collection(db, 'processos', id, 'andamentos'), where('visivelCliente', '==', true)), s => { and = docs(s); draw(); }, () => {});
+  const draw = () => { if (clienteOff(main)) return; const p = S.proc.find(x => x.id === id), w = $('#pw', main); if (!p) { w.innerHTML = '<div class="empty"><b>Processo não encontrado</b><a href="#/cliente">Voltar</a></div>'; return; } const s = PSTATUS[p.status] || PSTATUS.andamento;
+    w.innerHTML = `<p style="margin-bottom:1rem"><a href="#/cliente" style="font-size:.7rem;letter-spacing:.14em;text-transform:uppercase">← Meus processos</a></p><div class="page-h"><div><div class="eyebrow">${esc(p.numero || 'Processo')}</div><h1>${esc(p.titulo)}</h1><p><span class="chip ${s[1]}">${s[0]}</span>${p.orgao ? ' · ' + esc(p.orgao) : ''}</p></div></div>
+      ${p.resumoCliente ? `<div class="card" style="margin-bottom:1rem"><small class="hint">Resumo</small><p style="font-size:.88rem;line-height:1.8;white-space:pre-wrap;margin-top:.3rem">${esc(p.resumoCliente)}</p></div>` : ''}
+      <div class="sec-t">Andamentos</div>${and.length ? `<div class="tl">${[...and].sort((a, b) => String(b.data).localeCompare(String(a.data)) || ms(b.criadoAt) - ms(a.criadoAt)).map(a => `<div class="e"><div class="d"><span>${fmtDia(a.data)}</span></div><p>${esc(a.texto)}</p>${safeUrl(a.link) ? `<a href="${esc(a.link)}" target="_blank" rel="noopener" style="font-size:.7rem">📎 Abrir documento</a>` : ''}</div>`).join('')}</div>` : '<div class="empty">Ainda não há andamentos para exibir.</div>'}`; };
+  draw(); return { refresh: draw, destroy() { un?.(); } };
+}
+function viewClienteAgenda(main) {
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Área do cliente</div><h1><em>Agenda</em></h1></div></div><div class="list" id="ls"></div></div>`;
+  const draw = () => { if (clienteOff(main)) return; const l = [...S.ev].sort(cmpEv).filter(e => e.data >= dayKey()); $('#ls', main).innerHTML = l.length ? l.map(e => evHtml(e, false)).join('') : '<div class="empty"><b>Nenhum compromisso agendado</b></div>'; };
+  main.onclick = e => { const b = e.target.closest('[data-a="ics"]'); if (b) { const ev = S.ev.find(x => x.id === b.closest('[data-u]').dataset.u); if (ev) baixaIcs(ev); } };
+  draw(); return { refresh: draw };
+}
+
 /* ---------- administração ---------- */
 function viewAdminHome(main) {
   main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Administração</div><h1>Visão <em>geral</em></h1><p>Acompanhe os associados, os sites e a atividade do portal em tempo real.</p></div><a class="btn" href="#/admin/comunicados">＋ Novo comunicado</a></div><div id="cs"></div><div class="dgrid" id="dg"></div></div>`;
@@ -839,15 +1135,20 @@ function viewAdminConfig(main) {
 /* ---------- rotas ---------- */
 function route() {
   S.view?.destroy?.(); S.view = null;
-  const [r, a] = location.hash.replace(/^#\/?/, '').split('/');
+  const mr = document.getElementById('modalRoot'); if (mr) mr.innerHTML = '';
+  const [r, a, b2] = location.hash.replace(/^#\/?/, '').split('/');
   if (r === 'a' && a) { S.view = viewSite(decodeURIComponent(a).toLowerCase()); return; }
   renderShell(); const main = $('#main'); window.scrollTo(0, 0);
+  if (S.roleLoading && ['painel', 'cliente', 'entrar', 'cadastro'].includes(r)) { main.innerHTML = '<div class="loading">Carregando…</div>'; renderHeader(); return; }
   if ((r === 'entrar' || r === 'cadastro') && !S.user) S.view = viewAuth(main, r === 'cadastro' ? 'reg' : 'login');
-  else if (r === 'entrar' || r === 'cadastro') location.replace(S.admin ? '#/admin' : '#/painel');
+  else if (r === 'entrar' || r === 'cadastro') location.replace(S.admin ? '#/admin' : S.cliente ? '#/cliente' : '#/painel');
   else if (r === 'advogados') S.view = viewDirectory(main);
   else if (r === 'painel') {
-    if (!S.user) return location.replace('#/entrar'); if (S.admin) return location.replace('#/admin');
-    S.view = a === 'site' ? viewSiteEditor(main) : a === 'mensagens' ? viewMsgs(main) : a === 'artigos' ? viewArtigos(main) : a === 'perfil' ? viewPerfil(main) : viewPainel(main);
+    if (!S.user) return location.replace('#/entrar'); if (S.admin) return location.replace('#/admin'); if (S.cliente) return location.replace('#/cliente');
+    S.view = a === 'clientes' ? guarded(main, mountClientes) : a === 'processos' ? guarded(main, mountProcessos) : a === 'processo' && b2 ? guarded(main, m => mountProcesso(m, b2)) : a === 'agenda' ? guarded(main, mountAgenda) : a === 'tarefas' ? guarded(main, mountTarefas) : a === 'site' ? viewSiteEditor(main) : a === 'mensagens' ? viewMsgs(main) : a === 'artigos' ? viewArtigos(main) : a === 'perfil' ? viewPerfil(main) : viewPainel(main);
+  } else if (r === 'cliente') {
+    if (!S.user) return location.replace('#/entrar'); if (!S.cliente) return location.replace(S.admin ? '#/admin' : '#/painel');
+    S.view = a === 'processo' && b2 ? viewClienteProc(main, b2) : a === 'agenda' ? viewClienteAgenda(main) : viewClienteHome(main);
   } else if (r === 'admin') {
     if (!S.admin) return location.replace(S.user ? '#/painel' : '#/entrar');
     S.view = a === 'associados' ? viewAdminAssoc(main) : a === 'comunicados' ? viewAdminCom(main) : a === 'acessos' ? viewAdminAcessos(main) : a === 'config' ? viewAdminConfig(main) : viewAdminHome(main);
@@ -861,8 +1162,15 @@ function onData() { renderHeader(); S.view?.refresh?.(); }
 function publicListeners() {
   S.pubUnsub?.(); S.pubUnsub = onSnapshot(query(collection(db, 'sites'), where('publicado', '==', true), limit(100)), s => { S.dirSites = docs(s).sort((a, b) => ms(b.criadoAt) - ms(a.criadoAt)); onData(); }, e => console.warn('dir', e.code));
 }
+function attachCliente(user) {
+  const uid = user.uid;
+  listen(doc(db, 'clientes', uid), s => { if (s.exists()) S.cliente = { id: s.id, ...s.data() }; onData(); });
+  listen(query(collection(db, 'processos'), where('clienteUid', '==', uid)), s => { S.proc = docs(s); onData(); });
+  listen(query(collection(db, 'eventos'), where('clienteUid', '==', uid), where('visivelCliente', '==', true)), s => { S.ev = docs(s); onData(); });
+}
 function attach(user) {
   const uid = user.uid;
+  if (S.cliente) { attachCliente(user); return; }
   const comQ = S.admin ? collection(db, 'comunicados') : query(collection(db, 'comunicados'), where('ativo', '==', true));
   listen(comQ, s => { S.com = docs(s); S.comLoaded = true; if (S.popupPending) { S.popupPending = false; showPopups(); } onData(); });
   if (S.admin) {
@@ -886,6 +1194,9 @@ function attach(user) {
       if (prev && prev !== S.assoc?.status && S.assoc?.status === 'ativo') toast('🎉 Seu cadastro foi aprovado! Crie o seu site em “Meu site”.');
       onData();
     });
+    const mine = c => query(collection(db, c), where('advogadoUid', '==', uid));
+    listen(mine('clientes'), s => { S.cli = docs(s); onData(); }); listen(mine('processos'), s => { S.proc = docs(s); onData(); });
+    listen(mine('eventos'), s => { S.ev = docs(s); onData(); }); listen(mine('tarefas'), s => { S.tar = docs(s); onData(); });
     S.hb = setInterval(() => { if (document.visibilityState === 'visible' && S.assoc) updateDoc(doc(db, 'associados', uid), { visto: serverTimestamp() }).catch(() => {}); }, 5 * 60e3);
   }
 }
@@ -894,13 +1205,20 @@ async function boot() {
   try { const c = await withTimeout(getDoc(doc(db, 'config', 'portal')), 4000); if (c.exists()) S.config = { ...DEF, ...c.data() }; } catch { /* usa o padrão */ }
   publicListeners();
   onAuthStateChanged(auth, user => {
-    stopAll(); S.user = user; S.admin = false; S.assoc = null; S.site = null; S.msgs = []; S.arts = []; S.insc = []; S.associados = []; S.logins = []; S.sites = []; S.com = [];
+    stopAll(); S.user = user; S.admin = false; S.assoc = null; S.site = null; S.msgs = []; S.arts = []; S.insc = []; S.cli = []; S.proc = []; S.ev = []; S.tar = []; S.cliente = null; S.roleLoading = false; S.associados = []; S.logins = []; S.sites = []; S.com = [];
     S.popupPending = false;
-    if (user) { S.admin = (user.email || '').toLowerCase() === ADMIN_EMAIL; attach(user); }
+    if (user) { S.admin = (user.email || '').toLowerCase() === ADMIN_EMAIL; if (S.admin) attach(user); else S.roleLoading = true; }
     else listen(query(collection(db, 'comunicados'), where('ativo', '==', true), where('publico', '==', true)), s => { S.com = docs(s); onData(); });
     clearTimeout(watchdog); S.routed = true;
     try { route(); } catch (e) { console.error(e); $('#root').innerHTML = '<div class="wrap pad"><div class="empty"><b>Erro ao carregar</b>Atualize a página. Se persistir, limpe os dados do site no navegador.</div></div>'; }
     if (user) (async () => {
+      if (!S.admin) {
+        // quem tem cadastro de associado é advogado; quem só tem cadastro de cliente entra na Área do cliente
+        try { const a = await withTimeout(getDoc(doc(db, 'associados', user.uid)), 8000); if (!a.exists()) { const c = await withTimeout(getDoc(doc(db, 'clientes', user.uid)), 8000); if (c.exists()) S.cliente = { id: c.id, ...c.data() }; } } catch (e) { console.warn('papel', e.code || e.message); }
+        if (auth.currentUser?.uid !== user.uid) return;
+        S.roleLoading = false; attach(user); try { route(); } catch (e) { console.error(e); }
+        if (S.cliente) return;
+      }
       try { if (!S.admin) await ensureAssoc(user); } catch (e) { console.warn('cadastro', e.code); toast(errMsg(e), true); }
       const first = await logAccess(user);
       if (first && auth.currentUser?.uid === user.uid && !S.admin) { if (S.comLoaded) showPopups(); else S.popupPending = true; }

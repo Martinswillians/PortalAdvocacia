@@ -148,6 +148,90 @@ service cloud.firestore {
       }
     }
 
+    // =====================================================================
+    //  ÁREA DO CLIENTE (cada advogado só enxerga os próprios dados;
+    //  a administração da AAB NÃO tem acesso a clientes, processos, agenda ou tarefas)
+    // =====================================================================
+    function clientPath(cid) { return /databases/$(database)/documents/clientes/$(cid); }
+    function clientOk(uid)   { return exists(clientPath(uid)) && get(clientPath(uid)).data.get('ativo', true) == true; }
+    function ownsClient(cid, auid) { return cid == '' || (exists(clientPath(cid)) && get(clientPath(cid)).data.advogadoUid == auid); }
+    function lawyerOk() { return signed() && isActive(request.auth.uid); }
+
+    match /clientes/{cid} {
+      allow read: if signed() && (resource.data.advogadoUid == request.auth.uid || cid == request.auth.uid);
+
+      // o advogado ativo cria o cliente (a conta de login é criada pelo app)
+      allow create: if lawyerOk()
+        && request.resource.data.advogadoUid == request.auth.uid
+        && request.resource.data.uid == cid
+        && cid != request.auth.uid
+        && !exists(assocPath(cid))
+        && request.resource.data.email.lower() != 'willbrasilia@gmail.com'
+        && request.resource.data.keys().hasOnly(['uid','nome','email','telefone','advogadoUid','advogadoNome','siteSlug','ativo','criadoAt'])
+        && str(request.resource.data.nome, 150) && str(request.resource.data.email, 150) && str(request.resource.data.telefone, 40)
+        && request.resource.data.ativo == true;
+
+      allow update: if lawyerOk()
+        && resource.data.advogadoUid == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nome','telefone','ativo'])
+        && str(request.resource.data.nome, 150) && str(request.resource.data.telefone, 40);
+
+      allow delete: if signed() && resource.data.advogadoUid == request.auth.uid;
+    }
+
+    match /processos/{pid} {
+      function procPath() { return /databases/$(database)/documents/processos/$(pid); }
+
+      allow read: if signed() && (resource.data.advogadoUid == request.auth.uid
+        || (resource.data.clienteUid == request.auth.uid && clientOk(request.auth.uid)));
+
+      allow create: if lawyerOk()
+        && request.resource.data.advogadoUid == request.auth.uid
+        && ownsClient(request.resource.data.clienteUid, request.auth.uid)
+        && str(request.resource.data.titulo, 200) && str(request.resource.data.notas, 3000) && str(request.resource.data.resumoCliente, 1500);
+
+      allow update: if lawyerOk()
+        && resource.data.advogadoUid == request.auth.uid
+        && request.resource.data.advogadoUid == resource.data.advogadoUid
+        && (request.resource.data.clienteUid == resource.data.clienteUid || ownsClient(request.resource.data.clienteUid, request.auth.uid))
+        && str(request.resource.data.titulo, 200) && str(request.resource.data.notas, 3000) && str(request.resource.data.resumoCliente, 1500);
+
+      allow delete: if signed() && resource.data.advogadoUid == request.auth.uid;
+
+      match /andamentos/{aid} {
+        allow read: if signed() && (get(procPath()).data.advogadoUid == request.auth.uid
+          || (resource.data.visivelCliente == true && get(procPath()).data.clienteUid == request.auth.uid && clientOk(request.auth.uid)));
+        allow create, update: if lawyerOk()
+          && get(procPath()).data.advogadoUid == request.auth.uid
+          && str(request.resource.data.texto, 3000) && request.resource.data.visivelCliente is bool;
+        allow delete: if signed() && get(procPath()).data.advogadoUid == request.auth.uid;
+      }
+    }
+
+    match /eventos/{eid} {
+      allow read: if signed() && (resource.data.advogadoUid == request.auth.uid
+        || (resource.data.clienteUid == request.auth.uid && resource.data.visivelCliente == true && clientOk(request.auth.uid)));
+      allow create: if lawyerOk()
+        && request.resource.data.advogadoUid == request.auth.uid
+        && ownsClient(request.resource.data.clienteUid, request.auth.uid)
+        && str(request.resource.data.titulo, 160) && str(request.resource.data.notas, 1000);
+      allow update: if lawyerOk()
+        && resource.data.advogadoUid == request.auth.uid
+        && request.resource.data.advogadoUid == resource.data.advogadoUid
+        && (request.resource.data.clienteUid == resource.data.clienteUid || ownsClient(request.resource.data.clienteUid, request.auth.uid))
+        && str(request.resource.data.titulo, 160) && str(request.resource.data.notas, 1000);
+      allow delete: if signed() && resource.data.advogadoUid == request.auth.uid;
+    }
+
+    match /tarefas/{tid} {
+      allow read, delete: if signed() && resource.data.advogadoUid == request.auth.uid;
+      allow create: if lawyerOk() && request.resource.data.advogadoUid == request.auth.uid
+        && str(request.resource.data.titulo, 160) && str(request.resource.data.descricao, 1500);
+      allow update: if lawyerOk() && resource.data.advogadoUid == request.auth.uid
+        && request.resource.data.advogadoUid == resource.data.advogadoUid
+        && str(request.resource.data.titulo, 160) && str(request.resource.data.descricao, 1500);
+    }
+
     // ---------- registro de acessos ----------
     match /logins/{id} {
       allow create: if signed()

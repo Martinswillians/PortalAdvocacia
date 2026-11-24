@@ -17,3 +17,11 @@ Endereço: https://martinswillians.github.io/PortalAdvocacia/
 - Comunicados marcados como **pop-up** aparecem ao logar/criar conta; os públicos aparecem na página inicial.
 - Suspender um associado tira o site do ar.
 - Os índices do Firestore não são necessários.
+
+## 4. Área do cliente (fase 2)
+- Cada advogado ativo cadastra clientes em **Clientes** (a conta de login é criada pelo app, com senha provisória para enviar ao cliente).
+- **Processos** (com andamentos visíveis ou internos), **Agenda** (com .ics) e **Tarefas** (quadro) ficam no painel do advogado.
+- O cliente entra pelo mesmo "Entrar" e vê só os próprios processos, andamentos marcados como visíveis e compromissos marcados como visíveis.
+- A administração da AAB NÃO tem acesso a clientes, processos, agenda nem tarefas (sigilo profissional).
+- Documentos: por enquanto, por link (Drive/Dropbox) no andamento. Upload de arquivos exigiria Firebase Storage (plano pago) ou outro serviço.
+- Republique o `firestore.rules` depois de enviar o `index.html`.
