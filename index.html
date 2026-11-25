@@ -1388,6 +1388,8 @@ function route() {
   const mr = document.getElementById('modalRoot'); if (mr) mr.innerHTML = '';
   const [r, a, b2] = location.hash.replace(/^#\/?/, '').split('/');
   if (r === 'a' && a) { document.body.classList.remove('light', 'menu-open'); S.view = viewSite(decodeURIComponent(a).toLowerCase()); return; }
+  const primeira = !!S.routed && !S.visited; if (S.routed) S.visited = true;
+  if (primeira && r === '' && !S.user) return location.replace('#/entrar');
   renderShell(); const main = $('#main'); window.scrollTo(0, 0);
   if (S.cliente && ['', 'advogados', 'entrar', 'cadastro', 'painel', 'admin'].includes(r)) return location.replace('#/cliente');
   if (S.roleLoading && ['', 'advogados', 'painel', 'cliente', 'entrar', 'cadastro'].includes(r)) { main.innerHTML = '<div class="loading">Carregando…</div>'; renderHeader(); return; }
