@@ -271,6 +271,7 @@ a.stat:hover{border-color:var(--gold)}
  .hdr nav{margin-left:0;width:100%}
 }
 
+.backl{display:inline-block;margin-bottom:1rem;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--gold);border:1px solid var(--border);padding:.5rem .9rem}.backl:hover{background:var(--gold);color:var(--on-gold)}
 /* ===== aparencia ===== */
 .apar{display:flex;align-items:center;gap:.45rem;padding:.55rem .6rem .35rem}
 .apar .pd{width:18px;height:18px;border-radius:50%;border:2px solid transparent;padding:0;outline:1px solid rgba(255,255,255,.3)}
@@ -521,11 +522,11 @@ function renderSide() {
   let title = '';
   const groups = sideItems().map(([g, its]) => `<div class="grp">${g}</div>` + its.map(([hr, t, ik, k, n]) => { const on = act(k); if (on) title = t; return `<a class="${on ? 'on' : ''}" href="${hr}">${ic(ik)}<span>${t}</span>${n ? `<span class="nb">${n}</span>` : ''}</a>`; }).join('')).join('');
   const slug = S.assoc?.siteSlug;
-  sd.innerHTML = `<div class="sb-top"><a class="brand" href="#/"><img src="icons/icon-192.png" alt=""><div><b>PAB</b><small>Portal dos Advogados do Brasil</small></div></a>
+  sd.innerHTML = `<div class="sb-top"><a class="brand" href="${S.cliente ? '#/cliente' : '#/'}"><img src="icons/icon-192.png" alt=""><div><b>PAB</b><small>Portal dos Advogados do Brasil</small></div></a>
     <div class="ucard">${avatarH(S.admin ? '' : S.assoc?.foto, nome, 'sm')}<div><b>${esc(nome)}</b><small>${esc(sub)}</small></div></div><nav>${groups}</nav></div>
   <div class="sb-bot"><div class="apar" role="group" aria-label="Aparência">${Object.keys(PALS).map(k => `<button class="pd ${themeGet().pal === k ? 'on' : ''}" data-pal="${k}" title="Paleta ${k}" aria-label="Paleta ${k}" style="background:${PALS[k]}"></button>`).join('')}<button class="md" id="modeBtn" title="Alternar claro/escuro">${ic(themeGet().mode === 'dark' ? 'sun' : 'moon')}${themeGet().mode === 'dark' ? 'Claro' : 'Escuro'}</button></div>${slug && !S.admin ? `<a href="#/a/${esc(slug)}" target="_blank" rel="noopener">${ic('ext')}Ver meu site</a>` : ''}<a href="#/">${ic('globe')}Página inicial do PAB</a><button id="instBtn" hidden>${ic('dl')}Instalar app</button><button id="contaBtn">${ic('key')}Minha conta</button><button id="outBtn" class="out">${ic('out')}Sair</button></div>`;
   const tt = $('#tbTitle'); if (tt) tt.textContent = title || (S.admin ? 'Administração' : 'Meu painel');
-  $('#outBtn').onclick = () => { signOut(auth); location.hash = '#/'; };
+  $('#outBtn').onclick = () => { signOut(auth).then(() => { location.hash = '#/'; }); };
   $('#contaBtn').onclick = formConta;
   sd.querySelectorAll('.pd').forEach(b => b.onclick = () => themeSet({ pal: b.dataset.pal }));
   $('#modeBtn').onclick = () => themeSet({ mode: themeGet().mode === 'dark' ? 'light' : 'dark' });
@@ -577,7 +578,7 @@ function renderHeader() {
   <nav>${S.cliente ? clienteNav() : `${l('#/', 'Início', '')}${l('#/advogados', 'Advogados', 'advogados')}${S.user
     ? `${S.admin ? l('#/admin', 'Administração', 'admin') : S.cliente ? l('#/cliente', 'Área do cliente', 'cliente') : l('#/painel', 'Meu painel', 'painel')}<button id="contaBtn">Conta</button><button id="outBtn">Sair</button>`
     : `${l('#/entrar', 'Entrar', 'entrar')}${l('#/cadastro', 'Cadastrar-se', 'cadastro', 'cta')}`}`}</nav>`;
-  $('#outBtn') && ($('#outBtn').onclick = () => { signOut(auth); location.hash = '#/'; });
+  $('#outBtn') && ($('#outBtn').onclick = () => { signOut(auth).then(() => { location.hash = '#/'; }); });
   $('#contaBtn') && ($('#contaBtn').onclick = formConta);
   $('#bell') && ($('#bell').onclick = abreSino);
   const sn = $('#subnav'); if (!sn) return;
@@ -610,7 +611,7 @@ function viewHome(main) {
 const dirCard = s => `<a class="dcard" href="#/a/${esc(s.id)}"><div class="top">${s.foto ? `<img class="ph" src="${esc(s.foto)}" alt="">` : `<div class="ph">${esc(initials(s.nome))}</div>`}<div><h3>${esc(s.nome)}</h3><small>${esc(s.titulo || '')}</small></div></div><div class="tags">${(s.areas || []).slice(0, 3).map(a => `<span>${esc(a.nome)}</span>`).join('')}</div></a>`;
 function viewDirectory(main) {
   let q = '';
-  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Diretório</div><h1>Advogados <em>cadastrados</em></h1><p>Conheça os sites dos advogados cadastrados no PAB.</p></div></div><div class="toolbar"><input id="q" placeholder="Buscar por nome ou área de atuação…"></div><div class="dir" id="dr"></div></div>`;
+  main.innerHTML = `<div class="wrap pad"><a class="backl" href="${S.user ? (S.admin ? '#/admin' : S.cliente ? '#/cliente' : '#/painel') : '#/'}">← ${S.user ? 'Voltar ao meu painel' : 'Voltar ao início'}</a><div class="page-h"><div><div class="eyebrow">Diretório</div><h1>Advogados <em>cadastrados</em></h1><p>Conheça os sites dos advogados cadastrados no PAB.</p></div></div><div class="toolbar"><input id="q" placeholder="Buscar por nome ou área de atuação…"></div><div class="dir" id="dr"></div></div>`;
   const draw = () => { const t = q.toLowerCase(); const l = S.dirSites.filter(s => !t || [s.nome, s.titulo, ...(s.areas || []).map(a => a.nome)].join(' ').toLowerCase().includes(t)); $('#dr', main).innerHTML = l.map(dirCard).join('') || '<div class="empty" style="grid-column:1/-1"><b>Nenhum site encontrado</b></div>'; };
   $('#q', main).oninput = e => { q = e.target.value; draw(); }; draw(); return { refresh: draw };
 }
@@ -688,7 +689,7 @@ function viewSite(slug) {
     const links = [['sobre', 'Sobre', temSobre], ['areas', 'Áreas', areas.length], ['artigos', 'Artigos', arts.length], ['contato', 'Contato', true]].filter(x => x[2]);
     document.title = `${s.nome} | PAB`;
     $('#root').innerHTML = `<div class="site" style="--sb:${t[1]};--sb2:${t[2]};--sa:${t[3]};--st:${t[4]};--sm:${t[5]}">
-    ${!aberto ? '<div class="prev">Pré-visualização: este site ainda não está publicado</div>' : ''}<div class="bar"><span>${esc(s.nome)}</span><a href="#/">Site oferecido pelo PAB ↗</a></div>
+    ${!aberto ? '<div class="prev">Pré-visualização: este site ainda não está publicado</div>' : ''}<div class="bar"><span>${esc(s.nome)}</span>${S.user ? `<a href="${S.admin ? '#/admin' : S.cliente ? '#/cliente' : '#/painel'}">← Voltar ao meu ${S.cliente ? 'espaço' : 'painel'}</a>` : '<a href="#/">Site oferecido pelo PAB ↗</a>'}</div>
     <nav class="sn" id="sn"><a class="lg" data-go="topo" href="#/a/${esc(slug)}">${esc(ini)}<small>ADVOCACIA</small></a>
       <ul>${links.map(l => `<li><a href="#/a/${esc(slug)}" data-go="${l[0]}">${l[1]}</a></li>`).join('')}</ul><button class="tg" aria-label="Abrir menu"><i></i><i></i><i></i></button></nav>
     <header class="hero2 ${capa ? 'cv' : ''}" id="s-topo" ${capa ? `style="background-image:url(${capa})"` : ''}>${capa ? '<div class="dim"></div>' : `<div class="deco">${SCALE_SVG}</div>`}
@@ -1388,7 +1389,8 @@ function route() {
   const [r, a, b2] = location.hash.replace(/^#\/?/, '').split('/');
   if (r === 'a' && a) { document.body.classList.remove('light', 'menu-open'); S.view = viewSite(decodeURIComponent(a).toLowerCase()); return; }
   renderShell(); const main = $('#main'); window.scrollTo(0, 0);
-  if (S.roleLoading && ['painel', 'cliente', 'entrar', 'cadastro'].includes(r)) { main.innerHTML = '<div class="loading">Carregando…</div>'; renderHeader(); return; }
+  if (S.cliente && ['', 'advogados', 'entrar', 'cadastro', 'painel', 'admin'].includes(r)) return location.replace('#/cliente');
+  if (S.roleLoading && ['', 'advogados', 'painel', 'cliente', 'entrar', 'cadastro'].includes(r)) { main.innerHTML = '<div class="loading">Carregando…</div>'; renderHeader(); return; }
   if ((r === 'entrar' || r === 'cadastro') && !S.user) S.view = viewAuth(main, r === 'cadastro' ? 'reg' : 'login');
   else if (r === 'entrar' || r === 'cadastro') location.replace(S.admin ? '#/admin' : S.cliente ? '#/cliente' : '#/painel');
   else if (r === 'advogados') S.view = viewDirectory(main);
@@ -1453,7 +1455,7 @@ function attach(user) {
 }
 async function boot() {
   const watchdog = setTimeout(() => { if (!S.routed) { S.routed = true; try { route(); } catch (e) { console.error(e); } } }, 7000);
-  try { const c = await withTimeout(getDoc(doc(db, 'config', 'portal')), 4000); if (c.exists()) S.config = { ...DEF, ...c.data() }; } catch { /* usa o padrão */ }
+  try { const c = await withTimeout(getDoc(doc(db, 'config', 'portal')), 4000); if (c.exists()) { S.config = { ...DEF, ...c.data() }; ['heroTitulo', 'heroTexto', 'termos'].forEach(k => { if (/AAB|Associação dos Advogados/.test(S.config[k] || '')) S.config[k] = DEF[k]; }); } } catch { /* usa o padrão */ }
   publicListeners();
   onAuthStateChanged(auth, user => {
     stopAll(); S.user = user; S.admin = false; S.assoc = null; S.site = null; S.msgs = []; S.arts = []; S.insc = []; S.cli = []; S.proc = []; S.ev = []; S.tar = []; S.dc = []; S.chats = []; S.chat = null; S.cliente = null; S.roleLoading = false; S.associados = []; S.logins = []; S.sites = []; S.com = [];
