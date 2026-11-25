@@ -1,5 +1,5 @@
 // Service worker do portal PAB (funciona em subpasta, ex.: /advocacia/)
-const CACHE = 'pab-portal-v3';
+const CACHE = 'pab-portal-v4';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', e => {
