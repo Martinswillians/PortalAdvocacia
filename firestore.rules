@@ -176,6 +176,12 @@ service cloud.firestore {
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nome','telefone','ativo'])
         && str(request.resource.data.nome, 150) && str(request.resource.data.telefone, 40);
 
+      // o próprio cliente edita nome, telefone e foto
+      allow update: if signed() && cid == request.auth.uid && clientOk(cid)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nome','telefone','foto'])
+        && str(request.resource.data.nome, 150) && str(request.resource.data.telefone, 40)
+        && (!('foto' in request.resource.data) || str(request.resource.data.foto, 60000));
+
       allow delete: if signed() && resource.data.advogadoUid == request.auth.uid;
     }
 
@@ -221,6 +227,52 @@ service cloud.firestore {
         && (request.resource.data.clienteUid == resource.data.clienteUid || ownsClient(request.resource.data.clienteUid, request.auth.uid))
         && str(request.resource.data.titulo, 160) && str(request.resource.data.notas, 1000);
       allow delete: if signed() && resource.data.advogadoUid == request.auth.uid;
+    }
+
+    // documentos pedidos ao cliente (o cliente responde com um link)
+    match /documentos/{did} {
+      allow read: if signed() && (resource.data.advogadoUid == request.auth.uid
+        || (resource.data.clienteUid == request.auth.uid && clientOk(request.auth.uid)));
+      allow create: if lawyerOk()
+        && request.resource.data.advogadoUid == request.auth.uid
+        && request.resource.data.clienteUid != ''
+        && ownsClient(request.resource.data.clienteUid, request.auth.uid)
+        && request.resource.data.status == 'pedido'
+        && str(request.resource.data.titulo, 160) && str(request.resource.data.descricao, 400);
+      allow update: if (lawyerOk() && resource.data.advogadoUid == request.auth.uid
+          && request.resource.data.advogadoUid == resource.data.advogadoUid
+          && request.resource.data.clienteUid == resource.data.clienteUid)
+        || (signed() && resource.data.clienteUid == request.auth.uid && clientOk(request.auth.uid)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','linkCliente','obsCliente','enviadoEm'])
+          && request.resource.data.status == 'enviado'
+          && str(request.resource.data.linkCliente, 400) && str(request.resource.data.obsCliente, 300));
+      allow delete: if signed() && resource.data.advogadoUid == request.auth.uid;
+    }
+
+    // conversa advogado ↔ cliente (id do chat = uid do cliente)
+    match /chats/{cid} {
+      function chatOk(d) {
+        return d.clienteUid == cid && (
+          (lawyerOk() && d.advogadoUid == request.auth.uid && ownsClient(cid, request.auth.uid))
+          || (cid == request.auth.uid && clientOk(cid) && get(clientPath(cid)).data.advogadoUid == d.advogadoUid));
+      }
+      allow read: if signed() && (cid == request.auth.uid || resource.data.advogadoUid == request.auth.uid);
+      allow create: if signed() && chatOk(request.resource.data)
+        && request.resource.data.keys().hasOnly(['advogadoUid','clienteUid','ultimoTexto','ultimoDe','ultimoEm','lidoAdvEm','lidoCliEm']);
+      allow update: if signed() && chatOk(request.resource.data) && chatOk(resource.data)
+        && request.resource.data.keys().hasOnly(['advogadoUid','clienteUid','ultimoTexto','ultimoDe','ultimoEm','lidoAdvEm','lidoCliEm']);
+      allow delete: if false;
+
+      match /mensagens/{mid} {
+        allow read: if signed() && (resource.data.advogadoUid == request.auth.uid || resource.data.clienteUid == request.auth.uid);
+        allow create: if signed()
+          && request.resource.data.keys().hasOnly(['de','texto','advogadoUid','clienteUid','criadoAt'])
+          && request.resource.data.clienteUid == cid
+          && str(request.resource.data.texto, 2000) && request.resource.data.texto.size() > 0
+          && ((request.resource.data.de == 'adv' && lawyerOk() && request.resource.data.advogadoUid == request.auth.uid && ownsClient(cid, request.auth.uid))
+            || (request.resource.data.de == 'cli' && cid == request.auth.uid && clientOk(cid) && get(clientPath(cid)).data.advogadoUid == request.resource.data.advogadoUid));
+        allow update, delete: if false;
+      }
     }
 
     match /tarefas/{tid} {
