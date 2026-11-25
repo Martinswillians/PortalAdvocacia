@@ -1,7 +1,7 @@
 {
-  "name": "AAB | Associação dos Advogados do Brasil",
-  "short_name": "AAB",
-  "description": "Portal da AAB: site pessoal para advogados associados e comunicados da associação.",
+  "name": "PAB | Portal dos Advogados do Brasil",
+  "short_name": "PAB",
+  "description": "PAB: site pessoal para advogados, gestão de clientes e comunicados do portal.",
   "id": "./",
   "start_url": "./?source=pwa",
   "scope": "./",

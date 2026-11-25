@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AAB | Associação dos Advogados do Brasil</title>
-<meta name="description" content="Portal da Associação dos Advogados do Brasil: site pessoal para cada advogado associado, comunicados e atualizações da associação.">
+<title>PAB | Portal dos Advogados do Brasil</title>
+<meta name="description" content="PAB – Portal dos Advogados do Brasil: site pessoal para cada advogado, comunicados e atualizações do portal.">
 <meta name="theme-color" content="#0b1726">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="AAB">
+<meta name="apple-mobile-web-app-title" content="PAB">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#0b1726;--navy2:#13243a;--gold:#c9a84c;--gold2:#e8c97a;--cream:#f6f2ea;--muted:#8d98a8;--on-gold:#0b1726;--border:rgba(201,168,76,.22);--ok:#3aa57d;--warn:#d99a2b;--info:#3a8dde;--bad:#d1495b;--purple:#9b6bd1}
@@ -270,6 +270,55 @@ a.stat:hover{border-color:var(--gold)}
  .site .intro,.site .ct,.site .fi .two{grid-template-columns:1fr}.site .sn .tg{display:flex}.site .sn ul{display:none}.site .sn.open ul{display:flex;flex-direction:column;align-items:flex-start;position:absolute;top:100%;left:0;right:0;background:var(--sb);padding:1.2rem 1.6rem;gap:1.2rem;border-bottom:1px solid var(--sl)}.site .deco{display:none}.site .hero2{padding:4rem 1.4rem 3.5rem}.areas-ed .r2{grid-template-columns:56px 1fr auto}.areas-ed .r2 select{grid-column:1/-1}.areas-ed .r{grid-template-columns:1fr}
  .hdr nav{margin-left:0;width:100%}
 }
+
+/* ===== painel claro com menu lateral (admin e advogado) ===== */
+body.light{--navy:#f2f4f8;--navy2:#fff;--gold:#a67c1f;--gold2:#c9a84c;--cream:#1b2433;--muted:#5f6b80;--on-gold:#fff;--border:rgba(20,32,56,.14);--ok:#1f8a62;--warn:#b97a0c;--info:#2872c4;--bad:#c23a4d;--purple:#7d4fb8;background:#f2f4f8;color:#1b2433}
+body.light .check input:checked::after{color:#fff}
+body.light .modal{background:#fff;border-color:var(--border);box-shadow:0 24px 60px rgba(15,23,42,.25)}
+body.light .modal-back{background:rgba(15,23,42,.55)}
+body.light .card,body.light .stat{box-shadow:0 1px 2px rgba(15,23,42,.05)}
+body.light .btn.ghost{color:var(--gold);background:transparent}
+body.light input,body.light select,body.light textarea{background:#fff;color:#1b2433}
+.app{display:flex;min-height:100vh}
+.side{width:272px;flex:none;background:#0b1726;color:#e9edf3;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:space-between;overflow-y:auto;z-index:60}
+.side .sb-top{padding:1.3rem 1rem 1rem}
+.side .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:#fff;padding:.2rem .4rem 1.1rem;border-bottom:1px solid rgba(255,255,255,.09)}
+.side .brand img{width:38px;height:38px;border-radius:8px}
+.side .brand b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;letter-spacing:.12em;color:#e8c97a;line-height:1}
+.side .brand small{display:block;font-size:.55rem;letter-spacing:.06em;color:#98a4b6;margin-top:.25rem;line-height:1.3}
+.side .ucard{display:flex;align-items:center;gap:.7rem;margin:1rem 0 .6rem;padding:.75rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px}
+.side .ucard .ph{flex:none}
+.side .ucard b{display:block;font-weight:600;font-size:.8rem;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}
+.side .ucard small{font-size:.62rem;color:#98a4b6;letter-spacing:.04em}
+.side .grp{font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:#6f7d92;padding:1rem .8rem .35rem}
+.side nav{display:flex;flex-direction:column;gap:2px}
+.side nav a{display:flex;align-items:center;gap:.75rem;padding:.62rem .8rem;border-radius:8px;color:#c4cddb;text-decoration:none;font-size:.78rem;font-weight:400;border-left:3px solid transparent;position:relative}
+.side nav a svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.side nav a:hover{background:rgba(255,255,255,.06);color:#fff}
+.side nav a.on{background:rgba(201,168,76,.14);color:#e8c97a;border-left-color:#c9a84c;font-weight:600}
+.side nav a .nb{margin-left:auto;background:#c9a84c;color:#0b1726;font-size:.6rem;font-weight:700;border-radius:10px;padding:.08rem .45rem}
+.side .sb-bot{padding:1rem;border-top:1px solid rgba(255,255,255,.09)}
+.side .sb-bot a,.side .sb-bot button{display:flex;width:100%;align-items:center;gap:.7rem;background:none;border:none;color:#aab4c4;font-size:.74rem;padding:.5rem .6rem;border-radius:8px;text-decoration:none;text-align:left}
+.side .sb-bot a:hover,.side .sb-bot button:hover{background:rgba(255,255,255,.06);color:#fff}
+.side .sb-bot svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.side .sb-bot .out{color:#f1a1ac}
+.appmain{flex:1;min-width:0;display:flex;flex-direction:column}
+.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.9rem;padding:.75rem 1.4rem;min-height:58px}
+.topbar h4{font-family:'Montserrat',sans-serif;font-weight:600;font-size:.9rem;color:var(--cream);letter-spacing:.01em}
+.topbar .sp{flex:1}
+.topbar .tb-d{font-size:.7rem;color:var(--muted)}
+.topbar .tb-a{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--gold);border:1px solid var(--border);padding:.45rem .8rem;border-radius:6px;background:#fff}
+.topbar .burger{display:none;background:#fff;border:1px solid var(--border);border-radius:6px;width:38px;height:38px;align-items:center;justify-content:center;color:var(--cream)}
+.topbar .burger svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.appmain main{flex:1}
+.appmain .ft{border-top:1px solid var(--border);color:var(--muted);padding:1.2rem 1.4rem;font-size:.68rem;text-align:center}
+.side-ov{display:none}
+@media(max-width:900px){
+  .side{position:fixed;left:0;top:0;transform:translateX(-100%);transition:transform .25s}
+  body.menu-open .side{transform:none;box-shadow:0 0 40px rgba(0,0,0,.4)}
+  body.menu-open .side-ov{display:block;position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:55}
+  .topbar .burger{display:flex}.topbar .tb-d{display:none}
+}
 </style>
 </head>
 <body>
@@ -307,7 +356,7 @@ const TEMAS = {
   vinho: ['Vinho', '#2a0a18', '#3a1226', '#e0a58f', '#fbeee9', '#c19aa5'],
   grafite: ['Grafite', '#14161c', '#1f222b', '#e5e5e5', '#f4f4f4', '#9a9fab']
 };
-const DEF = { aprovacaoAuto: false, heroTitulo: 'Seu site profissional, oferecido pela AAB', heroTexto: 'A Associação dos Advogados do Brasil oferece a cada advogado associado um site pessoal pronto para uso, com painel de gestão e comunicados oficiais da associação.', suporteEmail: ADMIN_EMAIL, termos: 'Declaro que as informações fornecidas são verdadeiras, que sou advogado(a) regularmente inscrito(a) na OAB e que concordo com o tratamento dos meus dados pela AAB para gestão do meu cadastro e do meu site pessoal.' };
+const DEF = { aprovacaoAuto: false, heroTitulo: 'Seu site profissional, oferecido pelo PAB', heroTexto: 'O PAB – Portal dos Advogados do Brasil oferece a cada advogado um site pessoal pronto para uso, com painel de gestão e comunicados do portal.', suporteEmail: ADMIN_EMAIL, termos: 'Declaro que as informações fornecidas são verdadeiras, que sou advogado(a) regularmente inscrito(a) na OAB e que concordo com o tratamento dos meus dados pelo PAB para gestão do meu cadastro e do meu site pessoal.' };
 
 /* ---------- utilitários ---------- */
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -366,13 +415,13 @@ function avisoHtml(c, adm) {
   return `<div class="aviso ${esc(c.tipo)}"><div class="t"><span>${t[0]} ${t[1]}</span>${c.fixado ? '<span class="pin">📌 fixado</span>' : ''}<span>${fmtD(c.criadoAt)}</span>${adm ? `${c.ativo === false ? '<span class="chip s-mute">inativo</span>' : ''}${c.popup ? '<span class="chip s-info">pop-up</span>' : ''}${c.publico ? '<span class="chip s-ok">público</span>' : '<span class="chip s-mute">só associados</span>'}` : ''}</div>
   <h4>${esc(c.titulo)}</h4><p>${nl(c.texto)}</p>${safeUrl(c.link) ? `<a class="lk" href="${esc(c.link)}" target="_blank" rel="noopener">${esc(c.linkTexto || 'Saiba mais')} →</a>` : ''}</div>`;
 }
-const boardHtml = (list, vazio) => list.length ? `<div class="board">${list.map(c => avisoHtml(c)).join('')}</div>` : `<div class="empty"><b>Sem comunicados no momento</b>${vazio || 'Os avisos e atualizações da AAB aparecem aqui.'}</div>`;
+const boardHtml = (list, vazio) => list.length ? `<div class="board">${list.map(c => avisoHtml(c)).join('')}</div>` : `<div class="empty"><b>Sem comunicados no momento</b>${vazio || 'Os avisos e atualizações do PAB aparecem aqui.'}</div>`;
 const seenKey = c => `aab_seen_${S.user?.uid}_${c.id}_${ms(c.atualizadoAt || c.criadoAt)}`;
 function showPopups() {
   if (!S.user || S.admin || S.cliente) return;
   const list = visiveis().filter(c => c.popup && !localStorage.getItem(seenKey(c)));
   if (!list.length) return;
-  openModal(`<div class="eyebrow">Comunicados da AAB</div><h2>Novidades para você</h2><div class="board" style="max-height:55vh;overflow:auto;margin-bottom:.4rem">${list.map(c => avisoHtml(c)).join('')}</div><div class="acts"><button class="btn sm" data-ok>Entendi</button></div>`,
+  openModal(`<div class="eyebrow">Comunicados do PAB</div><h2>Novidades para você</h2><div class="board" style="max-height:55vh;overflow:auto;margin-bottom:.4rem">${list.map(c => avisoHtml(c)).join('')}</div><div class="acts"><button class="btn sm" data-ok>Entendi</button></div>`,
     (m, c) => { m.querySelector('[data-ok]').onclick = () => { list.forEach(x => { try { localStorage.setItem(seenKey(x), '1'); } catch { /* ok */ } }); c(); }; });
 }
 
@@ -397,10 +446,80 @@ async function logAccess(user) {
   return true;
 }
 
+
+/* ---------- casca com menu lateral (painel claro) ---------- */
+const ICO = {
+  grid:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>',
+  users:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',
+  mail:'<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>',
+  megaphone:'<path d="M3 11v2a1 1 0 0 0 1 1h3l8 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M19 8a5 5 0 0 1 0 8"/>',
+  activity:'<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',
+  settings:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',
+  briefcase:'<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
+  scale:'<path d="M12 3v18M5 21h14M4 7h16M7 7l-3 7a3 3 0 0 0 6 0zM17 7l-3 7a3 3 0 0 0 6 0z"/>',
+  chat:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+  cal:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+  check:'<path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>',
+  globe:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>',
+  file:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/>',
+  user:'<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+  out:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>',
+  ext:'<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/>',
+  key:'<circle cx="7.5" cy="15.5" r="4.5"/><path d="m21 2-9.6 9.6M15.5 7.5l3 3"/>',
+  dl:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>',
+  menu:'<path d="M3 6h18M3 12h18M3 18h18"/>'
+};
+const ic = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${ICO[k]}</svg>`;
+function appMode() {
+  const r = location.hash.replace(/^#\/?/, '').split('/')[0];
+  return (r === 'admin' && !!S.admin) || (r === 'painel' && !!S.user && !S.admin && !S.cliente && !S.roleLoading);
+}
+function sideItems() {
+  const un = S.msgs.filter(m => !m.lida).length;
+  if (S.admin) return [
+    ['Painel', [['#/admin', 'Visão geral', 'grid', ''], ['#/admin/associados', 'Advogados', 'users', 'associados', S.associados.filter(a => a.status === 'pendente').length]]],
+    ['Portal', [['#/admin/comunicados', 'Comunicados', 'megaphone', 'comunicados'], ['#/admin/acessos', 'Acessos', 'activity', 'acessos'], ['#/admin/config', 'Configurações', 'settings', 'config']]]];
+  return [
+    ['Painel', [['#/painel', 'Visão geral', 'grid', '']]],
+    ['Gestão', [['#/painel/clientes', 'Clientes', 'users', 'clientes'], ['#/painel/processos', 'Processos', 'scale', 'processo'], ['#/painel/conversas', 'Conversas', 'chat', 'conversas', S.chats.filter(advUnread).length], ['#/painel/agenda', 'Agenda', 'cal', 'agenda'], ['#/painel/tarefas', 'Tarefas', 'check', 'tarefas']]],
+    ['Site pessoal', [['#/painel/site', 'Meu site', 'globe', 'site'], ['#/painel/artigos', 'Artigos', 'file', 'artigos'], ['#/painel/mensagens', 'Mensagens', 'mail', 'mensagens', un]]],
+    ['Conta', [['#/painel/perfil', 'Meu perfil', 'user', 'perfil']]]];
+}
+function renderSide() {
+  const sd = $('#side'); if (!sd) return;
+  const p = location.hash.replace(/^#\/?/, '').split('/');
+  const act = (k) => (p[1] || '') === k || (k === 'processo' && p[1] === 'processos');
+  const nome = S.admin ? 'Administrador' : (S.assoc?.nome || S.user.displayName || S.user.email);
+  const sub = S.admin ? S.user.email : ({ ativo: 'Advogado(a) · ativo', pendente: 'Cadastro em análise', suspenso: 'Acesso suspenso', recusado: 'Cadastro recusado' }[S.assoc?.status] || 'Advogado(a)');
+  let title = '';
+  const groups = sideItems().map(([g, its]) => `<div class="grp">${g}</div>` + its.map(([hr, t, ik, k, n]) => { const on = act(k); if (on) title = t; return `<a class="${on ? 'on' : ''}" href="${hr}">${ic(ik)}<span>${t}</span>${n ? `<span class="nb">${n}</span>` : ''}</a>`; }).join('')).join('');
+  const slug = S.assoc?.siteSlug;
+  sd.innerHTML = `<div class="sb-top"><a class="brand" href="#/"><img src="icons/icon-192.png" alt=""><div><b>PAB</b><small>Portal dos Advogados do Brasil</small></div></a>
+    <div class="ucard">${avatarH(S.admin ? '' : S.assoc?.foto, nome, 'sm')}<div><b>${esc(nome)}</b><small>${esc(sub)}</small></div></div><nav>${groups}</nav></div>
+  <div class="sb-bot">${slug && !S.admin ? `<a href="#/a/${esc(slug)}" target="_blank" rel="noopener">${ic('ext')}Ver meu site</a>` : ''}<a href="#/">${ic('globe')}Página inicial do PAB</a><button id="instBtn" hidden>${ic('dl')}Instalar app</button><button id="contaBtn">${ic('key')}Minha conta</button><button id="outBtn" class="out">${ic('out')}Sair</button></div>`;
+  const tt = $('#tbTitle'); if (tt) tt.textContent = title || (S.admin ? 'Administração' : 'Meu painel');
+  $('#outBtn').onclick = () => { signOut(auth); location.hash = '#/'; };
+  $('#contaBtn').onclick = formConta;
+  if (deferredInstall) $('#instBtn').hidden = false;
+  $('#instBtn').onclick = async () => { if (deferredInstall) { deferredInstall.prompt(); deferredInstall = null; $('#instBtn').hidden = true; } };
+  sd.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => document.body.classList.remove('menu-open')));
+}
+function renderAppShell() {
+  document.body.classList.add('light');
+  const hoje = new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
+  $('#root').innerHTML = `<div class="app"><aside class="side" id="side"></aside><div class="side-ov" id="sideOv"></div><div class="appmain"><div class="topbar"><button class="burger" id="burger" aria-label="Menu">${ic('menu').replace('<svg','<svg')}</button><h4 id="tbTitle"></h4><span class="sp"></span><span class="tb-d">${esc(hoje)}</span></div><main id="main"></main>
+  <footer class="ft">PAB · Portal dos Advogados do Brasil · Dúvidas: <a href="mailto:${esc(S.config.suporteEmail)}">${esc(S.config.suporteEmail)}</a></footer></div></div>`;
+  $('#burger').onclick = () => document.body.classList.toggle('menu-open');
+  $('#sideOv').onclick = () => document.body.classList.remove('menu-open');
+  renderSide();
+}
+
 /* ---------- casca ---------- */
 function renderShell() {
+  const app = appMode(); document.body.classList.toggle('light', app); document.body.classList.remove('menu-open');
+  if (app) return renderAppShell();
   $('#root').innerHTML = `<header class="hdr"><div class="hdr-in" id="hdr"></div><div id="subnav"></div></header><main id="main"></main>
-  <footer class="ft">AAB · Associação dos Advogados do Brasil<br>Dúvidas: <a href="mailto:${esc(S.config.suporteEmail)}">${esc(S.config.suporteEmail)}</a> <button id="instBtn" hidden>· Instalar app</button></footer>`;
+  <footer class="ft">PAB · Portal dos Advogados do Brasil<br>Dúvidas: <a href="mailto:${esc(S.config.suporteEmail)}">${esc(S.config.suporteEmail)}</a> <button id="instBtn" hidden>· Instalar app</button></footer>`;
   renderHeader();
   if (deferredInstall) $('#instBtn').hidden = false;
   $('#instBtn').onclick = async () => { if (deferredInstall) { deferredInstall.prompt(); deferredInstall = null; $('#instBtn').hidden = true; } };
@@ -421,13 +540,14 @@ function abreSino() {
     (m, c) => { m.querySelector('[data-ok]').onclick = c; m.querySelectorAll('a').forEach(a => a.addEventListener('click', c)); });
 }
 function renderHeader() {
+  if (document.body.classList.contains('light')) { if (appMode()) renderSide(); return; }
   const h = $('#hdr'); if (!h) return;
   const r = location.hash.replace(/^#\/?/, '').split('/')[0];
   const l = (href, t, k, cls = '') => `<a class="${cls} ${r === k ? 'on' : ''}" href="${href}">${t}</a>`;
-  h.innerHTML = `<a class="brand" href="#/"><img src="icons/icon-192.png" alt=""><div><b>AAB</b><small>Associação dos Advogados do Brasil</small></div></a>
+  h.innerHTML = `<a class="brand" href="#/"><img src="icons/icon-192.png" alt=""><div><b>PAB</b><small>Portal dos Advogados do Brasil</small></div></a>
   <nav>${S.cliente ? clienteNav() : `${l('#/', 'Início', '')}${l('#/advogados', 'Advogados', 'advogados')}${S.user
     ? `${S.admin ? l('#/admin', 'Administração', 'admin') : S.cliente ? l('#/cliente', 'Área do cliente', 'cliente') : l('#/painel', 'Meu painel', 'painel')}<button id="contaBtn">Conta</button><button id="outBtn">Sair</button>`
-    : `${l('#/entrar', 'Entrar', 'entrar')}${l('#/cadastro', 'Associar-se', 'cadastro', 'cta')}`}`}</nav>`;
+    : `${l('#/entrar', 'Entrar', 'entrar')}${l('#/cadastro', 'Cadastrar-se', 'cadastro', 'cta')}`}`}</nav>`;
   $('#outBtn') && ($('#outBtn').onclick = () => { signOut(auth); location.hash = '#/'; });
   $('#contaBtn') && ($('#contaBtn').onclick = formConta);
   $('#bell') && ($('#bell').onclick = abreSino);
@@ -436,7 +556,7 @@ function renderHeader() {
   const un = S.msgs.filter(m => !m.lida).length;
   if (S.cliente && p[0] === 'cliente') sn.innerHTML = `<div class="sub-nav">${[['#/cliente', 'Meus processos', ''], ['#/cliente/agenda', 'Agenda', 'agenda'], ['#/cliente/mensagens', 'Mensagens', 'mensagens'], ['#/cliente/documentos', 'Documentos', 'documentos'], ['#/cliente/perfil', 'Meu perfil', 'perfil']].map(([hr, t, k]) => `<a class="${(p[1] || '') === k || (k === '' && p[1] === 'processo') ? 'on' : ''}" href="${hr}">${t}${k === 'mensagens' && cliUnread() ? '<span class="dot"></span>' : ''}${k === 'documentos' && S.dc.some(d => d.status === 'pedido') ? '<span class="dot"></span>' : ''}</a>`).join('')}</div>`;
   else if (S.user && !S.admin && !S.cliente && p[0] === 'painel') sn.innerHTML = `<div class="sub-nav">${[['#/painel', 'Início', ''], ['#/painel/clientes', 'Clientes', 'clientes'], ['#/painel/processos', 'Processos', 'processo'], ['#/painel/conversas', 'Conversas', 'conversas'], ['#/painel/agenda', 'Agenda', 'agenda'], ['#/painel/tarefas', 'Tarefas', 'tarefas'], ['#/painel/site', 'Meu site', 'site'], ['#/painel/artigos', 'Artigos', 'artigos'], ['#/painel/mensagens', 'Mensagens', 'mensagens'], ['#/painel/perfil', 'Meu perfil', 'perfil']].map(([hr, t, k]) => `<a class="${((p[1] || '') === k || (k === 'processo' && p[1] === 'processos')) ? 'on' : ''}" href="${hr}">${t}${k === 'mensagens' && un ? '<span class="dot"></span>' : ''}${k === 'conversas' && S.chats.some(advUnread) ? '<span class="dot"></span>' : ''}</a>`).join('')}</div>`;
-  else if (S.admin && p[0] === 'admin') sn.innerHTML = `<div class="sub-nav">${[['#/admin', 'Resumo', ''], ['#/admin/associados', 'Associados', 'associados'], ['#/admin/comunicados', 'Comunicados', 'comunicados'], ['#/admin/acessos', 'Acessos', 'acessos'], ['#/admin/config', 'Configurações', 'config']].map(([hr, t, k]) => `<a class="${(p[1] || '') === k ? 'on' : ''}" href="${hr}">${t}${k === 'associados' && S.associados.some(a => a.status === 'pendente') ? '<span class="dot"></span>' : ''}</a>`).join('')}</div>`;
+  else if (S.admin && p[0] === 'admin') sn.innerHTML = `<div class="sub-nav">${[['#/admin', 'Resumo', ''], ['#/admin/associados', 'Advogados', 'associados'], ['#/admin/comunicados', 'Comunicados', 'comunicados'], ['#/admin/acessos', 'Acessos', 'acessos'], ['#/admin/config', 'Configurações', 'config']].map(([hr, t, k]) => `<a class="${(p[1] || '') === k ? 'on' : ''}" href="${hr}">${t}${k === 'associados' && S.associados.some(a => a.status === 'pendente') ? '<span class="dot"></span>' : ''}</a>`).join('')}</div>`;
   else sn.innerHTML = '';
 }
 function formConta() {
@@ -449,25 +569,25 @@ function formConta() {
 function viewHome(main) {
   const c = S.config;
   main.innerHTML = `<section class="hero"><svg class="seal" viewBox="0 0 200 230" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="14" r="5"/><path d="M100 19V196M30 46H170M30 46L10 124M30 46L50 124M170 46L150 124M170 46L190 124M6 124H54Q30 160 6 124ZM146 124H194Q170 160 146 124ZM70 212H130M80 196H120L126 212H74Z"/></svg>
-    <div class="wrap"><div class="eyebrow">Associação dos Advogados do Brasil</div><h1>${esc(c.heroTitulo)}</h1><p class="lead">${esc(c.heroTexto)}</p>
-    <div class="ctas">${S.user ? `<a class="btn" href="${S.admin ? '#/admin' : S.cliente ? '#/cliente' : '#/painel'}">${S.cliente ? 'Ir para a área do cliente' : 'Ir para o meu painel'}</a>` : '<a class="btn" href="#/cadastro">Quero me associar</a><a class="btn ghost" href="#/entrar">Já sou associado</a>'}<a class="btn ghost" href="#/advogados">Ver advogados associados</a></div></div></section>
-  <div class="wrap pad"><div class="eyebrow">Quadro de avisos</div><h2 style="font-size:2.2rem;margin-bottom:1.2rem">Comunicados da <em style="color:var(--gold)">AAB</em></h2><div id="bd"></div>
+    <div class="wrap"><div class="eyebrow">Portal dos Advogados do Brasil</div><h1>${esc(c.heroTitulo)}</h1><p class="lead">${esc(c.heroTexto)}</p>
+    <div class="ctas">${S.user ? `<a class="btn" href="${S.admin ? '#/admin' : S.cliente ? '#/cliente' : '#/painel'}">${S.cliente ? 'Ir para a área do cliente' : 'Ir para o meu painel'}</a>` : '<a class="btn" href="#/cadastro">Quero me cadastrar</a><a class="btn ghost" href="#/entrar">Já tenho cadastro</a>'}<a class="btn ghost" href="#/advogados">Ver advogados cadastrados</a></div></div></section>
+  <div class="wrap pad"><div class="eyebrow">Quadro de avisos</div><h2 style="font-size:2.2rem;margin-bottom:1.2rem">Comunicados da <em style="color:var(--gold)">PAB</em></h2><div id="bd"></div>
   <div class="sec-t" style="margin-top:3rem">O que você recebe</div>
-  <div class="feat"><div><span>🌐</span><h3>Site pessoal</h3><p>Uma página profissional com seu perfil, áreas de atuação, contato e formulário de mensagens, no ar em minutos.</p></div><div><span>📣</span><h3>Comunicados oficiais</h3><p>Avisos, alertas, publicações e atualizações da associação direto no seu acesso.</p></div><div><span>🛡️</span><h3>Gestão pela associação</h3><p>Cadastro validado pela AAB e controle de acesso para manter a rede de associados confiável.</p></div></div>
-  <div class="sec-t" style="margin-top:3rem">Advogados associados</div><div class="dir" id="dr"></div></div>`;
-  const draw = () => { $('#bd', main).innerHTML = boardHtml(visiveis().filter(x => x.publico || S.user)); $('#dr', main).innerHTML = S.dirSites.slice(0, 6).map(dirCard).join('') || '<div class="empty" style="grid-column:1/-1">Em breve, os sites dos associados aparecerão aqui.</div>'; };
+  <div class="feat"><div><span>🌐</span><h3>Site pessoal</h3><p>Uma página profissional com seu perfil, áreas de atuação, contato e formulário de mensagens, no ar em minutos.</p></div><div><span>📣</span><h3>Comunicados oficiais</h3><p>Avisos, alertas, publicações e atualizações do portal direto no seu acesso.</p></div><div><span>🛡️</span><h3>Gestão pelo portal</h3><p>Cadastro validado pelo PAB e controle de acesso para manter a rede de advogados confiável.</p></div></div>
+  <div class="sec-t" style="margin-top:3rem">Advogados cadastrados</div><div class="dir" id="dr"></div></div>`;
+  const draw = () => { $('#bd', main).innerHTML = boardHtml(visiveis().filter(x => x.publico || S.user)); $('#dr', main).innerHTML = S.dirSites.slice(0, 6).map(dirCard).join('') || '<div class="empty" style="grid-column:1/-1">Em breve, os sites dos advogados aparecerão aqui.</div>'; };
   draw(); return { refresh: draw };
 }
 const dirCard = s => `<a class="dcard" href="#/a/${esc(s.id)}"><div class="top">${s.foto ? `<img class="ph" src="${esc(s.foto)}" alt="">` : `<div class="ph">${esc(initials(s.nome))}</div>`}<div><h3>${esc(s.nome)}</h3><small>${esc(s.titulo || '')}</small></div></div><div class="tags">${(s.areas || []).slice(0, 3).map(a => `<span>${esc(a.nome)}</span>`).join('')}</div></a>`;
 function viewDirectory(main) {
   let q = '';
-  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Diretório</div><h1>Advogados <em>associados</em></h1><p>Conheça os sites dos advogados associados à AAB.</p></div></div><div class="toolbar"><input id="q" placeholder="Buscar por nome ou área de atuação…"></div><div class="dir" id="dr"></div></div>`;
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Diretório</div><h1>Advogados <em>cadastrados</em></h1><p>Conheça os sites dos advogados cadastrados no PAB.</p></div></div><div class="toolbar"><input id="q" placeholder="Buscar por nome ou área de atuação…"></div><div class="dir" id="dr"></div></div>`;
   const draw = () => { const t = q.toLowerCase(); const l = S.dirSites.filter(s => !t || [s.nome, s.titulo, ...(s.areas || []).map(a => a.nome)].join(' ').toLowerCase().includes(t)); $('#dr', main).innerHTML = l.map(dirCard).join('') || '<div class="empty" style="grid-column:1/-1"><b>Nenhum site encontrado</b></div>'; };
   $('#q', main).oninput = e => { q = e.target.value; draw(); }; draw(); return { refresh: draw };
 }
 function viewAuth(main, mode) {
-  main.innerHTML = `<div class="wrap pad"><div class="auth-grid"><div><div class="eyebrow">Quadro de avisos</div><h2 style="font-size:2.1rem;margin-bottom:1.2rem">Comunicados da AAB</h2><div id="bd"></div></div>
-  <div class="card"><div class="tabs"><button data-m="login" class="${mode === 'login' ? 'on' : ''}">Entrar</button><button data-m="reg" class="${mode === 'reg' ? 'on' : ''}">Associar-se</button></div>
+  main.innerHTML = `<div class="wrap pad"><div class="auth-grid"><div><div class="eyebrow">Quadro de avisos</div><h2 style="font-size:2.1rem;margin-bottom:1.2rem">Comunicados do PAB</h2><div id="bd"></div></div>
+  <div class="card"><div class="tabs"><button data-m="login" class="${mode === 'login' ? 'on' : ''}">Entrar</button><button data-m="reg" class="${mode === 'reg' ? 'on' : ''}">Cadastrar-se</button></div>
   <button class="gbtn" id="gBtn"><svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17.5z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.5-.8-3-.8-4.7s.3-3.2.8-4.7l-7.9-6.1C.9 16.4 0 20.1 0 24s.9 7.6 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.9 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>Continuar com Google</button>
   <div class="or">ou com e-mail</div>
   <form id="af" novalidate>${mode === 'reg' ? `<div class="field"><label>Nome completo</label><input name="nome" maxlength="150" autocomplete="name"></div>
@@ -478,7 +598,7 @@ function viewAuth(main, mode) {
     ${mode === 'reg' ? `<label class="check"><input type="checkbox" name="termos"><span>${esc(S.config.termos)}</span></label>` : ''}
     <p class="msg-err" id="ae"></p><button class="btn" style="width:100%" id="ab">${mode === 'reg' ? 'Criar minha conta' : 'Entrar'}</button>
     ${mode === 'login' ? '<p style="text-align:center;margin-top:1rem"><button type="button" id="fg" style="background:none;border:none;color:var(--muted);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase">Esqueci minha senha</button></p>' : ''}</form>
-  ${mode === 'reg' ? `<p class="hint" style="margin-top:1rem">${S.config.aprovacaoAuto ? 'Seu acesso é liberado assim que a conta é criada.' : 'Após o cadastro, a AAB valida seus dados e libera o seu site pessoal.'}</p>` : ''}</div></div></div>`;
+  ${mode === 'reg' ? `<p class="hint" style="margin-top:1rem">${S.config.aprovacaoAuto ? 'Seu acesso é liberado assim que a conta é criada.' : 'Após o cadastro, o PAB valida seus dados e libera o seu site pessoal.'}</p>` : ''}</div></div></div>`;
   const dr = () => { $('#bd', main).innerHTML = boardHtml(visiveis().filter(x => x.publico || S.user)); }; dr();
   $$('.tabs [data-m]', main).forEach(b => b.onclick = () => { location.hash = b.dataset.m === 'reg' ? '#/cadastro' : '#/entrar'; });
   const err = (m, ok) => { const e = $('#ae', main); e.textContent = m || ''; e.className = ok ? 'msg-ok' : 'msg-err'; };
@@ -528,7 +648,7 @@ function viewSite(slug) {
     let s = null, arts = [];
     try { const d = await withTimeout(getDoc(doc(db, 'sites', slug)), 10000); if (d.exists()) s = { id: d.id, ...d.data() }; } catch { /* não encontrado ou sem permissão */ }
     if (!alive) return;
-    if (!s) { $('#root').innerHTML = `<div class="wrap pad" style="text-align:center"><div class="empty"><b>Site não encontrado</b>Este endereço não existe ou ainda não foi publicado.<br><br><a class="btn" href="#/">Voltar ao portal da AAB</a></div></div>`; return; }
+    if (!s) { $('#root').innerHTML = `<div class="wrap pad" style="text-align:center"><div class="empty"><b>Site não encontrado</b>Este endereço não existe ou ainda não foi publicado.<br><br><a class="btn" href="#/">Voltar ao PAB</a></div></div>`; return; }
     try { arts = docs(await withTimeout(getDocs(query(collection(db, 'sites', slug, 'artigos'), where('publicado', '==', true))), 10000)).sort((a, b) => String(b.data || '').localeCompare(String(a.data || '')) || ms(b.criadoAt) - ms(a.criadoAt)); } catch { /* sem artigos */ }
     if (!alive) return;
     const t = TEMAS[s.tema] || TEMAS.classico, ct = s.contato || {}, wa = String(ct.whatsapp || '').replace(/\D/g, '');
@@ -537,9 +657,9 @@ function viewSite(slug) {
     const cit = s.citacao || {}, capa = okImg(s.capa), foto = okImg(s.foto) || (/^https?:/.test(s.foto || '') ? s.foto : ''), ini = initials(s.nome);
     const aberto = s.publicado, temSobre = ps.length || foto, url = siteUrl(slug);
     const links = [['sobre', 'Sobre', temSobre], ['areas', 'Áreas', areas.length], ['artigos', 'Artigos', arts.length], ['contato', 'Contato', true]].filter(x => x[2]);
-    document.title = `${s.nome} | AAB`;
+    document.title = `${s.nome} | PAB`;
     $('#root').innerHTML = `<div class="site" style="--sb:${t[1]};--sb2:${t[2]};--sa:${t[3]};--st:${t[4]};--sm:${t[5]}">
-    ${!aberto ? '<div class="prev">Pré-visualização: este site ainda não está publicado</div>' : ''}<div class="bar"><span>${esc(s.nome)}</span><a href="#/">Site oferecido pela AAB ↗</a></div>
+    ${!aberto ? '<div class="prev">Pré-visualização: este site ainda não está publicado</div>' : ''}<div class="bar"><span>${esc(s.nome)}</span><a href="#/">Site oferecido pelo PAB ↗</a></div>
     <nav class="sn" id="sn"><a class="lg" data-go="topo" href="#/a/${esc(slug)}">${esc(ini)}<small>ADVOCACIA</small></a>
       <ul>${links.map(l => `<li><a href="#/a/${esc(slug)}" data-go="${l[0]}">${l[1]}</a></li>`).join('')}</ul><button class="tg" aria-label="Abrir menu"><i></i><i></i><i></i></button></nav>
     <header class="hero2 ${capa ? 'cv' : ''}" id="s-topo" ${capa ? `style="background-image:url(${capa})"` : ''}>${capa ? '<div class="dim"></div>' : `<div class="deco">${SCALE_SVG}</div>`}
@@ -562,8 +682,8 @@ function viewSite(slug) {
       ${safeUrl(ct.linkedin) ? `<div><small>LinkedIn</small><a target="_blank" rel="noopener" href="${esc(ct.linkedin)}">Ver perfil</a></div>` : ''}${ct.endereco ? `<div><small>Localização</small>${esc(ct.endereco)}</div>` : ''}</div>
       ${s.formContato !== false && aberto ? `<form class="fi" id="sf"><input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true"><div class="two"><input name="nome" placeholder="Seu nome" required maxlength="150"><input name="tel" type="tel" placeholder="Telefone" maxlength="40"></div><input name="email" type="email" placeholder="Seu e-mail" required maxlength="150">
         <select name="area"><option value="">Área de interesse</option>${areas.map(a => `<option>${esc(a.nome)}</option>`).join('')}<option>Outro assunto</option></select><textarea name="msg" placeholder="Descreva brevemente o seu caso" required maxlength="3000"></textarea><button>Enviar consulta →</button><p id="sm" style="font-size:.78rem"></p></form>` : ''}</div></div></section>
-    <footer class="fo"><div class="ln">${ct.email ? `<a href="mailto:${esc(ct.email)}">E-mail</a>` : ''}${ct.instagram ? `<a target="_blank" rel="noopener" href="https://instagram.com/${esc(String(ct.instagram).replace(/^@/, ''))}">Instagram</a>` : ''}<button data-share>Compartilhar</button><a href="#/">Portal AAB</a></div>
-      © ${new Date().getFullYear()} ${esc(s.nome)} · Associado(a) à AAB – Associação dos Advogados do Brasil</footer>
+    <footer class="fo"><div class="ln">${ct.email ? `<a href="mailto:${esc(ct.email)}">E-mail</a>` : ''}${ct.instagram ? `<a target="_blank" rel="noopener" href="https://instagram.com/${esc(String(ct.instagram).replace(/^@/, ''))}">Instagram</a>` : ''}<button data-share>Compartilhar</button><a href="#/">Portal PAB</a></div>
+      © ${new Date().getFullYear()} ${esc(s.nome)} · Advogado(a) no PAB – Portal dos Advogados do Brasil</footer>
     <button class="fab" data-share aria-label="Compartilhar o site" title="Compartilhar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button></div>`;
     const site = $('.site');
     const drawAreas = g => { $('#ag', site).innerHTML = areas.filter(a => (a.grupo | 0) === g).map(a => `<div class="ac"><div class="ic">${esc(a.icone || '⚖️')}</div><h3>${esc(a.nome)}</h3><p>${esc(a.desc || '')}</p></div>`).join(''); };
@@ -615,19 +735,19 @@ function viewSite(slug) {
       catch { m.textContent = 'Não foi possível se inscrever agora.'; } b.disabled = false;
     };
   })();
-  return { destroy() { alive = false; document.body.style.overflow = ''; document.title = 'AAB | Associação dos Advogados do Brasil'; } };
+  return { destroy() { alive = false; document.body.style.overflow = ''; document.title = 'PAB | Portal dos Advogados do Brasil'; } };
 }
 
-/* ---------- painel do associado ---------- */
+/* ---------- painel do advogado ---------- */
 function statusBanner() {
   const a = S.assoc; if (!a) return '';
-  if (a.status === 'pendente') return `<div class="status-b"><b>⏳ Cadastro em análise</b>A AAB está validando os seus dados. Assim que for aprovado, você poderá criar e publicar o seu site pessoal. Você será avisado aqui no portal.</div>`;
-  if (a.status === 'suspenso') return `<div class="status-b bad"><b>Acesso suspenso</b>${a.motivo ? esc(a.motivo) + '<br>' : ''}Entre em contato com a AAB: <a href="mailto:${esc(S.config.suporteEmail)}">${esc(S.config.suporteEmail)}</a>. Seu site está fora do ar.</div>`;
-  if (a.status === 'recusado') return `<div class="status-b bad"><b>Cadastro não aprovado</b>${a.motivo ? esc(a.motivo) + '<br>' : ''}Entre em contato com a AAB: <a href="mailto:${esc(S.config.suporteEmail)}">${esc(S.config.suporteEmail)}</a>.</div>`;
+  if (a.status === 'pendente') return `<div class="status-b"><b>⏳ Cadastro em análise</b>O PAB está validando os seus dados. Assim que for aprovado, você poderá criar e publicar o seu site pessoal. Você será avisado aqui no portal.</div>`;
+  if (a.status === 'suspenso') return `<div class="status-b bad"><b>Acesso suspenso</b>${a.motivo ? esc(a.motivo) + '<br>' : ''}Entre em contato com o PAB: <a href="mailto:${esc(S.config.suporteEmail)}">${esc(S.config.suporteEmail)}</a>. Seu site está fora do ar.</div>`;
+  if (a.status === 'recusado') return `<div class="status-b bad"><b>Cadastro não aprovado</b>${a.motivo ? esc(a.motivo) + '<br>' : ''}Entre em contato com o PAB: <a href="mailto:${esc(S.config.suporteEmail)}">${esc(S.config.suporteEmail)}</a>.</div>`;
   return '';
 }
 function viewPainel(main) {
-  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Painel do associado</div><h1>Olá, <em id="nm"></em></h1></div></div><div id="st"></div><div id="cs"></div><div id="dx"></div><div class="sec-t">Quadro de avisos</div><div id="bd"></div></div>`;
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Painel do advogado</div><h1>Olá, <em id="nm"></em></h1></div></div><div id="st"></div><div id="cs"></div><div id="dx"></div><div class="sec-t">Quadro de avisos</div><div id="bd"></div></div>`;
   const draw = () => {
     const a = S.assoc; if (!a) { $('#st', main).innerHTML = '<div class="loading">Carregando…</div>'; return; }
     $('#nm', main).textContent = (a.nome || '').split(/\s+/)[0]; $('#st', main).innerHTML = statusBanner() + (!a.oab ? '<div class="status-b"><b>Complete o seu cadastro</b>Informe o número da OAB e a seccional em <a href="#/painel/perfil">Meu perfil</a> para a validação.</div>' : '');
@@ -724,12 +844,12 @@ function viewSiteEditor(main) {
   const build = () => {
     const a = S.assoc;
     if (!a) { main.innerHTML = '<div class="loading">Carregando…</div>'; return; }
-    if (a.status !== 'ativo') { main.innerHTML = `<div class="wrap pad">${statusBanner() || ''}<div class="empty"><b>Site indisponível</b>O seu site pessoal é liberado depois da aprovação do cadastro pela AAB.</div></div>`; return; }
+    if (a.status !== 'ativo') { main.innerHTML = `<div class="wrap pad">${statusBanner() || ''}<div class="empty"><b>Site indisponível</b>O seu site pessoal é liberado depois da aprovação do cadastro pelo PAB.</div></div>`; return; }
     const s = S.site || { publicado: false, nome: a.nome, titulo: 'Advogado(a)', registro: a.oab ? `OAB/${a.seccional || ''} ${a.oab}`.replace('/ ', ' ') : '', pretitulo: 'Advocacia e consultoria jurídica', areas: [], contato: { email: a.email, whatsapp: a.telefone }, tema: 'classico', formContato: true };
     foto = s.foto || ''; capa = s.capa || ''; areas = (s.areas || []).map(x => ({ icone: '⚖️', grupo: 0, ...x })); const ct = s.contato || {}, cit = s.citacao || {}, gr = s.areasGrupos || GRUPOS_PADRAO, bloq = !!s.bloqueado;
     const F = (n, l, v, extra = '') => `<div class="field"><label>${l}</label><input name="${n}" ${extra} value="${esc(v)}"></div>`;
     main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Meu site pessoal</div><h1>Editar <em>site</em></h1><p>${S.site ? `Endereço: <a href="#/a/${esc(S.site.slug)}" target="_blank">${esc(siteUrl(S.site.slug))}</a>` : 'Preencha os dados e salve para criar o seu site.'}</p></div>${S.site ? `<a class="btn ghost" href="#/a/${esc(S.site.slug)}" target="_blank">👁 Ver site</a>` : ''}</div>
-    ${bloq ? '<div class="status-b bad"><b>Site bloqueado pela AAB</b>Entre em contato com a associação para liberar.</div>' : ''}
+    ${bloq ? '<div class="status-b bad"><b>Site bloqueado pelo PAB</b>Entre em contato com o portal para liberar.</div>' : ''}
     <form id="sf" class="card" style="max-width:780px">
       <div class="field"><label>Endereço do site</label><input name="slug" maxlength="40" value="${esc(S.site?.slug || slugify(a.nome))}" ${S.site ? 'readonly style="opacity:.6"' : ''} placeholder="nome-sobrenome"><small>${S.site ? 'O endereço não pode ser alterado depois de criado.' : 'Somente letras minúsculas, números e hífen (3 a 40 caracteres). Depois de criado, não muda.'}</small></div>
       <div class="sec-t">1 · Capa (início do site)</div>
@@ -746,13 +866,13 @@ function viewSiteEditor(main) {
       <div class="field"><label>Frase</label><textarea name="ctx" maxlength="300" style="min-height:70px" placeholder="“É justo que muito custe o que muito vale.”">${esc(cit.texto)}</textarea></div>${F('cau', 'Autor (opcional)', cit.autor, 'maxlength="80"')}
       <div class="sec-t">4 · Áreas de atuação</div>
       <div class="row2">${F('g0', 'Nome da 1ª aba', gr[0], 'maxlength="40"')}${F('g1', 'Nome da 2ª aba', gr[1], 'maxlength="40"')}</div>
-      <div class="areas-ed" id="ar"></div><div style="display:flex;gap:.6rem;flex-wrap:wrap"><button type="button" class="btn ghost sm" id="aa">+ Adicionar área</button><button type="button" class="btn ghost sm" id="as">Usar sugestões da AAB</button></div>
+      <div class="areas-ed" id="ar"></div><div style="display:flex;gap:.6rem;flex-wrap:wrap"><button type="button" class="btn ghost sm" id="aa">+ Adicionar área</button><button type="button" class="btn ghost sm" id="as">Usar sugestões do PAB</button></div>
       <div class="sec-t">5 · Contato</div><div class="row2">${F('c_email', 'E-mail', ct.email, 'maxlength="150"')}${F('c_tel', 'Telefone', ct.telefone, 'maxlength="40"')}</div>
       <div class="row2">${F('c_wa', 'WhatsApp (com DDD)', ct.whatsapp, 'maxlength="30"')}${F('c_ig', 'Instagram', ct.instagram, 'maxlength="60" placeholder="@usuario"')}</div>
       <div class="row2">${F('c_in', 'LinkedIn (link)', ct.linkedin, 'maxlength="200" placeholder="https://linkedin.com/in/…"')}${F('c_end', 'Localização / endereço', ct.endereco, 'maxlength="250" placeholder="Brasília, DF"')}</div>
       <label class="check"><input type="checkbox" name="form" ${s.formContato !== false ? 'checked' : ''}><span>Exibir formulário de consulta no site</span></label>
       <div class="sec-t">6 · Aparência</div><div class="themes">${Object.entries(TEMAS).map(([k, t]) => `<label><input type="radio" name="tema" value="${k}" ${(s.tema || 'classico') === k ? 'checked' : ''}><i><u style="background:${t[1]}"></u><u style="background:${t[2]}"></u><u style="background:${t[3]}"></u><u style="background:${t[4]}"></u></i>${t[0]}</label>`).join('')}</div>
-      <div class="sec-t">7 · Publicação</div><label class="check"><input type="checkbox" name="pub" ${s.publicado ? 'checked' : ''} ${bloq ? 'disabled' : ''}><span><b style="color:var(--cream)">Publicar o site</b> — visível para qualquer pessoa e listado no diretório de advogados associados.</span></label>
+      <div class="sec-t">7 · Publicação</div><label class="check"><input type="checkbox" name="pub" ${s.publicado ? 'checked' : ''} ${bloq ? 'disabled' : ''}><span><b style="color:var(--cream)">Publicar o site</b> — visível para qualquer pessoa e listado no diretório de advogados advogados.</span></label>
       <p class="hint" style="margin-bottom:1rem">Os <a href="#/painel/artigos">artigos</a> ficam na página “Artigos” do painel.</p>
       <p class="msg-err" id="se"></p><button class="btn" id="sb">${S.site ? 'Salvar alterações' : 'Criar meu site'}</button></form></div>`;
     const f = $('#sf', main), img = (v, cls) => v ? `<img class="ph" style="${cls}" src="${esc(v)}" alt="">` : '';
@@ -763,7 +883,7 @@ function viewSiteEditor(main) {
     $('#ar', main).oninput = e => { const t = e.target; if (t.dataset.ai !== undefined) areas[+t.dataset.ai][t.dataset.k] = t.dataset.k === 'grupo' ? +t.value : t.value; };
     $('#ar', main).onclick = e => { const b = e.target.closest('[data-rm]'); if (b) { areas.splice(+b.dataset.rm, 1); drAreas(); } };
     $('#aa', main).onclick = () => { if (areas.length >= 24) return toast('Máximo de 24 áreas.', true); areas.push({ icone: '⚖️', nome: '', desc: '', grupo: 0 }); drAreas(); };
-    $('#as', main).onclick = async () => { if (areas.some(x => x.nome.trim()) && !await confirmBox('Substituir as áreas atuais pelas sugestões da AAB? Você poderá editar tudo depois.', 'Substituir')) return; areas = SUGESTOES.map(x => ({ ...x })); drAreas(); };
+    $('#as', main).onclick = async () => { if (areas.some(x => x.nome.trim()) && !await confirmBox('Substituir as áreas atuais pelas sugestões do PAB? Você poderá editar tudo depois.', 'Substituir')) return; areas = SUGESTOES.map(x => ({ ...x })); drAreas(); };
     f.g0.onchange = f.g1.onchange = drAreas;
     $('#fi', main).onchange = async e => { const file = e.target.files[0]; if (!file) return; try { foto = await reduzImg(file, 400, 500, .82, true); drFoto(); } catch (x) { toast(x.message, true); } e.target.value = ''; };
     $('#fr', main).onclick = () => { foto = ''; drFoto(); };
@@ -822,7 +942,7 @@ async function criarConta(email, senha, nome) {
 function bloqueado(main) {
   const a = S.assoc;
   if (!a) { main.innerHTML = '<div class="loading">Carregando…</div>'; return true; }
-  if (a.status !== 'ativo') { main.innerHTML = `<div class="wrap pad">${statusBanner()}<div class="empty"><b>Recurso indisponível</b>A Área do cliente é liberada depois da aprovação do seu cadastro pela AAB.</div></div>`; return true; }
+  if (a.status !== 'ativo') { main.innerHTML = `<div class="wrap pad">${statusBanner()}<div class="empty"><b>Recurso indisponível</b>A Área do cliente é liberada depois da aprovação do seu cadastro pelo PAB.</div></div>`; return true; }
   return false;
 }
 function guarded(main, build) {
@@ -958,7 +1078,7 @@ function baixaIcs(e) {
   const d = e.data.replace(/-/g, ''), esc2 = t => String(t || '').replace(/[\;,]/g, m => '\\' + m).replace(/\n/g, '\\n'), p2 = n => String(n).padStart(2, '0'); let l;
   if (e.hora) { const [h, m] = e.hora.split(':').map(Number); l = [`DTSTART:${d}T${p2(h)}${p2(m)}00`, `DTEND:${d}T${h < 23 ? p2(h + 1) + p2(m) : '2359'}00`]; }
   else l = [`DTSTART;VALUE=DATE:${d}`, `DTEND;VALUE=DATE:${dayKey(new Date(e.data + 'T12:00:00').getTime() + 864e5).replace(/-/g, '')}`];
-  const txt = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//AAB//Portal//PT', 'BEGIN:VEVENT', 'UID:' + e.id + '@aab', 'DTSTAMP:' + new Date().toISOString().replace(/[-:]|\.\d+/g, ''), ...l, 'SUMMARY:' + esc2(e.titulo), e.local ? 'LOCATION:' + esc2(e.local) : '', e.notas ? 'DESCRIPTION:' + esc2(e.notas) : '', 'END:VEVENT', 'END:VCALENDAR'].filter(Boolean).join('\r\n');
+  const txt = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//PAB//Portal//PT', 'BEGIN:VEVENT', 'UID:' + e.id + '@aab', 'DTSTAMP:' + new Date().toISOString().replace(/[-:]|\.\d+/g, ''), ...l, 'SUMMARY:' + esc2(e.titulo), e.local ? 'LOCATION:' + esc2(e.local) : '', e.notas ? 'DESCRIPTION:' + esc2(e.notas) : '', 'END:VEVENT', 'END:VCALENDAR'].filter(Boolean).join('\r\n');
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([txt], { type: 'text/calendar' })); a.download = 'compromisso.ics'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1500);
 }
 const evHtml = (e, adv) => { const dt = new Date(e.data + 'T12:00:00'), t = ETIPOS[e.tipo] || ETIPOS.outro;
@@ -1122,11 +1242,11 @@ function viewClienteAgenda(main) {
 
 /* ---------- administração ---------- */
 function viewAdminHome(main) {
-  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Administração</div><h1>Visão <em>geral</em></h1><p>Acompanhe os associados, os sites e a atividade do portal em tempo real.</p></div><a class="btn" href="#/admin/comunicados">＋ Novo comunicado</a></div><div id="cs"></div><div class="dgrid" id="dg"></div></div>`;
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Administração</div><h1>Visão <em>geral</em></h1><p>Acompanhe os advogados, os sites e a atividade do portal em tempo real.</p></div><a class="btn" href="#/admin/comunicados">＋ Novo comunicado</a></div><div id="cs"></div><div class="dgrid" id="dg"></div></div>`;
   const draw = () => {
     const A = S.associados, ativos = A.filter(a => a.status === 'ativo'), pend = A.filter(a => a.status === 'pendente'), now = Date.now();
     const l24 = S.logins.filter(l => now - ms(l.em) < 864e5 && l.tipo !== 'admin').length, l7 = S.logins.filter(l => now - ms(l.em) < 7 * 864e5 && l.tipo !== 'admin').length;
-    $('#cs', main).innerHTML = `<div class="cards"><a class="stat" href="#/admin/associados"><b>${A.length}</b><span>Associados</span></a><a class="stat" href="#/admin/associados"><b>${ativos.length}</b><span>Ativos</span></a><a class="stat" href="#/admin/associados"><b>${pend.length}</b><span>Aguardando aprovação</span></a><div class="stat"><b>${A.filter(online).length}</b><span>Online agora</span></div><div class="stat"><b>${S.sites.filter(s => s.publicado).length}</b><span>Sites no ar</span></div><div class="stat"><b>${ativos.filter(a => !a.siteSlug).length}</b><span>Ativos sem site</span></div><div class="stat"><b>${l24}</b><span>Acessos em 24 h</span></div><div class="stat"><b>${l7}</b><span>Acessos em 7 dias</span></div></div>`;
+    $('#cs', main).innerHTML = `<div class="cards"><a class="stat" href="#/admin/associados"><b>${A.length}</b><span>Advogados</span></a><a class="stat" href="#/admin/associados"><b>${ativos.length}</b><span>Ativos</span></a><a class="stat" href="#/admin/associados"><b>${pend.length}</b><span>Aguardando aprovação</span></a><div class="stat"><b>${A.filter(online).length}</b><span>Online agora</span></div><div class="stat"><b>${S.sites.filter(s => s.publicado).length}</b><span>Sites no ar</span></div><div class="stat"><b>${ativos.filter(a => !a.siteSlug).length}</b><span>Ativos sem site</span></div><div class="stat"><b>${l24}</b><span>Acessos em 24 h</span></div><div class="stat"><b>${l7}</b><span>Acessos em 7 dias</span></div></div>`;
     const dias = [...Array(7)].map((_, i) => { const d = new Date(now - (6 - i) * 864e5), k = dayKey(d.getTime()); return [d.toLocaleDateString('pt-BR', { weekday: 'short' }).replace('.', ''), S.logins.filter(l => l.tipo !== 'admin' && dayKey(ms(l.em)) === k).length]; }), mx = Math.max(1, ...dias.map(x => x[1]));
     $('#dg', main).innerHTML = `<div class="pnl"><h3>Aguardando aprovação</h3><div class="mini">${pend.length ? pend.slice(0, 6).map(a => `<div><span>${esc(a.nome)}<br><small style="text-align:left">OAB ${esc(a.oab || '—')}/${esc(a.seccional || '')} · ${fmtD(a.criadoAt)}</small></span><button class="btn sm" data-ok="${a.id}">Aprovar</button></div>`).join('') : '<div class="none">Nenhum cadastro pendente.</div>'}</div></div>
       <div class="pnl"><h3>Acessos nos últimos 7 dias</h3><div class="bars">${dias.map(([n, v]) => `<div><span>${v}</span><i style="height:${Math.max(2, v / mx * 80)}%"></i><span>${n}</span></div>`).join('')}</div></div>
@@ -1149,7 +1269,7 @@ async function mudaStatus(uid, status, motivo = '') {
 }
 function viewAdminAssoc(main) {
   let q = '', st = '';
-  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Gestão</div><h1><em>Associados</em></h1><p>Aprove cadastros, suspenda acessos e veja quem está usando o portal.</p></div></div>
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Gestão</div><h1><em>Advogados</em></h1><p>Aprove cadastros, suspenda acessos e veja quem está usando o portal.</p></div></div>
   <div class="toolbar"><input id="q" placeholder="Buscar por nome, e-mail ou OAB…"><select id="st"><option value="">Todos os status</option>${Object.entries(STATUS).map(([k, v]) => `<option value="${k}">${v[0]}</option>`).join('')}</select></div><div class="list" id="ls"></div></div>`;
   const draw = () => {
     const t = q.toLowerCase(), l = S.associados.filter(a => (!st || a.status === st) && (!t || [a.nome, a.email, a.oab].join(' ').toLowerCase().includes(t))).sort((a, b) => (a.status === 'pendente' ? 0 : 1) - (b.status === 'pendente' ? 0 : 1) || ms(b.criadoAt) - ms(a.criadoAt));
@@ -1163,7 +1283,7 @@ function viewAdminAssoc(main) {
   main.onclick = async e => {
     const b = e.target.closest('[data-a]'); if (!b) return; const uid = b.closest('[data-u]').dataset.u, a = S.associados.find(x => x.id === uid); if (!a) return;
     if (b.dataset.a === 'ok') mudaStatus(uid, 'ativo');
-    else if (b.dataset.a === 'sus' || b.dataset.a === 'rec') { const m = await askText(b.dataset.a === 'sus' ? 'Suspender acesso' : 'Recusar cadastro', 'Informe o motivo (o associado verá esta mensagem). O site, se existir, sai do ar.', b.dataset.a === 'sus' ? 'Suspender' : 'Recusar'); if (m !== null) mudaStatus(uid, b.dataset.a === 'sus' ? 'suspenso' : 'recusado', m); }
+    else if (b.dataset.a === 'sus' || b.dataset.a === 'rec') { const m = await askText(b.dataset.a === 'sus' ? 'Suspender acesso' : 'Recusar cadastro', 'Informe o motivo (o advogado verá esta mensagem). O site, se existir, sai do ar.', b.dataset.a === 'sus' ? 'Suspender' : 'Recusar'); if (m !== null) mudaStatus(uid, b.dataset.a === 'sus' ? 'suspenso' : 'recusado', m); }
     else if (b.dataset.a === 'pw') { try { await sendPasswordResetEmail(auth, a.email); toast('Link de senha enviado para ' + a.email); } catch (x) { toast(errMsg(x), true); } }
     else if (b.dataset.a === 'del') {
       if (!await confirmBox(`Excluir o cadastro de <b>${esc(a.nome)}</b>? O site e as mensagens recebidas também serão apagados. (A conta de login continua existindo no Firebase Authentication; remova-a lá se necessário.)`, 'Excluir')) return;
@@ -1179,7 +1299,7 @@ function formComunicado(c) {
     <div class="field"><label>Título</label><input name="t" required maxlength="140" value="${esc(c?.titulo)}"></div>
     <div class="field"><label>Texto</label><textarea name="x" required maxlength="3000">${esc(c?.texto)}</textarea></div>
     <div class="row2"><div class="field"><label>Link (opcional)</label><input name="l" maxlength="300" value="${esc(c?.link)}" placeholder="https://…"></div><div class="field"><label>Texto do link</label><input name="lt" maxlength="40" value="${esc(c?.linkTexto)}" placeholder="Saiba mais"></div></div>
-    <label class="check"><input type="checkbox" name="popup" ${c?.popup ? 'checked' : ''}><span>Exibir em <b style="color:var(--cream)">pop-up</b> quando o associado entrar ou criar a conta</span></label>
+    <label class="check"><input type="checkbox" name="popup" ${c?.popup ? 'checked' : ''}><span>Exibir em <b style="color:var(--cream)">pop-up</b> quando o advogado entrar ou criar a conta</span></label>
     <label class="check"><input type="checkbox" name="pub" ${c ? (c.publico ? 'checked' : '') : 'checked'}><span>Mostrar na <b style="color:var(--cream)">página inicial</b> para visitantes (desmarcado: só para quem fez login)</span></label>
     <label class="check"><input type="checkbox" name="fix" ${c?.fixado ? 'checked' : ''}><span>Fixar no topo do quadro</span></label>
     <label class="check"><input type="checkbox" name="ativo" ${c ? (c.ativo !== false ? 'checked' : '') : 'checked'}><span>Ativo (visível)</span></label>
@@ -1196,7 +1316,7 @@ function formComunicado(c) {
   });
 }
 function viewAdminCom(main) {
-  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Comunicação</div><h1><em>Comunicados</em></h1><p>Avisos, alertas, publicações e atualizações exibidos na página inicial e no acesso dos associados. Os marcados como pop-up aparecem ao entrar ou criar a conta.</p></div><button class="btn" id="nv">＋ Novo comunicado</button></div><div id="ls" class="board"></div></div>`;
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Comunicação</div><h1><em>Comunicados</em></h1><p>Avisos, alertas, publicações e atualizações exibidos na página inicial e no acesso dos advogados. Os marcados como pop-up aparecem ao entrar ou criar a conta.</p></div><button class="btn" id="nv">＋ Novo comunicado</button></div><div id="ls" class="board"></div></div>`;
   const draw = () => {
     const l = [...S.com].sort((a, b) => (b.fixado ? 1 : 0) - (a.fixado ? 1 : 0) || ms(b.criadoAt) - ms(a.criadoAt));
     $('#ls', main).innerHTML = l.length ? l.map(c => `<div>${avisoHtml(c, true)}<div style="display:flex;gap:.4rem;margin:.4rem 0 .6rem;flex-wrap:wrap"><button class="btn ghost sm" data-e="${c.id}">Editar</button><button class="btn ghost sm" data-t="${c.id}">${c.ativo === false ? 'Reativar' : 'Desativar'}</button><button class="btn danger sm" data-d="${c.id}">Excluir</button></div></div>`).join('') : '<div class="empty"><b>Nenhum comunicado</b>Clique em “Novo comunicado” para publicar o primeiro.</div>';
@@ -1207,7 +1327,7 @@ function viewAdminCom(main) {
   draw(); return { refresh: draw };
 }
 function viewAdminAcessos(main) {
-  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Atividade</div><h1><em>Acessos</em> ao portal</h1><p>Registro dos logins dos últimos 30 dias e associados online agora (atividade nos últimos 10 minutos).</p></div></div><div id="on"></div><div class="sec-t">Logins recentes</div><div class="list" id="ls"></div></div>`;
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Atividade</div><h1><em>Acessos</em> ao portal</h1><p>Registro dos logins dos últimos 30 dias e advogados online agora (atividade nos últimos 10 minutos).</p></div></div><div id="on"></div><div class="sec-t">Logins recentes</div><div class="list" id="ls"></div></div>`;
   const draw = () => {
     const on = S.associados.filter(online);
     $('#on', main).innerHTML = `<div class="pnl"><h3>Online agora (${on.length})</h3><div class="mini">${on.map(a => `<div><span><span class="on-dot"></span> ${esc(a.nome)}</span><small>${esc(a.email)}</small></div>`).join('') || '<div class="none">Ninguém online neste momento.</div>'}</div></div>`;
@@ -1237,7 +1357,7 @@ function route() {
   S.view?.destroy?.(); S.view = null;
   const mr = document.getElementById('modalRoot'); if (mr) mr.innerHTML = '';
   const [r, a, b2] = location.hash.replace(/^#\/?/, '').split('/');
-  if (r === 'a' && a) { S.view = viewSite(decodeURIComponent(a).toLowerCase()); return; }
+  if (r === 'a' && a) { document.body.classList.remove('light', 'menu-open'); S.view = viewSite(decodeURIComponent(a).toLowerCase()); return; }
   renderShell(); const main = $('#main'); window.scrollTo(0, 0);
   if (S.roleLoading && ['painel', 'cliente', 'entrar', 'cadastro'].includes(r)) { main.innerHTML = '<div class="loading">Carregando…</div>'; renderHeader(); return; }
   if ((r === 'entrar' || r === 'cadastro') && !S.user) S.view = viewAuth(main, r === 'cadastro' ? 'reg' : 'login');

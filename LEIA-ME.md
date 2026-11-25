@@ -1,4 +1,4 @@
-# Portal AAB – guia de implantação
+# Portal PAB – guia de implantação
 
 ## 1. Firebase (projeto portaladvocacia)
 1. **Firestore → Regras**: cole o conteúdo de `firestore.rules` e clique em **Publicar**.
@@ -12,8 +12,8 @@ Envie para a raiz: `index.html`, `sw.js`, `manifest.webmanifest` e a pasta `icon
 Endereço: https://martinswillians.github.io/PortalAdvocacia/
 
 ## 3. Como funciona
-- **Administrador** (willbrasilia@gmail.com) vê o menu *Administração*: resumo, associados (aprovar, suspender, recusar, excluir, ver quem está online e último acesso), comunicados (aviso, alerta, publicação, atualização; fixar, expirar, pop-up, público ou só associados), acessos e configurações (aprovação automática, textos).
-- **Advogado** cria conta em *Associar-se*; fica "pendente" até a AAB aprovar (ou entra direto se a aprovação automática estiver ligada). Depois cria o site em *Meu site*, em `#/a/<endereço>`.
+- **Administrador** (willbrasilia@gmail.com) vê o menu *Administração*: resumo, advogados (aprovar, suspender, recusar, excluir, ver quem está online e último acesso), comunicados (aviso, alerta, publicação, atualização; fixar, expirar, pop-up, público ou só advogados), acessos e configurações (aprovação automática, textos).
+- **Advogado** cria conta em *Associar-se*; fica "pendente" até a PAB aprovar (ou entra direto se a aprovação automática estiver ligada). Depois cria o site em *Meu site*, em `#/a/<endereço>`.
 - Comunicados marcados como **pop-up** aparecem ao logar/criar conta; os públicos aparecem na página inicial.
 - Suspender um associado tira o site do ar.
 - Os índices do Firestore não são necessários.
@@ -22,6 +22,13 @@ Endereço: https://martinswillians.github.io/PortalAdvocacia/
 - Cada advogado ativo cadastra clientes em **Clientes** (a conta de login é criada pelo app, com senha provisória para enviar ao cliente).
 - **Processos** (com andamentos visíveis ou internos), **Agenda** (com .ics) e **Tarefas** (quadro) ficam no painel do advogado.
 - O cliente entra pelo mesmo "Entrar" e vê só os próprios processos, andamentos marcados como visíveis e compromissos marcados como visíveis.
-- A administração da AAB NÃO tem acesso a clientes, processos, agenda nem tarefas (sigilo profissional).
+- A administração da PAB NÃO tem acesso a clientes, processos, agenda nem tarefas (sigilo profissional).
 - Documentos: por enquanto, por link (Drive/Dropbox) no andamento. Upload de arquivos exigiria Firebase Storage (plano pago) ou outro serviço.
 - Republique o `firestore.rules` depois de enviar o `index.html`.
+
+
+## Visual (v3)
+- Painel do administrador e painel do advogado: tema claro com menu lateral. Site público, site pessoal e área do cliente mantêm o visual anterior.
+- Regras do Firestore: **inalteradas** (não é preciso republicar).
+- Se o texto da página inicial/termo já foi salvo em Configurações com o nome antigo, edite-o lá.
+- Após publicar, recarregue com Ctrl+F5 (o cache do app foi renovado: pab-portal-v3).

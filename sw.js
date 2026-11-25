@@ -1,5 +1,5 @@
-// Service worker do portal AAB (funciona em subpasta, ex.: /advocacia/)
-const CACHE = 'aab-portal-v1';
+// Service worker do portal PAB (funciona em subpasta, ex.: /advocacia/)
+const CACHE = 'pab-portal-v3';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', e => {
@@ -7,7 +7,7 @@ self.addEventListener('install', e => {
 });
 
 self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('aab-portal-') && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => (k.startsWith('pab-portal-') || k.startsWith('aab-portal-')) && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });
 
 self.addEventListener('fetch', e => {
