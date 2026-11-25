@@ -271,44 +271,62 @@ a.stat:hover{border-color:var(--gold)}
  .hdr nav{margin-left:0;width:100%}
 }
 
+/* ===== aparencia ===== */
+.apar{display:flex;align-items:center;gap:.45rem;padding:.55rem .6rem .35rem}
+.apar .pd{width:18px;height:18px;border-radius:50%;border:2px solid transparent;padding:0;outline:1px solid rgba(255,255,255,.3)}
+.apar .pd.on{border-color:#fff;outline-color:#fff}
+.apar .md{margin-left:auto;width:auto!important;padding:.3rem .5rem!important;border:1px solid rgba(255,255,255,.25)!important;display:flex;align-items:center;gap:.35rem;border-radius:999px!important;font-size:.66rem!important}
+.apar .lb{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:#9fb0c6;font-weight:600}
 /* ===== painel claro com menu lateral (admin e advogado) ===== */
-body.light{--navy:#f2f4f8;--navy2:#fff;--gold:#a67c1f;--gold2:#c9a84c;--cream:#1b2433;--muted:#5f6b80;--on-gold:#fff;--border:rgba(20,32,56,.14);--ok:#1f8a62;--warn:#b97a0c;--info:#2872c4;--bad:#c23a4d;--purple:#7d4fb8;background:#f2f4f8;color:#1b2433}
-body.light .check input:checked::after{color:#fff}
-body.light .modal{background:#fff;border-color:var(--border);box-shadow:0 24px 60px rgba(15,23,42,.25)}
+body.light{--navy:#eef1f6;--navy2:#fff;--gold:#8a6414;--gold2:#b8912f;--cream:#111827;--muted:#4b5563;--on-gold:#fff;--border:rgba(17,24,39,.16);--ok:#157a55;--warn:#a86a05;--info:#1f62b5;--bad:#b3283c;--purple:#6f42a8;--sb:#0b1726;--sa:#e8c97a;--sa2:#c9a84c;background:var(--navy);color:var(--cream);font-weight:400}
+body.light[data-mode=dark]{--navy:#0f141c;--navy2:#18202c;--gold:#e0bd5c;--gold2:#f0d58a;--cream:#eef1f6;--muted:#a9b4c6;--on-gold:#0f141c;--border:rgba(255,255,255,.16);--ok:#4cc79a;--warn:#f0b24a;--info:#6aa9f5;--bad:#f27a8a;--purple:#b794ec;--sb:#080c12}
+body.light[data-pal=azul]{--gold:#1d5fb8;--gold2:#3b82d6;--sb:#0f2547;--sa:#8ec0ff;--sa2:#5da2f2}
+body.light[data-pal=azul][data-mode=dark]{--gold:#6aa9f5;--gold2:#9cc6fa;--sb:#08142b}
+body.light[data-pal=verde]{--gold:#12705a;--gold2:#2a9478;--sb:#0d2b27;--sa:#7be0bd;--sa2:#3fc79b}
+body.light[data-pal=verde][data-mode=dark]{--gold:#4fd1a1;--gold2:#86e3c0;--sb:#071a18}
+body.light[data-pal=vinho]{--gold:#9b2c4a;--gold2:#bf4a69;--sb:#2b1220;--sa:#f5a3b9;--sa2:#e4708f}
+body.light[data-pal=vinho][data-mode=dark]{--gold:#f08aa5;--gold2:#f6b0c3;--sb:#1a0a13}
+body.light[data-pal=grafite]{--gold:#334155;--gold2:#64748b;--sb:#1e293b;--sa:#e2e8f0;--sa2:#94a3b8}
+body.light[data-pal=grafite][data-mode=dark]{--gold:#cbd5e1;--gold2:#e2e8f0;--sb:#0b1018}
+body.light .check input:checked::after{color:var(--on-gold)}
+body.light .modal{background:var(--navy2);border-color:var(--border);box-shadow:0 24px 60px rgba(15,23,42,.25)}
 body.light .modal-back{background:rgba(15,23,42,.55)}
 body.light .card,body.light .stat{box-shadow:0 1px 2px rgba(15,23,42,.05)}
 body.light .btn.ghost{color:var(--gold);background:transparent}
-body.light input,body.light select,body.light textarea{background:#fff;color:#1b2433}
+body.light input,body.light select,body.light textarea{background:var(--navy2);color:var(--cream)}
+body.light .eyebrow{font-weight:600}body.light .card,body.light .stat{border-color:var(--border)}
+body.light[data-mode=dark] .check input:checked::after{color:var(--on-gold)}
+.side .sb-bot .out{color:#ffb3bd}
 .app{display:flex;min-height:100vh}
-.side{width:272px;flex:none;background:#0b1726;color:#e9edf3;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:space-between;overflow-y:auto;z-index:60}
+.side{width:272px;flex:none;background:var(--sb);color:#eef2f8;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:space-between;overflow-y:auto;z-index:60}
 .side .sb-top{padding:1.3rem 1rem 1rem}
 .side .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:#fff;padding:.2rem .4rem 1.1rem;border-bottom:1px solid rgba(255,255,255,.09)}
 .side .brand img{width:38px;height:38px;border-radius:8px}
-.side .brand b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;letter-spacing:.12em;color:#e8c97a;line-height:1}
-.side .brand small{display:block;font-size:.55rem;letter-spacing:.06em;color:#98a4b6;margin-top:.25rem;line-height:1.3}
+.side .brand b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;letter-spacing:.12em;color:var(--sa);line-height:1}
+.side .brand small{display:block;font-size:.58rem;letter-spacing:.05em;color:#b8c3d4;margin-top:.25rem;line-height:1.3}
 .side .ucard{display:flex;align-items:center;gap:.7rem;margin:1rem 0 .6rem;padding:.75rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px}
 .side .ucard .ph{flex:none}
 .side .ucard b{display:block;font-weight:600;font-size:.8rem;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}
-.side .ucard small{font-size:.62rem;color:#98a4b6;letter-spacing:.04em}
-.side .grp{font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:#6f7d92;padding:1rem .8rem .35rem}
+.side .ucard small{font-size:.66rem;color:#b8c3d4;letter-spacing:.04em}
+.side .grp{font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:#9fb0c6;font-weight:600;padding:1rem .8rem .35rem}
 .side nav{display:flex;flex-direction:column;gap:2px}
-.side nav a{display:flex;align-items:center;gap:.75rem;padding:.62rem .8rem;border-radius:8px;color:#c4cddb;text-decoration:none;font-size:.78rem;font-weight:400;border-left:3px solid transparent;position:relative}
+.side nav a{display:flex;align-items:center;gap:.75rem;padding:.62rem .8rem;border-radius:8px;color:#e3e9f2;text-decoration:none;font-size:.8rem;font-weight:500;border-left:3px solid transparent;position:relative}
 .side nav a svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
 .side nav a:hover{background:rgba(255,255,255,.06);color:#fff}
-.side nav a.on{background:rgba(201,168,76,.14);color:#e8c97a;border-left-color:#c9a84c;font-weight:600}
-.side nav a .nb{margin-left:auto;background:#c9a84c;color:#0b1726;font-size:.6rem;font-weight:700;border-radius:10px;padding:.08rem .45rem}
+.side nav a.on{background:color-mix(in srgb,var(--sa) 20%,transparent);color:var(--sa);border-left-color:var(--sa2);font-weight:700}
+.side nav a .nb{margin-left:auto;background:var(--sa2);color:var(--sb);font-size:.62rem;font-weight:700;border-radius:10px;padding:.08rem .45rem}
 .side .sb-bot{padding:1rem;border-top:1px solid rgba(255,255,255,.09)}
-.side .sb-bot a,.side .sb-bot button{display:flex;width:100%;align-items:center;gap:.7rem;background:none;border:none;color:#aab4c4;font-size:.74rem;padding:.5rem .6rem;border-radius:8px;text-decoration:none;text-align:left}
+.side .sb-bot a,.side .sb-bot button{display:flex;width:100%;align-items:center;gap:.7rem;background:none;border:none;color:#d3dbe7;font-size:.76rem;padding:.5rem .6rem;border-radius:8px;text-decoration:none;text-align:left}
 .side .sb-bot a:hover,.side .sb-bot button:hover{background:rgba(255,255,255,.06);color:#fff}
 .side .sb-bot svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.side .sb-bot .out{color:#f1a1ac}
+
 .appmain{flex:1;min-width:0;display:flex;flex-direction:column}
-.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.9rem;padding:.75rem 1.4rem;min-height:58px}
+.topbar{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--navy2) 94%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.9rem;padding:.75rem 1.4rem;min-height:58px}
 .topbar h4{font-family:'Montserrat',sans-serif;font-weight:600;font-size:.9rem;color:var(--cream);letter-spacing:.01em}
 .topbar .sp{flex:1}
 .topbar .tb-d{font-size:.7rem;color:var(--muted)}
-.topbar .tb-a{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--gold);border:1px solid var(--border);padding:.45rem .8rem;border-radius:6px;background:#fff}
-.topbar .burger{display:none;background:#fff;border:1px solid var(--border);border-radius:6px;width:38px;height:38px;align-items:center;justify-content:center;color:var(--cream)}
+.topbar .tb-a{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--gold);border:1px solid var(--border);padding:.45rem .8rem;border-radius:6px;background:var(--navy2)}
+.topbar .burger{display:none;background:var(--navy2);border:1px solid var(--border);border-radius:6px;width:38px;height:38px;align-items:center;justify-content:center;color:var(--cream)}
 .topbar .burger svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
 .appmain main{flex:1}
 .appmain .ft{border-top:1px solid var(--border);color:var(--muted);padding:1.2rem 1.4rem;font-size:.68rem;text-align:center}
@@ -467,9 +485,16 @@ const ICO = {
   ext:'<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/>',
   key:'<circle cx="7.5" cy="15.5" r="4.5"/><path d="m21 2-9.6 9.6M15.5 7.5l3 3"/>',
   dl:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  moon:'<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',
   menu:'<path d="M3 6h18M3 12h18M3 18h18"/>'
 };
 const ic = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${ICO[k]}</svg>`;
+
+const PALS = { dourado: '#c9a84c', azul: '#3b82d6', verde: '#2a9478', vinho: '#c2415f', grafite: '#64748b' };
+const themeGet = () => { try { const t = JSON.parse(localStorage.getItem('pab_theme') || '{}'); return { pal: PALS[t.pal] ? t.pal : 'dourado', mode: t.mode === 'dark' ? 'dark' : 'light' }; } catch { return { pal: 'dourado', mode: 'light' }; } };
+function themeApply() { const t = themeGet(); document.body.dataset.pal = t.pal; document.body.dataset.mode = t.mode; }
+function themeSet(p) { const t = { ...themeGet(), ...p }; try { localStorage.setItem('pab_theme', JSON.stringify(t)); } catch { /* ok */ } themeApply(); renderSide(); }
 function appMode() {
   const r = location.hash.replace(/^#\/?/, '').split('/')[0];
   return (r === 'admin' && !!S.admin) || (r === 'painel' && !!S.user && !S.admin && !S.cliente && !S.roleLoading);
@@ -496,16 +521,18 @@ function renderSide() {
   const slug = S.assoc?.siteSlug;
   sd.innerHTML = `<div class="sb-top"><a class="brand" href="#/"><img src="icons/icon-192.png" alt=""><div><b>PAB</b><small>Portal dos Advogados do Brasil</small></div></a>
     <div class="ucard">${avatarH(S.admin ? '' : S.assoc?.foto, nome, 'sm')}<div><b>${esc(nome)}</b><small>${esc(sub)}</small></div></div><nav>${groups}</nav></div>
-  <div class="sb-bot">${slug && !S.admin ? `<a href="#/a/${esc(slug)}" target="_blank" rel="noopener">${ic('ext')}Ver meu site</a>` : ''}<a href="#/">${ic('globe')}Página inicial do PAB</a><button id="instBtn" hidden>${ic('dl')}Instalar app</button><button id="contaBtn">${ic('key')}Minha conta</button><button id="outBtn" class="out">${ic('out')}Sair</button></div>`;
+  <div class="sb-bot"><div class="apar" role="group" aria-label="Aparência">${Object.keys(PALS).map(k => `<button class="pd ${themeGet().pal === k ? 'on' : ''}" data-pal="${k}" title="Paleta ${k}" aria-label="Paleta ${k}" style="background:${PALS[k]}"></button>`).join('')}<button class="md" id="modeBtn" title="Alternar claro/escuro">${ic(themeGet().mode === 'dark' ? 'sun' : 'moon')}${themeGet().mode === 'dark' ? 'Claro' : 'Escuro'}</button></div>${slug && !S.admin ? `<a href="#/a/${esc(slug)}" target="_blank" rel="noopener">${ic('ext')}Ver meu site</a>` : ''}<a href="#/">${ic('globe')}Página inicial do PAB</a><button id="instBtn" hidden>${ic('dl')}Instalar app</button><button id="contaBtn">${ic('key')}Minha conta</button><button id="outBtn" class="out">${ic('out')}Sair</button></div>`;
   const tt = $('#tbTitle'); if (tt) tt.textContent = title || (S.admin ? 'Administração' : 'Meu painel');
   $('#outBtn').onclick = () => { signOut(auth); location.hash = '#/'; };
   $('#contaBtn').onclick = formConta;
+  sd.querySelectorAll('.pd').forEach(b => b.onclick = () => themeSet({ pal: b.dataset.pal }));
+  $('#modeBtn').onclick = () => themeSet({ mode: themeGet().mode === 'dark' ? 'light' : 'dark' });
   if (deferredInstall) $('#instBtn').hidden = false;
   $('#instBtn').onclick = async () => { if (deferredInstall) { deferredInstall.prompt(); deferredInstall = null; $('#instBtn').hidden = true; } };
   sd.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => document.body.classList.remove('menu-open')));
 }
 function renderAppShell() {
-  document.body.classList.add('light');
+  document.body.classList.add('light'); themeApply();
   const hoje = new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
   $('#root').innerHTML = `<div class="app"><aside class="side" id="side"></aside><div class="side-ov" id="sideOv"></div><div class="appmain"><div class="topbar"><button class="burger" id="burger" aria-label="Menu">${ic('menu').replace('<svg','<svg')}</button><h4 id="tbTitle"></h4><span class="sp"></span><span class="tb-d">${esc(hoje)}</span></div><main id="main"></main>
   <footer class="ft">PAB · Portal dos Advogados do Brasil · Dúvidas: <a href="mailto:${esc(S.config.suporteEmail)}">${esc(S.config.suporteEmail)}</a></footer></div></div>`;
