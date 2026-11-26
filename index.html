@@ -272,6 +272,15 @@ a.stat:hover{border-color:var(--gold)}
 }
 
 .backl{display:inline-block;margin-bottom:1rem;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--gold);border:1px solid var(--border);padding:.5rem .9rem}.backl:hover{background:var(--gold);color:var(--on-gold)}
+.authbg{background:radial-gradient(ellipse at 20% 0%,color-mix(in srgb,var(--gold) 10%,transparent),transparent 55%),linear-gradient(180deg,var(--navy2),var(--navy))}
+.auth-grid{grid-template-columns:minmax(0,1.3fr) minmax(340px,430px)!important;gap:3rem!important}
+.auth-left h1{font-size:clamp(2rem,4vw,3.1rem);line-height:1.1;margin:.5rem 0 1rem}.auth-left .lead{max-width:560px;color:var(--muted);line-height:1.8;font-size:.92rem}
+.auth-left .feat{margin-top:1.8rem}.auth-left .feat div{padding:1.3rem 1.2rem}.auth-left .feat h3{font-size:1.15rem}.auth-left .feat p{font-size:.74rem;line-height:1.7}
+.auth-card{--navy:#f3f5f9;--navy2:#fff;--cream:#111827;--muted:#4b5563;--gold:#8a6414;--on-gold:#e8c97a;--border:rgba(17,24,39,.2);background:#fff!important;color:#111827;border:1px solid #fff!important;box-shadow:0 30px 70px rgba(0,0,0,.45),0 0 0 6px color-mix(in srgb,#c9a84c 25%,transparent);padding:2rem 1.8rem!important;border-radius:14px}
+.auth-card .auth-h{margin-bottom:1.2rem}.auth-card .auth-h b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;color:#0b1726}.auth-card .auth-h small{font-size:.74rem;color:#4b5563}
+.auth-card .btn{background:#0b1726;color:#e8c97a;border-radius:8px}.auth-card .gbtn{border:1px solid rgba(17,24,39,.25);border-radius:8px}
+.auth-card .field input,.auth-card .field select{background:#f3f5f9;border-radius:8px;color:#111827}.auth-card .check span,.auth-card .hint{color:#374151}
+@media(max-width:900px){.auth-grid{grid-template-columns:1fr!important;gap:2rem!important}.auth-card{order:-1;position:static!important}}
 /* ===== aparencia ===== */
 .apar{display:flex;align-items:center;gap:.45rem;padding:.55rem .6rem .35rem}
 .apar .pd{width:18px;height:18px;border-radius:50%;border:2px solid transparent;padding:0;outline:1px solid rgba(255,255,255,.3)}
@@ -616,8 +625,11 @@ function viewDirectory(main) {
   $('#q', main).oninput = e => { q = e.target.value; draw(); }; draw(); return { refresh: draw };
 }
 function viewAuth(main, mode) {
-  main.innerHTML = `<div class="wrap pad"><div class="auth-grid"><div><div class="eyebrow">Quadro de avisos</div><h2 style="font-size:2.1rem;margin-bottom:1.2rem">Comunicados do PAB</h2><div id="bd"></div></div>
-  <div class="card"><div class="tabs"><button data-m="login" class="${mode === 'login' ? 'on' : ''}">Entrar</button><button data-m="reg" class="${mode === 'reg' ? 'on' : ''}">Cadastrar-se</button></div>
+  main.innerHTML = `<div class="authbg"><div class="wrap pad"><div class="auth-grid"><div class="auth-left"><div class="eyebrow">Portal dos Advogados do Brasil</div><h1>${esc(S.config.heroTitulo)}</h1><p class="lead">${esc(S.config.heroTexto)}</p>
+  <div class="feat"><div><span>🌐</span><h3>Site pessoal</h3><p>Uma página profissional com seu perfil, áreas de atuação, contato e formulário de mensagens, no ar em minutos.</p></div><div><span>📣</span><h3>Comunicados oficiais</h3><p>Avisos, alertas, publicações e atualizações do portal direto no seu acesso.</p></div><div><span>🛡️</span><h3>Gestão pelo portal</h3><p>Cadastro validado pelo PAB e controle de acesso para manter a rede de advogados confiável.</p></div></div>
+  <div class="sec-t" style="margin-top:2.4rem">Quadro de avisos</div><div id="bd"></div>
+  <div class="sec-t" style="margin-top:2.4rem">Advogados cadastrados</div><div class="dir" id="dr"></div><p style="margin-top:1rem"><a class="backl" href="#/advogados">Ver todos os advogados →</a></p></div>
+  <div class="card auth-card"><div class="auth-h"><b>Acesso ao portal</b><small>Entre ou cadastre-se para usar o seu painel</small></div><div class="tabs"><button data-m="login" class="${mode === 'login' ? 'on' : ''}">Entrar</button><button data-m="reg" class="${mode === 'reg' ? 'on' : ''}">Cadastrar-se</button></div>
   <button class="gbtn" id="gBtn"><svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17.5z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.5-.8-3-.8-4.7s.3-3.2.8-4.7l-7.9-6.1C.9 16.4 0 20.1 0 24s.9 7.6 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.9 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>Continuar com Google</button>
   <div class="or">ou com e-mail</div>
   <form id="af" novalidate>${mode === 'reg' ? `<div class="field"><label>Nome completo</label><input name="nome" maxlength="150" autocomplete="name"></div>
@@ -628,8 +640,8 @@ function viewAuth(main, mode) {
     ${mode === 'reg' ? `<label class="check"><input type="checkbox" name="termos"><span>${esc(S.config.termos)}</span></label>` : ''}
     <p class="msg-err" id="ae"></p><button class="btn" style="width:100%" id="ab">${mode === 'reg' ? 'Criar minha conta' : 'Entrar'}</button>
     ${mode === 'login' ? '<p style="text-align:center;margin-top:1rem"><button type="button" id="fg" style="background:none;border:none;color:var(--muted);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase">Esqueci minha senha</button></p>' : ''}</form>
-  ${mode === 'reg' ? `<p class="hint" style="margin-top:1rem">${S.config.aprovacaoAuto ? 'Seu acesso é liberado assim que a conta é criada.' : 'Após o cadastro, o PAB valida seus dados e libera o seu site pessoal.'}</p>` : ''}</div></div></div>`;
-  const dr = () => { $('#bd', main).innerHTML = boardHtml(visiveis().filter(x => x.publico || S.user)); }; dr();
+  ${mode === 'reg' ? `<p class="hint" style="margin-top:1rem">${S.config.aprovacaoAuto ? 'Seu acesso é liberado assim que a conta é criada.' : 'Após o cadastro, o PAB valida seus dados e libera o seu site pessoal.'}</p>` : ''}</div></div></div></div>`;
+  const dr = () => { $('#bd', main).innerHTML = boardHtml(visiveis().filter(x => x.publico || S.user)); $('#dr', main).innerHTML = S.dirSites.slice(0, 4).map(dirCard).join('') || '<div class="empty" style="grid-column:1/-1">Em breve, os sites dos advogados aparecerão aqui.</div>'; }; dr();
   $$('.tabs [data-m]', main).forEach(b => b.onclick = () => { location.hash = b.dataset.m === 'reg' ? '#/cadastro' : '#/entrar'; });
   const err = (m, ok) => { const e = $('#ae', main); e.textContent = m || ''; e.className = ok ? 'msg-ok' : 'msg-err'; };
   $('#gBtn', main).onclick = async () => { try { S.pending = null; await signInWithPopup(auth, new GoogleAuthProvider()); } catch (e) { err(errMsg(e)); } };
@@ -1388,8 +1400,6 @@ function route() {
   const mr = document.getElementById('modalRoot'); if (mr) mr.innerHTML = '';
   const [r, a, b2] = location.hash.replace(/^#\/?/, '').split('/');
   if (r === 'a' && a) { document.body.classList.remove('light', 'menu-open'); S.view = viewSite(decodeURIComponent(a).toLowerCase()); return; }
-  const primeira = !!S.routed && !S.visited; if (S.routed) S.visited = true;
-  if (primeira && r === '' && !S.user) return location.replace('#/entrar');
   renderShell(); const main = $('#main'); window.scrollTo(0, 0);
   if (S.cliente && ['', 'advogados', 'entrar', 'cadastro', 'painel', 'admin'].includes(r)) return location.replace('#/cliente');
   if (S.roleLoading && ['', 'advogados', 'painel', 'cliente', 'entrar', 'cadastro'].includes(r)) { main.innerHTML = '<div class="loading">Carregando…</div>'; renderHeader(); return; }
@@ -1405,7 +1415,7 @@ function route() {
   } else if (r === 'admin') {
     if (!S.admin) return location.replace(S.user ? '#/painel' : '#/entrar');
     S.view = a === 'associados' ? viewAdminAssoc(main) : a === 'comunicados' ? viewAdminCom(main) : a === 'acessos' ? viewAdminAcessos(main) : a === 'config' ? viewAdminConfig(main) : viewAdminHome(main);
-  } else S.view = viewHome(main);
+  } else S.view = S.user ? viewHome(main) : viewAuth(main, 'login');
   renderHeader();
 }
 window.addEventListener('hashchange', route);
