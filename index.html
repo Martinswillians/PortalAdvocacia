@@ -281,6 +281,15 @@ a.stat:hover{border-color:var(--gold)}
 .auth-card .btn{background:#0b1726;color:#e8c97a;border-radius:8px}.auth-card .gbtn{border:1px solid rgba(17,24,39,.25);border-radius:8px}
 .auth-card .field input,.auth-card .field select{background:#f3f5f9;border-radius:8px;color:#111827}.auth-card .check span,.auth-card .hint{color:#374151}
 @media(max-width:900px){.auth-grid{grid-template-columns:1fr!important;gap:2rem!important}.auth-card{order:-1;position:static!important}}
+.cal{border:1px solid var(--border);background:var(--navy2);padding:1rem 1.1rem 1.2rem;margin-bottom:1.2rem;max-width:560px}
+.cal-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem}.cal-h b{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;display:block}.cal-h b::first-letter{text-transform:uppercase}
+.cal-h button{background:none;border:1px solid var(--border);color:var(--cream);width:36px;height:36px;font-size:1.1rem}.cal-h button:hover{border-color:var(--gold);color:var(--gold)}
+.cal-g{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}.cal-g .wd{font-size:.62rem;letter-spacing:.1em;color:var(--muted);padding:.3rem 0}
+.cal-g button{position:relative;background:none;border:1px solid transparent;color:var(--cream);aspect-ratio:1/.82;font-size:.86rem;padding:0}.cal-g button.o{color:var(--muted);opacity:.45}
+.cal-g button:hover{border-color:var(--border)}.cal-g button.hoje{border-color:var(--gold);font-weight:700}.cal-g button.sel{background:var(--gold);color:var(--on-gold);border-color:var(--gold)}
+.cal-g button i{position:absolute;left:50%;bottom:4px;width:6px;height:6px;border-radius:50%;background:var(--info);transform:translateX(-50%)}.cal-g button.sel i{background:var(--on-gold)}
+.fchips{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.1rem}.fchips button{background:none;border:1px solid var(--border);color:var(--muted);padding:.6rem 1.1rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase}.fchips button.on{border-color:var(--gold);color:var(--gold)}
+.cal-day{display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem;font-size:.8rem;color:var(--muted)}.cal-day b{color:var(--cream)}
 /* ===== aparencia ===== */
 .apar{display:flex;align-items:center;gap:.45rem;padding:.55rem .6rem .35rem}
 .apar .pd{width:18px;height:18px;border-radius:50%;border:2px solid transparent;padding:0;outline:1px solid rgba(255,255,255,.3)}
@@ -1145,15 +1154,36 @@ function formEvento(e, pre = {}) {
   });
 }
 function mountAgenda(main) {
-  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Área do cliente</div><h1><em>Agenda</em></h1><p>Audiências, prazos e reuniões. Os marcados como visíveis aparecem para o cliente.</p></div><button class="btn" id="nv">＋ Novo compromisso</button></div><div class="toolbar"><select id="f"><option value="prox">Próximos</option><option value="pass">Já passaram</option><option value="todos">Todos</option></select></div><div class="list" id="ls"></div></div>`;
-  let f = 'prox';
-  const draw = () => { const h = dayKey(), l = S.ev.filter(e => f === 'todos' || (f === 'prox' ? e.data >= h : e.data < h)).sort((a, b) => f === 'pass' ? cmpEv(b, a) : cmpEv(a, b));
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Área do cliente</div><h1>Audiências e <em>reuniões</em></h1><p>Agende e confirme compromissos. Os marcados como visíveis aparecem para o cliente.</p></div><button class="btn" id="nv">＋ Novo compromisso</button></div><div class="cal" id="cal"></div><div id="fl"></div><div class="list" id="ls"></div></div>`;
+  const st = calState();
+  const draw = () => { const l = calFilter(S.ev, st).sort((a, b) => st.f === 'pass' && !st.sel ? cmpEv(b, a) : cmpEv(a, b));
+    $('#cal', main).innerHTML = calHtml(st, S.ev); $('#fl', main).innerHTML = calChips(st);
     $('#ls', main).innerHTML = l.length ? l.map(e => evHtml(e, true)).join('') : '<div class="empty"><b>Nenhum compromisso</b>Use “Novo compromisso” para cadastrar.</div>'; };
-  $('#f', main).onchange = e => { f = e.target.value; draw(); }; $('#nv', main).onclick = () => formEvento(null);
-  main.onclick = async e => { const b = e.target.closest('[data-a]'); if (!b) return; const ev = S.ev.find(x => x.id === b.closest('[data-u]').dataset.u); if (!ev) return;
+  $('#nv', main).onclick = () => formEvento(null);
+  main.onclick = async e => { if (calClick(e, st, draw)) return; const b = e.target.closest('[data-a]'); if (!b) return; const ev = S.ev.find(x => x.id === b.closest('[data-u]').dataset.u); if (!ev) return;
     try { if (b.dataset.a === 'ics') baixaIcs(ev); else if (b.dataset.a === 'ed') formEvento(ev); else if (b.dataset.a === 'del' && await confirmBox(`Excluir “${esc(ev.titulo)}”?`, 'Excluir')) { await deleteDoc(doc(db, 'eventos', ev.id)); toast('Excluído.'); } } catch (x) { toast(errMsg(x), true); } };
   draw(); return { refresh: draw };
 }
+
+/* ---------- calendário mensal (agenda) ---------- */
+const MESES_L = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+function calHtml(st, evs) {
+  const hoje = dayKey(), first = new Date(st.y, st.m, 1), start = new Date(st.y, st.m, 1 - first.getDay()), com = new Set(evs.map(e => e.data));
+  let cells = '';
+  for (let i = 0; i < 42; i++) { const d = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i), k = dayKey(d.getTime());
+    cells += `<button type="button" data-d="${k}" class="${d.getMonth() !== st.m ? 'o' : ''} ${k === hoje ? 'hoje' : ''} ${k === st.sel ? 'sel' : ''}" aria-label="${fmtDia(k)}">${d.getDate()}${com.has(k) ? '<i></i>' : ''}</button>`; }
+  return `<div class="cal-h"><button type="button" data-cm="-1" aria-label="Mês anterior">‹</button><b>${MESES_L[st.m]} de ${st.y}</b><button type="button" data-cm="1" aria-label="Próximo mês">›</button></div><div class="cal-g">${['D', 'S', 'T', 'Q', 'Q', 'S', 'S'].map(x => `<span class="wd">${x}</span>`).join('')}${cells}</div>`;
+}
+const calState = () => { const n = new Date(); return { y: n.getFullYear(), m: n.getMonth(), sel: '', f: 'prox' }; };
+function calClick(e, st, redraw) {
+  const m = e.target.closest('[data-cm]'), d = e.target.closest('[data-d]'), f = e.target.closest('[data-f]'), c = e.target.closest('[data-clr]');
+  if (m) { const x = new Date(st.y, st.m + Number(m.dataset.cm), 1); st.y = x.getFullYear(); st.m = x.getMonth(); }
+  else if (d) { st.sel = st.sel === d.dataset.d ? '' : d.dataset.d; const x = new Date(st.sel + 'T12:00:00'); if (st.sel) { st.y = x.getFullYear(); st.m = x.getMonth(); } }
+  else if (f) { st.f = f.dataset.f; st.sel = ''; } else if (c) st.sel = ''; else return false;
+  redraw(); return true;
+}
+const calFilter = (evs, st) => { const h = dayKey(); return st.sel ? evs.filter(e => e.data === st.sel) : evs.filter(e => st.f === 'todos' || (st.f === 'prox' ? e.data >= h : e.data < h)); };
+const calChips = st => `<div class="fchips">${[['prox', 'Próximos'], ['pass', 'Anteriores'], ['todos', 'Todos']].map(([k, n]) => `<button type="button" data-f="${k}" class="${!st.sel && st.f === k ? 'on' : ''}">${n}</button>`).join('')}</div>${st.sel ? `<div class="cal-day">Compromissos de <b>${fmtDia(st.sel)}</b> <button type="button" class="btn ghost sm" data-clr="1">Limpar dia</button></div>` : ''}`;
 
 /* --- tarefas (quadro) --- */
 function formTarefa(t, status0) {
@@ -1276,9 +1306,12 @@ function viewClienteProc(main, id) {
   draw(); return { refresh: draw, destroy() { un?.(); } };
 }
 function viewClienteAgenda(main) {
-  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Área do cliente</div><h1><em>Agenda</em></h1></div></div><div class="list" id="ls"></div></div>`;
-  const draw = () => { if (clienteOff(main)) return; const l = [...S.ev].sort(cmpEv).filter(e => e.data >= dayKey()); $('#ls', main).innerHTML = l.length ? l.map(e => evHtml(e, false)).join('') : '<div class="empty"><b>Nenhum compromisso agendado</b></div>'; };
-  main.onclick = e => { const b = e.target.closest('[data-a="ics"]'); if (b) { const ev = S.ev.find(x => x.id === b.closest('[data-u]').dataset.u); if (ev) baixaIcs(ev); } };
+  main.innerHTML = `<div class="wrap pad"><div class="page-h"><div><div class="eyebrow">Área do cliente</div><h1><em>Agenda</em></h1></div></div><div class="cal" id="cal"></div><div id="fl"></div><div class="list" id="ls"></div></div>`;
+  const st = calState();
+  const draw = () => { if (clienteOff(main)) return; const l = calFilter(S.ev, st).sort((a, b) => st.f === 'pass' && !st.sel ? cmpEv(b, a) : cmpEv(a, b));
+    $('#cal', main).innerHTML = calHtml(st, S.ev); $('#fl', main).innerHTML = calChips(st);
+    $('#ls', main).innerHTML = l.length ? l.map(e => evHtml(e, false)).join('') : '<div class="empty"><b>Nenhum compromisso</b></div>'; };
+  main.onclick = e => { if (calClick(e, st, draw)) return; const b = e.target.closest('[data-a="ics"]'); if (b) { const ev = S.ev.find(x => x.id === b.closest('[data-u]').dataset.u); if (ev) baixaIcs(ev); } };
   draw(); return { refresh: draw };
 }
 
